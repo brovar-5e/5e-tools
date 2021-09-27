@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"version": "1.16.6",
+	"version": "1.16.8",
 	"title": "Bestiary Schema",
 	"$id": "bestiary.json",
 	"type": "object",
@@ -219,6 +219,7 @@
 						"$ref": "#/definitions/align"
 					}
 				},
+				"alignmentPrefix": {"type": "string"},
 				"ac": {
 					"type": "array",
 					"items": {
@@ -932,6 +933,10 @@
 				},
 				"summonedBySpell": {
 					"description": "The spell used to summon this creature; specifically for TCE-esque summon spells.",
+					"type": "string"
+				},
+				"summonedByClass": {
+					"description": "The class which can summon this creature; e.g. for those granted by some TCE class features.",
 					"type": "string"
 				},
 				"_isCopy": {

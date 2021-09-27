@@ -4,7 +4,7 @@
 
 	"title": "Util",
 	"description": "Utility definitions to be used in other schemas.",
-	"version": "1.4.3",
+	"version": "1.8.0",
 
 	"definitions" : {
 		"metaBlock": {
@@ -103,6 +103,22 @@
 			"items": {
 				"type": "object",
 				"properties": {
+					"any": {"type": "integer"},
+					"anyStandard": {"type": "integer"},
+
+					"abyssal": {"type": "boolean"},
+					"celestial": {"type": "boolean"},
+					"deep speech": {"type": "boolean"},
+					"draconic": {"type": "boolean"},
+					"infernal": {"type": "boolean"},
+					"primordial": {"type": "boolean"},
+					"sylvan": {"type": "boolean"},
+					"undercommon": {"type": "boolean"},
+					"dwarvish": {"type": "boolean"},
+					"elvish": {"type": "boolean"},
+					"giant": {"type": "boolean"},
+					"other": {"type": "boolean"},
+
 					"choose": {
 						"type": "object",
 						"properties": {
@@ -115,52 +131,47 @@
 							"count": {
 								"type": "integer"
 							}
-						}
-					},
-					"any": {
-						"type": "integer"
-					},
-					"anyStandard": {
-						"type": "integer"
-					},
-					"abyssal": {
-						"type": "boolean"
-					},
-					"celestial": {
-						"type": "boolean"
-					},
-					"deep speech": {
-						"type": "boolean"
-					},
-					"draconic": {
-						"type": "boolean"
-					},
-					"infernal": {
-						"type": "boolean"
-					},
-					"primordial": {
-						"type": "boolean"
-					},
-					"sylvan": {
-						"type": "boolean"
-					},
-					"undercommon": {
-						"type": "boolean"
-					},
-					"dwarvish": {
-						"type": "boolean"
-					},
-					"elvish": {
-						"type": "boolean"
-					},
-					"giant": {
-						"type": "boolean"
-					},
-					"other": {
-						"type": "boolean"
+						},
+						"additionalProperties": false
 					}
 				}
 			}
+		},
+
+		"toolNameLower": {
+			"type": "string",
+			"enum": [
+				"artisan's tools",
+
+				"alchemist's supplies",
+				"brewer's supplies",
+				"calligrapher's supplies",
+				"carpenter's tools",
+				"cartographer's tools",
+				"cobbler's tools",
+				"cook's utensils",
+				"glassblower's tools",
+				"jeweler's tools",
+				"leatherworker's tools",
+				"mason's tools",
+				"painter's supplies",
+				"potter's tools",
+				"smith's tools",
+				"tinker's tools",
+				"weaver's tools",
+				"woodcarver's tools",
+
+				"disguise kit",
+				"forgery kit",
+				"gaming set",
+				"herbalism kit",
+				"musical instrument",
+				"navigator's tools",
+				"thieves' tools",
+				"poisoner's kit",
+				"vehicles (land)",
+				"vehicles (water)"
+			]
 		},
 
 		"toolProficiencies": {
@@ -168,6 +179,9 @@
 			"items": {
 				"type": "object",
 				"properties": {
+					"any": {"type": "integer"},
+					"anyArtisans": {"type": "integer"},
+
 					"artisan's tools": {"type": "boolean"},
 
 					"alchemist's supplies": {"type": "boolean"},
@@ -195,11 +209,9 @@
 					"musical instrument": {"type": "boolean"},
 					"navigator's tools": {"type": "boolean"},
 					"thieves' tools": {"type": "boolean"},
+					"poisoner's kit": {"type": "boolean"},
 					"vehicles (land)": {"type": "boolean"},
 					"vehicles (water)": {"type": "boolean"},
-					"poisoner's kit": {"type": "boolean"},
-
-					"any": {"type": "integer"},
 
 					"choose": {
 						"type": "object",
@@ -207,43 +219,14 @@
 							"from": {
 								"type": "array",
 								"items": {
-									"enum": [
-										"artisan's tools",
-
-										"alchemist's supplies",
-										"brewer's supplies",
-										"calligrapher's supplies",
-										"carpenter's tools",
-										"cartographer's tools",
-										"cobbler's tools",
-										"cook's utensils",
-										"glassblower's tools",
-										"jeweler's tools",
-										"leatherworker's tools",
-										"mason's tools",
-										"painter's supplies",
-										"potter's tools",
-										"smith's tools",
-										"tinker's tools",
-										"weaver's tools",
-										"woodcarver's tools",
-
-										"disguise kit",
-										"forgery kit",
-										"gaming set",
-										"herbalism kit",
-										"musical instrument",
-										"navigator's tools",
-										"thieves' tools",
-										"vehicles (land)",
-										"vehicles (water)"
-									]
+									"$ref": "#/definitions/toolNameLower"
 								}
 							},
 							"count": {
 								"type": "integer"
 							}
-						}
+						},
+						"additionalProperties": false
 					}
 				}
 			}
@@ -278,6 +261,8 @@
 			"items": {
 				"type": "object",
 				"properties": {
+					"any": {"type": "integer"},
+
 					"athletics": {"type": "boolean"},
 					"acrobatics":{"type": "boolean"},
 					"sleight of hand": {"type": "boolean"},
@@ -297,42 +282,143 @@
 					"performance": {"type": "boolean"},
 					"persuasion":{"type": "boolean"},
 
-					"tool": {"type": "boolean"},
-
 					"choose": {
 						"type": "object",
 						"properties": {
 							"from": {
 								"type": "array",
 								"items": {
-									"oneOf": [
-										{
-											"$ref": "#/definitions/skillNameLower"
-										},
-										{
-											"type": "object",
-											"properties": {
-												"tool": {
-													"type": "array",
-													"items": {
-														"type": "string"
-													}
-												}
-											}
-										},
-										{
-											"type": "object",
-											"properties": {
-												"tool": {
-													"type": "boolean"
-												}
-											}
-										}
-									]
+									"$ref": "#/definitions/skillNameLower"
 								}
+							},
+							"count": {
+								"type": "integer"
 							}
-						}
+						},
+						"additionalProperties": false
+					}
+				},
+				"additionalProperties": false
+			}
+		},
 
+		"skillToolLanguageProficiencies": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"anyLanguage": {"type": "integer"},
+					"anyStandardLanguage": {"type": "integer"},
+
+					"abyssal": {"type": "boolean"},
+					"celestial": {"type": "boolean"},
+					"deep speech": {"type": "boolean"},
+					"draconic": {"type": "boolean"},
+					"infernal": {"type": "boolean"},
+					"primordial": {"type": "boolean"},
+					"sylvan": {"type": "boolean"},
+					"undercommon": {"type": "boolean"},
+					"dwarvish": {"type": "boolean"},
+					"elvish": {"type": "boolean"},
+					"giant": {"type": "boolean"},
+					"otherLanguage": {"type": "boolean"},
+
+
+
+					"anyTool": {"type": "integer"},
+					"anyArtisansTool": {"type": "integer"},
+
+					"artisan's tools": {"type": "boolean"},
+
+					"alchemist's supplies": {"type": "boolean"},
+					"brewer's supplies":{"type": "boolean"},
+					"calligrapher's supplies": {"type": "boolean"},
+					"carpenter's tools":{"type": "boolean"},
+					"cartographer's tools": {"type": "boolean"},
+					"cobbler's tools":{"type": "boolean"},
+					"cook's utensils": {"type": "boolean"},
+					"glassblower's tools":{"type": "boolean"},
+					"jeweler's tools": {"type": "boolean"},
+					"leatherworker's tools":{"type": "boolean"},
+					"mason's tools": {"type": "boolean"},
+					"painter's supplies":{"type": "boolean"},
+					"potter's tools": {"type": "boolean"},
+					"smith's tools":{"type": "boolean"},
+					"tinker's tools": {"type": "boolean"},
+					"weaver's tools":{"type": "boolean"},
+					"woodcarver's tools": {"type": "boolean"},
+
+					"disguise kit": {"type": "boolean"},
+					"forgery kit": {"type": "boolean"},
+					"gaming set": {"type": "boolean"},
+					"herbalism kit": {"type": "boolean"},
+					"musical instrument": {"type": "boolean"},
+					"navigator's tools": {"type": "boolean"},
+					"thieves' tools": {"type": "boolean"},
+					"poisoner's kit": {"type": "boolean"},
+					"vehicles (land)": {"type": "boolean"},
+					"vehicles (water)": {"type": "boolean"},
+
+
+
+					"anySkill": {"type": "integer"},
+
+					"athletics": {"type": "boolean"},
+					"acrobatics":{"type": "boolean"},
+					"sleight of hand": {"type": "boolean"},
+					"stealth":{"type": "boolean"},
+					"arcana": {"type": "boolean"},
+					"history":{"type": "boolean"},
+					"investigation": {"type": "boolean"},
+					"nature":{"type": "boolean"},
+					"religion": {"type": "boolean"},
+					"animal handling":{"type": "boolean"},
+					"insight": {"type": "boolean"},
+					"medicine":{"type": "boolean"},
+					"perception": {"type": "boolean"},
+					"survival":{"type": "boolean"},
+					"deception": {"type": "boolean"},
+					"intimidation":{"type": "boolean"},
+					"performance": {"type": "boolean"},
+					"persuasion":{"type": "boolean"},
+
+
+
+					"choose": {
+						"type": "array",
+						"items": {
+							"oneOf": [
+								{
+									"type": "object",
+									"properties": {
+										"from": {
+											"type": "array",
+											"items": {
+												"anyOf": [
+													{"$ref": "#/definitions/languageNameLower"},
+													{"$ref": "#/definitions/toolNameLower"},
+													{"$ref": "#/definitions/skillNameLower"},
+													{"type": "string", "enum": ["anySkill", "anyTool", "anyArtisansTool", "anyLanguage", "anyStandardLanguage"]}
+												]
+											}
+										},
+										"count": {"type": "integer"}
+									},
+									"required": ["from"],
+									"additionalProperties": false
+								},
+								{
+									"type": "object",
+									"properties": {
+										"fromFilter": {"type": "string"},
+										"count": {"type": "integer"},
+										"type": {"type": "string", "enum": ["weapon", "armor", "skill", "tool", "language", "savingThrow"]}
+									},
+									"required": ["fromFilter", "type"],
+									"additionalProperties": false
+								}
+							]
+						}
 					}
 				},
 				"additionalProperties": false
@@ -391,12 +477,14 @@
 					"choose": {
 						"type": "object",
 						"properties": {
-							"from": {
+							"fromFilter": {
 								"description": "A filter string, e.g. \"type=martial weapon|miscellaneous=mundane\"",
 								"type": "string"
 							},
+
 							"count": {"type": "integer"}
 						},
+						"required": ["fromFilter"],
 						"additionalProperties": false
 					}
 				},
@@ -518,6 +606,22 @@
 					"poisoner's kit": {"type": "boolean"}
 				}
 			}
+		},
+
+		"proficiencyTag": {
+			"type": "string",
+			"enum": [
+				"Skill Proficiency",
+				"Armor Proficiency",
+				"Weapon Proficiency",
+				"Tool Proficiency",
+				"Language Proficiency"
+			]
+		},
+
+		"proficiencyTags": {
+			"type": "array",
+			"items": {"$ref": "#/definitions/proficiencyTag"}
 		},
 
 		"_speedVal": {
@@ -1300,7 +1404,12 @@
 						"mode": {"const": "replaceTxt"},
 						"replace": {"type":  "string"},
 						"with": {"type":  "string"},
-						"flags":  {"type":  "string"}
+						"flags":  {"type":  "string"},
+						"props": {
+							"description": "If unspecified, defaults to `[null, \"entries\", \"headerEntries\", \"footerEntries\"]`. To apply to _any_ string, including those outside of sub-properties (for instance, when trying to replace text in an array of plain strings), include `null` as one of the props (i.e. `\"props\": [null]`)",
+							"type": "array",
+							"items": {"type": ["string", "null"]}
+						}
 					},
 					"required": ["replace", "with"],
 					"additionalProperties": false
@@ -1489,6 +1598,33 @@
 						"skills": {"type": "object"}
 					},
 					"required": ["mode", "skills"],
+					"additionalProperties": false
+				},
+				{
+					"type": "object",
+					"properties": {
+						"mode": {"const": "addSaves"},
+						"saves": {"type": "object"}
+					},
+					"required": ["mode", "saves"],
+					"additionalProperties": false
+				},
+				{
+					"type": "object",
+					"properties": {
+						"mode": {"const": "addAllSkills"},
+						"skills": {"type": "integer"}
+					},
+					"required": ["mode", "skills"],
+					"additionalProperties": false
+				},
+				{
+					"type": "object",
+					"properties": {
+						"mode": {"const": "addAllSaves"},
+						"saves": {"type": "integer"}
+					},
+					"required": ["mode", "saves"],
 					"additionalProperties": false
 				}
 			]
@@ -1741,6 +1877,10 @@
 					},
 					"innate": {
 						"description": "Spells which can be innately cast, without expending normal spell resources",
+						"$ref": "#/definitions/_additionalSpellObject"
+					},
+					"known": {
+						"description": "Spells which are always known",
 						"$ref": "#/definitions/_additionalSpellObject"
 					},
 					"prepared": {

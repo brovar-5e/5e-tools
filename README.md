@@ -18,6 +18,10 @@ Prioritise RAW above all else. Aim to provide a 1:1 copy of the original data. O
 
 Aim to use the latest version of any published material. Older versions which are sufficiently different (and relevant to community interests) can be moved to the homebrew repository.
 
+The primary source for an entity should be that under which it was first released. Exceptions to this rule include:
+- The entity was originally released in a "partial" or "pre-release" form. For example, races from WGE were later re-released in ERLW.
+- The entity was originally released in a published adventure, but was later re-printed in a generic supplement. For example, the demon lords in OotA were re-printed in MTF, or the Haunted One background in CoS was re-printed in VRGR.
+
 #### Page-Specific Notes
 
 *Languages page.* As there is no well-defined RAW format for language data, the languages page collects together information from several disjoint places. A priority list of sources to be considered is:
@@ -33,7 +37,7 @@ Within this ordering, the following prioritisation should be made:
 
 
 ### Target JavaScript Version
-Targeting ES6 was the original intent, but more modern features have long since crept into the code. Therefore, if something is available as standard in both Chrome and Firefox (preferably in versions dating back at least a couple of months), and isn't bleeding-edge, one can reasonable justify using it. As with all things, use common sense.
+Anything language feature available in both main-line Chrome and Firefox for at least six months may be used.
 
 ### Style Guidelines
 #### Code

@@ -13,8 +13,8 @@
 
 	<title>Text Converter - 5etools</title>
 
-	<link rel="stylesheet" href="css/bootstrap.css?v=1.134.0">
-	<link rel="stylesheet" href="css/main.css?v=1.134.0">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
 
 	<!-- Favicons -->
 	<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.115">
@@ -46,9 +46,11 @@
 	<!-- macOS Safari Pinned Tab and Touch Bar -->
 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
 
-	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js?v=1.134.0");</script>
+	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");</script>
 
-	<script type="text/javascript" src="js/header.js?v=1.134.0"></script>
+	<script type="text/javascript" src="js/styleswitch.js"></script>
+	<script type="text/javascript" src="js/navigation.js"></script>
+	<script type="text/javascript" src="js/browsercheck.js"></script>
 
 	<style>
 		.inputArea,
@@ -163,22 +165,30 @@
 <!--5ETOOLS_SCRIPT_ANCHOR-->
 <!--5ETOOLS_AD_ADHESION-->
 <!--5ETOOLS_SCRIPT_ANCHOR__ACE-JS-->
-<script type="text/javascript" src="js/shared.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/utils-proporder.js?v=1.134.0"></script>
+<script type="text/javascript" src="js/parser.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/utils-ui.js"></script>
+<script type="text/javascript" src="js/utils-proporder.js"></script>
 <script type="text/javascript" src="lib/localforage.js"></script>
-<script type="text/javascript" src="js/render-markdown.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converterutils.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converterutils-entries.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converterutils-creature.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converterutils-spell.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converterutils-item.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converter.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converter-creature.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converter-spell.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converter-item.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converter-table.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/converter-feat.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/list2.js?v=1.134.0"></script>
+<script type="text/javascript" src="js/omnidexer.js"></script>
+<script type="text/javascript" src="js/omnisearch.js"></script>
+<script type="text/javascript" src="js/render.js"></script>
+<script type="text/javascript" src="js/render-dice.js"></script>
+<script type="text/javascript" src="js/render-markdown.js"></script>
+<script type="text/javascript" src="js/scalecreature.js"></script>
+<script type="text/javascript" src="js/hist.js"></script>
+<script type="text/javascript" src="js/converterutils.js"></script>
+<script type="text/javascript" src="js/converterutils-entries.js"></script>
+<script type="text/javascript" src="js/converterutils-creature.js"></script>
+<script type="text/javascript" src="js/converterutils-spell.js"></script>
+<script type="text/javascript" src="js/converterutils-item.js"></script>
+<script type="text/javascript" src="js/converter.js"></script>
+<script type="text/javascript" src="js/converter-creature.js"></script>
+<script type="text/javascript" src="js/converter-spell.js"></script>
+<script type="text/javascript" src="js/converter-item.js"></script>
+<script type="text/javascript" src="js/converter-table.js"></script>
+<script type="text/javascript" src="js/converter-feat.js"></script>
+<script type="text/javascript" src="js/list2.js"></script>
 <script type="text/javascript" src="lib/jquery.js"></script>
 <script type="text/javascript" src="lib/elasticlunr.js"></script>
 <script type="text/javascript" src="lib/ace.js"></script>

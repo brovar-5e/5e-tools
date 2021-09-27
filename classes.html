@@ -13,9 +13,9 @@
 
 	<title>Classes - 5etools</title>
 
-	<link rel="stylesheet" href="css/bootstrap.css?v=1.134.0">
-	<link rel="stylesheet" href="css/main.css?v=1.134.0">
-	<link rel="stylesheet" href="css/classes.css?v=1.134.0">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/classes.css">
 
 	<!-- Favicons -->
 	<link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.115">
@@ -47,9 +47,11 @@
 	<!-- macOS Safari Pinned Tab and Touch Bar -->
 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
 
-	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js?v=1.134.0");</script>
+	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");</script>
 
-	<script type="text/javascript" src="js/header.js?v=1.134.0"></script>
+	<script type="text/javascript" src="js/styleswitch.js"></script>
+	<script type="text/javascript" src="js/navigation.js"></script>
+	<script type="text/javascript" src="js/browsercheck.js"></script>
 </head>
 
 <body>
@@ -82,8 +84,8 @@
 					<button class="btn btn-default px-2" id="reset"><span class="glyphicon glyphicon-refresh"></span></button>
 				</div>
 				<div id="filtertools" class="input-group input-group--bottom flex no-shrink">
-					<button class="col-8 sort btn btn-default btn-xs" data-sort="name">Name <span class="caret_wrp"></span></button>
-					<button class="sort btn btn-default btn-xs ve-grow" data-sort="source">Source <span class="caret_wrp"></span></button>
+					<button class="col-8 sort btn btn-default btn-xs" data-sort="name">Name</button>
+					<button class="sort btn btn-default btn-xs ve-grow" data-sort="source">Source</button>
 				</div>
 
 				<div class="list list--stats classes cls__list"></div>
@@ -123,14 +125,23 @@
 <!--5ETOOLS_SCRIPT_ANCHOR-->
 <!--5ETOOLS_AD_ADHESION-->
 <script type="text/javascript" src="lib/jquery.js"></script>
-<script type="text/javascript" src="js/list2.js?v=1.134.0"></script>
+<script type="text/javascript" src="js/list2.js"></script>
 <script type="text/javascript" src="lib/elasticlunr.js"></script>
-<script type="text/javascript" src="js/shared.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/utils-list.js?v=1.134.0"></script>
+<script type="text/javascript" src="js/parser.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript" src="js/utils-list.js"></script>
+<script type="text/javascript" src="js/utils-ui.js"></script>
 <script type="text/javascript" src="lib/localforage.js"></script>
-<script type="text/javascript" src="js/filter.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/filter-classes.js?v=1.134.0"></script>
-<script type="text/javascript" src="js/classes.js?v=1.134.0"></script>
+<script type="text/javascript" src="js/omnidexer.js"></script>
+<script type="text/javascript" src="js/omnisearch.js"></script>
+<script type="text/javascript" src="js/filter.js"></script>
+<script type="text/javascript" src="js/render.js"></script>
+<script type="text/javascript" src="js/render-dice.js"></script>
+<script type="text/javascript" src="js/scalecreature.js"></script>
+<script type="text/javascript" src="js/hist.js"></script>
+<script type="text/javascript" src="js/listpage.js"></script>
+<script type="text/javascript" src="js/filter-classes.js"></script>
+<script type="text/javascript" src="js/classes.js"></script>
 </body>
 
 </html>

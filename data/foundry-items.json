@@ -27,6 +27,32 @@
 			"name": "Gnomengarde Grenade",
 			"source": "DC",
 			"type": "consumable"
+		},
+		{
+			"name": "Barrier Tattoo (Large)",
+			"source": "TCE",
+			"data": {
+				"armor.type": "heavy",
+				"armor.dex": 0,
+				"armor.value": 18
+			}
+		},
+		{
+			"name": "Barrier Tattoo (Medium)",
+			"source": "TCE",
+			"data": {
+				"armor.type": "medium",
+				"armor.dex": 2,
+				"armor.value": 15
+			}
+		},
+		{
+			"name": "Barrier Tattoo (Small)",
+			"source": "TCE",
+			"data": {
+				"armor.type": "light",
+				"armor.value": 12
+			}
 		}
 	]
 }

@@ -88,6 +88,12 @@
 				},
 				"toolProficiencies": {
 					"$ref": "util.json#/definitions/toolProficiencies"
+				},
+				"skillToolLanguageProficiencies": {
+					"$ref": "util.json#/definitions/skillToolLanguageProficiencies"
+				},
+				"proficiencyTags": {
+					"$ref": "util.json#/definitions/proficiencyTags"
 				}
 			},
 			"required": [
