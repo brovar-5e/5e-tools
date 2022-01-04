@@ -40,7 +40,7 @@ class PageFilterFeats extends PageFilter {
 				"Weapon Proficiency",
 			],
 		});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD"], isSrdFilter: true});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD"], isMiscFilter: true});
 	}
 
 	static mutateForFilters (feat) {
@@ -99,7 +99,7 @@ class PageFilterFeats extends PageFilter {
 			],
 			ft._fBenifits,
 			ft._fMisc,
-		)
+		);
 	}
 }
 

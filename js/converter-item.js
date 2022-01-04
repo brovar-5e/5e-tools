@@ -99,7 +99,7 @@ class ItemParser extends BaseParser {
 		TagCondition.tryTagConditions(stats);
 		ArtifactPropertiesTag.tryRun(stats);
 		if (stats.entries) {
-			stats.entries = stats.entries.map(it => DiceConvert.getTaggedEntry(it))
+			stats.entries = stats.entries.map(it => DiceConvert.getTaggedEntry(it));
 			EntryConvert.tryRun(stats, "entries");
 			stats.entries = SkillTag.tryRun(stats.entries);
 			stats.entries = ActionTag.tryRun(stats.entries);
@@ -231,12 +231,15 @@ class ItemParser extends BaseParser {
 			if (partLower === "weapon" || partLower === "weapon (any)") {
 				genericType = "weapon";
 				continue;
-			} else if (partLower === "weapon (any sword)") {
-				genericType = "sword";
-				continue;
 			} else if (partLower === "armor" || partLower === "armor (any)") {
 				genericType = "armor";
 				continue;
+			} else {
+				const mWeaponAnyX = /^weapon \(any ([^)]+)\)$/i.exec(part);
+				if (mWeaponAnyX) {
+					stats.__genericType = mWeaponAnyX[1].trim().toCamelCase();
+					continue;
+				}
 			}
 
 			const mBaseWeapon = /^(weapon|staff) \(([^)]+)\)$/i.exec(part);
@@ -250,7 +253,7 @@ class ItemParser extends BaseParser {
 				baseItem = ItemParser.getItem(mBaseArmor[1]);
 				if (!baseItem) baseItem = ItemParser.getItem(`${mBaseArmor[1]} armor`); // "armor (plate)" -> "plate armor"
 				if (!baseItem) throw new Error(`Could not find base item "${mBaseArmor[1]}"`);
-				continue
+				continue;
 			}
 			// endregion
 
@@ -269,6 +272,7 @@ class ItemParser extends BaseParser {
 		const blacklistedProps = new Set([
 			"source",
 			"srd",
+			"basicRules",
 			"page",
 		]);
 
@@ -306,8 +310,17 @@ class ItemParser extends BaseParser {
 		switch (genericType) {
 			case "weapon": stats.requires = [{"weapon": true}]; break;
 			case "sword": stats.requires = [{"sword": true}]; break;
+			case "axe": stats.requires = [{"axe": true}]; break;
 			case "armor": stats.requires = [{"armor": true}]; break;
-			default: throw new Error(`Unhandled generic type "${genericType}"`);
+			case "bow": stats.requires = [{"bow": true}, {"crossbow": true}]; break;
+			case "bludgeoning": stats.requires = [{"dmgType": "B"}]; break;
+			case "piercing": stats.requires = [{"dmgType": "P"}]; break;
+			case "slashing": stats.requires = [{"dmgType": "S"}]; break;
+			default: {
+				stats.requires = [{[genericType]: true}];
+				options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Tagline part "${genericType}" requires manual conversion`);
+				break;
+			}
 		}
 	}
 
@@ -323,7 +336,7 @@ class ItemParser extends BaseParser {
 			const fromText = Parser.textToNumber(m[1]);
 			if (!isNaN(fromText)) stats.weight = fromText;
 
-			if (!stats.weight) options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Weight "${m[1]}" requires manual conversion`)
+			if (!stats.weight) options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Weight "${m[1]}" requires manual conversion`);
 		});
 	}
 

@@ -29,7 +29,7 @@ class PageFilterRecipes extends PageFilter {
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
 			items: ["SRD"],
-			isSrdFilter: true,
+			isMiscFilter: true,
 			displayFn: PageFilterRecipes._miscTagToFull,
 		});
 	}
@@ -75,7 +75,7 @@ class PageFilterRecipes extends PageFilter {
 			it._fDiet,
 			it.allergenGroups,
 			it._fMisc,
-		)
+		);
 	}
 
 	static _dietToFull (diet) { return PageFilterRecipes._DIET_TO_FULL[diet] || diet; }

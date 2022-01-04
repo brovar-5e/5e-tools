@@ -65,7 +65,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/abyssal-wretch.mp3"
@@ -82,7 +81,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Adult Kruthik",
@@ -170,7 +170,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/adult-kruthik.mp3"
@@ -196,6 +195,7 @@
 				"MW",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -327,7 +327,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/oblex-adult.mp3"
@@ -363,6 +362,7 @@
 				"charmed",
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -475,7 +475,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/air-elemental-myrmidon.mp3"
@@ -502,6 +501,7 @@
 			"conditionInflict": [
 				"stunned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -632,7 +632,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/alkilith.mp3"
@@ -660,6 +659,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -781,7 +781,6 @@
 				"swamp",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/allip.mp3"
@@ -802,6 +801,7 @@
 			"conditionInflict": [
 				"stunned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -976,10 +976,13 @@
 								"The amnizu summons {@dice 2d4} bearded devils or {@dice 1d4} barbed devils. A summoned devil appears in an unoccupied space within 60 feet of the amnizu, acts as an ally of the amnizu, and can't summon other devils. It remains for 1 minute, until the amnizu dies, or until its summoner dismisses it as an action"
 							]
 						}
-					]
+					],
+					"_version": {
+						"name": "Amnizu (Summoner)",
+						"addHeadersAs": "action"
+					}
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/amnizu.mp3"
@@ -1019,6 +1022,7 @@
 				"charmed",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1127,7 +1131,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/armanite.mp3"
@@ -1155,6 +1158,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1310,7 +1314,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/astral-dreadnought.mp3"
@@ -1339,6 +1342,7 @@
 			"conditionInflict": [
 				"incapacitated"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1473,7 +1477,6 @@
 			"environment": [
 				"forest"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/autumn-eladrin.mp3"
@@ -1508,6 +1511,7 @@
 			"conditionInflictSpell": [
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1705,7 +1709,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/bael.mp3"
@@ -1746,6 +1749,7 @@
 				"stunned",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1856,7 +1860,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/balhannoth.mp3"
@@ -1885,11 +1888,13 @@
 			],
 			"conditionInflict": [
 				"grappled",
+				"invisible",
 				"restrained"
 			],
 			"conditionInflictLegendary": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2093,7 +2098,6 @@
 				"name": "Baphomet",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Charge",
 				"Legendary Resistances",
@@ -2130,6 +2134,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2233,7 +2238,6 @@
 			"environment": [
 				"desert"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/berbalang.mp3"
@@ -2257,6 +2261,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2390,7 +2395,6 @@
 			"environment": [
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/black-abishai.mp3"
@@ -2419,6 +2423,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2614,7 +2619,6 @@
 				"coastal",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/blue-abishai.mp3"
@@ -2646,6 +2650,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2773,7 +2778,6 @@
 				"desert",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/boneclaw.mp3"
@@ -2801,6 +2805,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2896,7 +2901,6 @@
 				"hill",
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/bronze-scout.mp3"
@@ -2917,6 +2921,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3011,7 +3016,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/bulezau.mp3"
@@ -3033,6 +3037,7 @@
 			"conditionInflict": [
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3134,7 +3139,6 @@
 			"environment": [
 				"grassland"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/cadaver-collector.mp3"
@@ -3146,6 +3150,7 @@
 				"D"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -3163,6 +3168,7 @@
 			"conditionInflict": [
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3295,7 +3301,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/canoloth.mp3"
@@ -3328,6 +3333,7 @@
 				"grappled",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3418,7 +3424,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/choker.mp3"
@@ -3454,6 +3459,7 @@
 				"grappled",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3546,7 +3552,6 @@
 				"swamp",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/corpse-flower.mp3"
@@ -3572,6 +3577,7 @@
 			"conditionInflict": [
 				"incapacitated"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3720,7 +3726,6 @@
 			"environment": [
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/deathlock.mp3"
@@ -3744,8 +3749,128 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Deathlock (Archfey Patron)",
+					"source": "MTF",
+					"_mod": {
+						"spellcasting": {
+							"mode": "replaceArr",
+							"replace": "Spellcasting",
+							"items": {
+								"name": "Spellcasting",
+								"headerEntries": [
+									"The deathlock is a 5th-level spellcaster. Its spellcasting ability is Charisma (spell save {@dc 13}, {@hit 5} to hit with spell attacks). It regains its expended spell slots when it finishes a short or long rest. It knows the following warlock spells:"
+								],
+								"spells": {
+									"0": {
+										"spells": [
+											"{@spell chill touch}",
+											"{@spell eldritch blast}",
+											"{@spell mage hand}"
+										]
+									},
+									"3": {
+										"lower": 1,
+										"slots": 2,
+										"spells": [
+											"{@spell blink}",
+											"{@spell faerie fire}",
+											"{@spell hunger of Hadar}",
+											"{@spell hypnotic pattern}",
+											"{@spell phantasmal force}",
+											"{@spell sleep}"
+										]
+									}
+								},
+								"ability": "cha"
+							}
+						}
+					},
+					"variant": null
+				},
+				{
+					"name": "Deathlock (Fiend Patron)",
+					"source": "MTF",
+					"_mod": {
+						"spellcasting": {
+							"mode": "replaceArr",
+							"replace": "Spellcasting",
+							"items": {
+								"name": "Spellcasting",
+								"headerEntries": [
+									"The deathlock is a 5th-level spellcaster. Its spellcasting ability is Charisma (spell save {@dc 13}, {@hit 5} to hit with spell attacks). It regains its expended spell slots when it finishes a short or long rest. It knows the following warlock spells:"
+								],
+								"spells": {
+									"0": {
+										"spells": [
+											"{@spell chill touch}",
+											"{@spell eldritch blast}",
+											"{@spell mage hand}"
+										]
+									},
+									"3": {
+										"lower": 1,
+										"slots": 2,
+										"spells": [
+											"{@spell blindness/deafness}",
+											"{@spell burning hands}",
+											"{@spell command}",
+											"{@spell fireball}",
+											"{@spell hellish rebuke}",
+											"{@spell scorching ray}"
+										]
+									}
+								},
+								"ability": "cha"
+							}
+						}
+					},
+					"variant": null
+				},
+				{
+					"name": "Deathlock (Great Old One Patron)",
+					"source": "MTF",
+					"_mod": {
+						"spellcasting": {
+							"mode": "replaceArr",
+							"replace": "Spellcasting",
+							"items": {
+								"name": "Spellcasting",
+								"headerEntries": [
+									"The deathlock is a 5th-level spellcaster. Its spellcasting ability is Charisma (spell save {@dc 13}, {@hit 5} to hit with spell attacks). It regains its expended spell slots when it finishes a short or long rest. It knows the following warlock spells:"
+								],
+								"spells": {
+									"0": {
+										"spells": [
+											"{@spell chill touch}",
+											"{@spell eldritch blast}",
+											"{@spell mage hand}"
+										]
+									},
+									"3": {
+										"lower": 1,
+										"slots": 2,
+										"spells": [
+											"{@spell armor of Agathys}",
+											"{@spell detect thoughts}",
+											"{@spell dissonant whispers}",
+											"{@spell hunger of Hadar}",
+											"{@spell Tasha's hideous laughter}",
+											"{@spell phantasmal force}"
+										]
+									}
+								},
+								"ability": "cha"
+							}
+						}
+					},
+					"variant": null
+				}
+			]
 		},
 		{
 			"name": "Deathlock Mastermind",
@@ -3909,7 +4034,6 @@
 			"environment": [
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/deathlock-mastermind.mp3"
@@ -3941,8 +4065,143 @@
 				"invisible",
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Deathlock Mastermind (Archfey Patron)",
+					"source": "MTF",
+					"_mod": {
+						"spellcasting": {
+							"mode": "replaceArr",
+							"replace": "Spellcasting",
+							"items": {
+								"name": "Spellcasting",
+								"headerEntries": [
+									"The deathlock is a 10th-level spellcaster. Its spellcasting ability is Charisma (spell save {@dc 14}, {@hit 6} to hit with spell attacks). It regains its expended spell slots when it finishes a short or long rest. It knows the following warlock spells:"
+								],
+								"spells": {
+									"0": {
+										"spells": [
+											"{@spell chill touch}",
+											"{@spell mage hand}",
+											"{@spell minor illusion}",
+											"{@spell poison spray}"
+										]
+									},
+									"5": {
+										"lower": 1,
+										"slots": 2,
+										"spells": [
+											"{@spell blink}",
+											"{@spell dominate beast}",
+											"{@spell dominate person}",
+											"{@spell faerie fire}",
+											"{@spell greater invisibility}",
+											"{@spell hunger of Hadar}",
+											"{@spell hypnotic pattern}",
+											"{@spell phantasmal force}",
+											"{@spell seeming}",
+											"{@spell sleep}"
+										]
+									}
+								},
+								"ability": "cha"
+							}
+						}
+					},
+					"variant": null
+				},
+				{
+					"name": "Deathlock Mastermind (Fiend Patron)",
+					"source": "MTF",
+					"_mod": {
+						"spellcasting": {
+							"mode": "replaceArr",
+							"replace": "Spellcasting",
+							"items": {
+								"name": "Spellcasting",
+								"headerEntries": [
+									"The deathlock is a 10th-level spellcaster. Its spellcasting ability is Charisma (spell save {@dc 14}, {@hit 6} to hit with spell attacks). It regains its expended spell slots when it finishes a short or long rest. It knows the following warlock spells:"
+								],
+								"spells": {
+									"0": {
+										"spells": [
+											"{@spell chill touch}",
+											"{@spell mage hand}",
+											"{@spell minor illusion}",
+											"{@spell poison spray}"
+										]
+									},
+									"5": {
+										"lower": 1,
+										"slots": 2,
+										"spells": [
+											"{@spell blindness/deafness}",
+											"{@spell burning hands}",
+											"{@spell command}",
+											"{@spell fire shield}",
+											"{@spell fireball}",
+											"{@spell flame strike}",
+											"{@spell hellish rebuke}",
+											"{@spell scorching ray}",
+											"{@spell stinking cloud}",
+											"{@spell wall of fire}"
+										]
+									}
+								},
+								"ability": "cha"
+							}
+						}
+					},
+					"variant": null
+				},
+				{
+					"name": "Deathlock Mastermind (Great Old One Patron)",
+					"source": "MTF",
+					"_mod": {
+						"spellcasting": {
+							"mode": "replaceArr",
+							"replace": "Spellcasting",
+							"items": {
+								"name": "Spellcasting",
+								"headerEntries": [
+									"The deathlock is a 10th-level spellcaster. Its spellcasting ability is Charisma (spell save {@dc 14}, {@hit 6} to hit with spell attacks). It regains its expended spell slots when it finishes a short or long rest. It knows the following warlock spells:"
+								],
+								"spells": {
+									"0": {
+										"spells": [
+											"{@spell chill touch}",
+											"{@spell mage hand}",
+											"{@spell minor illusion}",
+											"{@spell poison spray}"
+										]
+									},
+									"5": {
+										"lower": 1,
+										"slots": 2,
+										"spells": [
+											"{@spell clairvoyance}",
+											"{@spell detect thoughts}",
+											"{@spell dissonant whispers}",
+											"{@spell dominate person}",
+											"{@spell Evard's black tentacles}",
+											"{@spell hunger of Hadar}",
+											"{@spell phantasmal force}",
+											"{@spell sending}",
+											"{@spell Tasha's hideous laughter}",
+											"{@spell telekinesis}"
+										]
+									}
+								},
+								"ability": "cha"
+							}
+						}
+					},
+					"variant": null
+				}
+			]
 		},
 		{
 			"name": "Deathlock Wight",
@@ -4065,7 +4324,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/deathlock-wight.mp3"
@@ -4097,6 +4355,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4279,7 +4538,6 @@
 				"name": "Demogorgon",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -4317,6 +4575,7 @@
 				"frightened",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4406,7 +4665,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/derro.mp3"
@@ -4433,6 +4691,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4556,7 +4815,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/derro-savant.mp3"
@@ -4581,6 +4839,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4716,7 +4975,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/dhergoloth.mp3"
@@ -4747,6 +5005,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4858,7 +5117,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/dire-troll.mp3"
@@ -4885,6 +5143,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5073,7 +5332,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/drow-arachnomancer.mp3"
@@ -5120,6 +5378,7 @@
 				"restrained",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -5303,7 +5562,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/drow-favored-consort.mp3"
@@ -5343,6 +5601,7 @@
 			"conditionInflictSpell": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5476,7 +5735,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/drow-house-captain.mp3"
@@ -5510,6 +5768,11 @@
 				"RNG",
 				"RW"
 			],
+			"conditionInflict": [
+				"poisoned",
+				"unconscious"
+			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -5713,13 +5976,16 @@
 								"The drow attempts to magically summon a yochlol, with a {@chance 50|50 percent} chance of success. If the attempt fails, the drow takes 5 ({@damage 1d10}) psychic damage. Otherwise, the summoned demon appears in an unoccupied space within 60 feet of its summoner, acts as an ally of its summoner, and can't summon other demons. It remains for 10 minutes, until it or its summoner dies, or until its summoner dismisses it as an action. (see notes for link)"
 							]
 						}
-					]
+					],
+					"_version": {
+						"name": "Drow Inquisitor (Summoner)",
+						"addHeadersAs": "action"
+					}
 				}
 			],
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/drow-inquisitor.mp3"
@@ -5758,6 +6024,7 @@
 				"poisoned",
 				"stunned"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -6008,7 +6275,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/drow-matron-mother.mp3"
@@ -6053,6 +6319,7 @@
 				"prone",
 				"stunned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6182,13 +6449,16 @@
 								"The drow attempts to magically summon a shadow demon with a {@chance 50|50 percent} chance of success. If the attempt fails, the drow takes 5 ({@damage 1d10}) psychic damage. Otherwise, the summoned demon appears in an unoccupied space within 60 feet of its summoner, acts as an ally of its summoner, and can't summon other demons. It remains for 10 minutes, until it or its summoner dies, or until its summoner dismisses it as an action."
 							]
 						}
-					]
+					],
+					"_version": {
+						"name": "Drow Shadowblade (Summoner)",
+						"addHeadersAs": "action"
+					}
 				}
 			],
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/drow-shadowblade.mp3"
@@ -6222,6 +6492,11 @@
 				"RNG",
 				"RW"
 			],
+			"conditionInflict": [
+				"poisoned",
+				"unconscious"
+			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -6353,7 +6628,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/duergar-despot.mp3"
@@ -6384,6 +6658,10 @@
 			"miscTags": [
 				"MW"
 			],
+			"conditionInflict": [
+				"prone"
+			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -6479,7 +6757,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/duergar-hammerer.mp3"
@@ -6503,6 +6780,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -6610,7 +6888,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/duergar-kavalrachni.mp3"
@@ -6637,6 +6914,10 @@
 				"RNG",
 				"RW"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -6754,7 +7035,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/duergar-mind-master.mp3"
@@ -6780,6 +7060,10 @@
 			"miscTags": [
 				"MW"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6864,7 +7148,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/duergar-screamer.mp3"
@@ -6890,6 +7173,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -7009,7 +7293,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/duergar-soulblade.mp3"
@@ -7034,6 +7317,10 @@
 			"miscTags": [
 				"MW"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -7141,7 +7428,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/duergar-stone-guard.mp3"
@@ -7164,6 +7450,10 @@
 				"RW",
 				"THW"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7280,7 +7570,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/duergar-warlord.mp3"
@@ -7308,6 +7597,10 @@
 				"RW",
 				"THW"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -7408,7 +7701,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/duergar-xarrorn.mp3"
@@ -7432,6 +7724,10 @@
 				"MW",
 				"RCH"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -7573,7 +7869,6 @@
 				"desert",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/dybbuk.mp3"
@@ -7606,6 +7901,7 @@
 			"conditionInflictSpell": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7702,7 +7998,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/earth-elemental-myrmidon.mp3"
@@ -7729,6 +8024,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7854,7 +8150,6 @@
 				"mountain",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/eidolon.mp3"
@@ -7876,6 +8171,7 @@
 				"frightened",
 				"stunned"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -8004,7 +8300,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/elder-oblex.mp3"
@@ -8043,6 +8338,7 @@
 				"paralyzed",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8191,7 +8487,6 @@
 				"hill",
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/elder-tempest.mp3"
@@ -8220,6 +8515,7 @@
 				"prone",
 				"stunned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8300,7 +8596,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/female-steeder.mp3"
@@ -8321,6 +8616,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8430,7 +8726,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/fire-elemental-myrmidon.mp3"
@@ -8457,6 +8752,7 @@
 				"AOE",
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8643,7 +8939,6 @@
 				"name": "Fraz-Urb'luu",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -8681,6 +8976,7 @@
 				"incapacitated",
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8775,7 +9071,6 @@
 			"environment": [
 				"arctic"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/frost-salamander.mp3"
@@ -8785,6 +9080,7 @@
 				"T"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"languageTags": [
@@ -8799,6 +9095,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8996,10 +9293,13 @@
 								"Geryon blows his horn, which causes {@dice 5d4} minotaurs to appear in unoccupied spaces of his choice within 600 feet of him. The minotaurs roll initiative when they appear. They remain until they die or Geryon uses an action to dismiss any or all of them."
 							]
 						}
-					]
+					],
+					"_version": {
+						"name": "Geryon (Summoner)",
+						"addHeadersAs": "action"
+					}
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/geryon.mp3"
@@ -9052,6 +9352,7 @@
 				"stunned",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9140,7 +9441,6 @@
 			"environment": [
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/giff.mp3"
@@ -9163,6 +9463,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9320,7 +9621,6 @@
 				"mountain",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/githyanki-gish.mp3"
@@ -9343,6 +9643,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9455,7 +9756,6 @@
 				"mountain",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/githyanki-kith_rak.mp3"
@@ -9481,6 +9781,7 @@
 			"conditionInflictSpell": [
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9608,7 +9909,6 @@
 				"mountain",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/githyanki-supreme-commander.mp3"
@@ -9632,6 +9932,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9760,7 +10061,6 @@
 				"name": "Githzerai Anarch",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/githzerai-anarch.mp3"
@@ -9782,6 +10082,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -9892,7 +10193,6 @@
 				"mountain",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/githzerai-enlightened.mp3"
@@ -9914,6 +10214,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -10072,7 +10373,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/gloom-weaver.mp3"
@@ -10107,6 +10407,7 @@
 				"incapacitated",
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -10185,7 +10486,6 @@
 				"forest",
 				"hill"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/gray-render.mp3"
@@ -10208,6 +10508,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -10404,7 +10705,6 @@
 				"name": "Graz'zt",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -10438,6 +10738,7 @@
 				"invisible",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -10585,7 +10886,6 @@
 			"environment": [
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/green-abishai.mp3"
@@ -10624,6 +10924,7 @@
 				"charmed",
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -10747,7 +11048,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/hellfire-engine.mp3"
@@ -10779,6 +11079,7 @@
 				"prone",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -10875,7 +11176,6 @@
 				"hill",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/howler.mp3"
@@ -10904,6 +11204,7 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -11111,7 +11412,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/hutijin.mp3"
@@ -11160,6 +11460,7 @@
 				"stunned",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -11322,7 +11623,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/hydroloth.mp3"
@@ -11356,6 +11656,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -11445,7 +11746,6 @@
 				"hill",
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/iron-cobra.mp3"
@@ -11469,6 +11769,7 @@
 			"conditionInflict": [
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -11666,7 +11967,6 @@
 				"name": "Juiblex",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -11707,6 +12007,7 @@
 				"poisoned",
 				"stunned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -11802,7 +12103,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/kruthik-hive-lord.mp3"
@@ -11831,6 +12131,7 @@
 				"RCH",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -11966,7 +12267,6 @@
 				"coastal",
 				"underwater"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/leviathan.mp3"
@@ -11990,6 +12290,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -12070,7 +12371,6 @@
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/male-steeder.mp3"
@@ -12091,6 +12391,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -12234,7 +12535,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/marut.mp3"
@@ -12264,6 +12564,10 @@
 				"AOE",
 				"MW"
 			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -12383,7 +12687,6 @@
 				"swamp",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/maurezhi.mp3"
@@ -12412,6 +12715,7 @@
 			"conditionInflict": [
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -12497,7 +12801,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/meazel.mp3"
@@ -12519,6 +12822,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -12634,7 +12938,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/merregon.mp3"
@@ -12664,6 +12967,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -12812,7 +13116,6 @@
 			"environment": [
 				"coastal"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/merrenoloth.mp3"
@@ -12851,6 +13154,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -13029,7 +13333,7 @@
 				{
 					"name": "Stinking Cloud",
 					"entries": [
-						"Moloch casts stinking cloud."
+						"Moloch casts {@spell stinking cloud}."
 					]
 				},
 				{
@@ -13045,7 +13349,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/moloch.mp3"
@@ -13060,6 +13363,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack",
 				"Teleport"
 			],
@@ -13091,6 +13395,7 @@
 				"stunned",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -13275,10 +13580,13 @@
 								"As an action, the molydeus has a {@chance 50|50 percent} chance of summoning its choice of {@dice 1d6} babaus, {@dice 1d4} {@creature chasme||chasmes}, or one {@creature marilith}. A summoned demon appears in an unoccupied space within 60 feet of the molydeus, acts as an ally of the molydeus, and can't summon other demons. It remains for 1 minute, until it or the molydeus dies, or until the molydeus dismisses it as an action."
 							]
 						}
-					]
+					],
+					"_version": {
+						"name": "Molydeus (Summoner)",
+						"addHeadersAs": "action"
+					}
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/molydeus.mp3"
@@ -13309,6 +13617,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -13441,7 +13750,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/nabassu.mp3"
@@ -13468,6 +13776,7 @@
 				"AOE",
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -13638,7 +13947,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/nagpa.mp3"
@@ -13670,6 +13978,7 @@
 				"petrified",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -13809,7 +14118,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/narzugon.mp3"
@@ -13839,6 +14147,7 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -13947,7 +14256,6 @@
 				"swamp",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/nightwalker.mp3"
@@ -13969,6 +14277,7 @@
 				"frightened",
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -14069,7 +14378,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/nupperibo.mp3"
@@ -14087,6 +14395,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -14188,7 +14497,6 @@
 				"hill",
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/oaken-bolter.mp3"
@@ -14217,6 +14525,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -14289,7 +14598,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/oblex-spawn.mp3"
@@ -14307,6 +14615,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -14377,7 +14686,6 @@
 				"hill",
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/ogre-battering-ram.mp3"
@@ -14398,6 +14706,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -14460,7 +14769,6 @@
 				"hill",
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/ogre-bolt-launcher.mp3"
@@ -14480,6 +14788,7 @@
 				"MW",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -14547,7 +14856,6 @@
 				"hill",
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/ogre-chain-brute.mp3"
@@ -14570,6 +14878,7 @@
 				"prone",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -14632,7 +14941,6 @@
 				"grassland",
 				"hill"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/ogre-howdah.mp3"
@@ -14650,6 +14958,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -14811,7 +15120,6 @@
 				"desert",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/oinoloth.mp3"
@@ -14852,6 +15160,7 @@
 			"conditionInflictSpell": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -15044,7 +15353,6 @@
 				"name": "Orcus",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -15074,6 +15382,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -15238,7 +15547,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/orthon.mp3"
@@ -15275,6 +15583,7 @@
 				"poisoned",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -15426,7 +15735,6 @@
 				"desert",
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/phoenix.mp3"
@@ -15451,6 +15759,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -15597,7 +15906,6 @@
 				"mountain",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/red-abishai.mp3"
@@ -15631,6 +15939,7 @@
 				"charmed",
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -15762,7 +16071,6 @@
 				"forest",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/retriever.mp3"
@@ -15797,6 +16105,7 @@
 			"conditionInflictSpell": [
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -15887,7 +16196,6 @@
 				"swamp",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/rot-troll.mp3"
@@ -15909,6 +16217,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -15980,7 +16289,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/rutterkin.mp3"
@@ -16003,6 +16311,7 @@
 				"poisoned",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -16126,7 +16435,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/sacred-statue.mp3"
@@ -16151,6 +16459,7 @@
 				"RCH",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -16252,7 +16561,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/shadow-dancer.mp3"
@@ -16283,6 +16591,7 @@
 				"prone",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -16563,13 +16872,16 @@
 								]
 							]
 						}
-					]
+					],
+					"_version": {
+						"name": "Sibriex (Flesh Warping)",
+						"addAs": "trait"
+					}
 				}
 			],
 			"environment": [
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/sibriex.mp3"
@@ -16610,6 +16922,7 @@
 				"paralyzed",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -16696,7 +17009,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/skulk.mp3"
@@ -16715,6 +17027,10 @@
 			"miscTags": [
 				"MW"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -16923,7 +17239,6 @@
 				"swamp",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/skull-lord.mp3"
@@ -16950,6 +17265,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -17087,7 +17403,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/soul-monger.mp3"
@@ -17124,6 +17439,7 @@
 			"conditionInflictSpell": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -17236,7 +17552,6 @@
 				"swamp",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/spirit-troll.mp3"
@@ -17264,6 +17579,7 @@
 			"conditionInflict": [
 				"stunned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -17397,7 +17713,6 @@
 				"forest",
 				"grassland"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/spring-eladrin.mp3"
@@ -17437,6 +17752,7 @@
 				"incapacitated",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -17497,7 +17813,6 @@
 				"mountain",
 				"swamp"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/star-spawn-grue.mp3"
@@ -17514,6 +17829,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -17605,7 +17921,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/star-spawn-hulk.mp3"
@@ -17631,6 +17946,7 @@
 				"prone",
 				"stunned"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -17785,7 +18101,6 @@
 			"environment": [
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/star-spawn-larva-mage.mp3"
@@ -17815,6 +18130,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -17916,7 +18232,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/star-spawn-mangler.mp3"
@@ -17940,6 +18255,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -18058,7 +18374,6 @@
 				"swamp",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/star-spawn-seer.mp3"
@@ -18085,6 +18400,7 @@
 			"conditionInflict": [
 				"incapacitated"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -18218,7 +18534,6 @@
 			"environment": [
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/steel-predator.mp3"
@@ -18250,6 +18565,10 @@
 				"AOE",
 				"MW"
 			],
+			"conditionInflict": [
+				"stunned"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -18329,7 +18648,6 @@
 				"mountain",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/stone-cursed.mp3"
@@ -18350,6 +18668,7 @@
 				"petrified",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -18447,7 +18766,6 @@
 				"hill",
 				"mountain"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/stone-defender.mp3"
@@ -18471,6 +18789,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -18587,7 +18906,6 @@
 				"desert",
 				"forest"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/summer-eladrin.mp3"
@@ -18620,6 +18938,7 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -18742,7 +19061,6 @@
 				"grassland",
 				"swamp"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/sword-wraith-commander.mp3"
@@ -18769,6 +19087,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -18870,7 +19189,6 @@
 				"grassland",
 				"swamp"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/sword-wraith-warrior.mp3"
@@ -18890,6 +19208,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -18979,7 +19298,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/the-angry.mp3"
@@ -19000,6 +19318,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -19086,7 +19405,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/the-hungry.mp3"
@@ -19113,6 +19431,7 @@
 				"grappled",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -19208,7 +19527,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/the-lonely.mp3"
@@ -19233,6 +19551,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -19326,7 +19645,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/the-lost.mp3"
@@ -19351,6 +19669,7 @@
 				"frightened",
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -19423,7 +19742,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/the-wretched.mp3"
@@ -19438,6 +19756,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -19636,7 +19955,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/titivilus.mp3"
@@ -19682,6 +20000,7 @@
 				"stunned",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -19774,7 +20093,6 @@
 			"environment": [
 				"coastal"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/tortle.mp3"
@@ -19796,6 +20114,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -19917,7 +20236,6 @@
 			"environment": [
 				"coastal"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/tortle-druid.mp3"
@@ -19943,6 +20261,7 @@
 				"charmed",
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -20064,7 +20383,6 @@
 				"underdark",
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/vampiric-mist.mp3"
@@ -20085,6 +20403,7 @@
 				"N",
 				"R"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -20187,7 +20506,6 @@
 				"swamp",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/venom-troll.mp3"
@@ -20217,6 +20535,7 @@
 			"conditionInflict": [
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -20350,7 +20669,6 @@
 				"underdark",
 				"underwater"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/wastrilith.mp3"
@@ -20382,6 +20700,7 @@
 			"conditionInflict": [
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -20483,7 +20802,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/water-elemental-myrmidon.mp3"
@@ -20509,6 +20827,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -20650,7 +20969,6 @@
 			"environment": [
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/white-abishai.mp3"
@@ -20680,6 +20998,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -20807,7 +21126,6 @@
 				"arctic",
 				"forest"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/winter-eladrin.mp3"
@@ -20836,6 +21154,10 @@
 				"RNG",
 				"RW"
 			],
+			"conditionInflict": [
+				"charmed"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -20995,7 +21317,6 @@
 			"environment": [
 				"urban"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/yagnoloth.mp3"
@@ -21035,6 +21356,7 @@
 			"conditionInflictSpell": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -21220,7 +21542,6 @@
 				"name": "Yeenoghu",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -21259,6 +21580,7 @@
 				"frightened",
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -21336,7 +21658,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/young-kruthik.mp3"
@@ -21358,6 +21679,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -21534,7 +21856,6 @@
 				"mountain",
 				"underdark"
 			],
-			"hasToken": true,
 			"soundClip": {
 				"type": "internal",
 				"path": "bestiary/zaratan.mp3"
@@ -21566,6 +21887,7 @@
 				"prone",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -21754,7 +22076,6 @@
 				"name": "Zariel",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Devil's Sight",
 				"Legendary Resistances",
@@ -21799,6 +22120,7 @@
 			"conditionInflictSpell": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -21983,7 +22305,6 @@
 				"name": "Zuggtmoy",
 				"source": "MTF"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -22018,6 +22339,7 @@
 				"poisoned",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		}

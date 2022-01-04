@@ -84,7 +84,7 @@ class MakeCards extends BaseComponent {
 			</div>`;
 		};
 
-		Object.keys(MakeCards._AVAILABLE_TYPES).forEach(it => $getColorIconConfigRow(it).appendTo($wrpConfig))
+		Object.keys(MakeCards._AVAILABLE_TYPES).forEach(it => $getColorIconConfigRow(it).appendTo($wrpConfig));
 	}
 
 	_render_cardList () {
@@ -115,7 +115,7 @@ class MakeCards extends BaseComponent {
 						icon_back: it.values.icon,
 						contents: entityMeta.fnGetContents(it.values.entity),
 						tags: entityMeta.fnGetTags(it.values.entity),
-					}
+					};
 				});
 				DataUtil.userDownload("rpg-cards", toDownload, {isSipAdditionalMetadata: true});
 			});
@@ -156,7 +156,7 @@ class MakeCards extends BaseComponent {
 				async () => {
 					const sel = getSelCards();
 					if (!sel) return;
-					sel.forEach(it => this._list.removeItem(it.ix));
+					sel.forEach(it => this._list.removeItemByIndex(it.ix));
 					this._list.update();
 					this._doSaveStateDebounced();
 				},
@@ -277,7 +277,7 @@ class MakeCards extends BaseComponent {
 				this._list.update();
 				this._doSaveStateDebounced();
 			},
-		))
+		));
 	}
 
 	_getStateForType (entityType) {
@@ -365,7 +365,7 @@ class MakeCards extends BaseComponent {
 			});
 		const $btnDelete = $(`<button class="btn btn-danger btn-xs" title="Remove"><span class="glyphicon glyphicon-trash"/></button>`)
 			.click(() => {
-				this._list.removeItem(uid);
+				this._list.removeItemByIndex(uid);
 				this._list.update();
 				this._doSaveStateDebounced();
 			});
@@ -468,7 +468,7 @@ class MakeCards extends BaseComponent {
 			mon.mythic ? this._ct_section("Mythic Actions") : null,
 			mon.mythic ? this._ct_text(this._ct_htmlToText(Renderer.monster.getMythicActionIntro(mon, renderer))) : null,
 			...(mon.mythic ? this._ct_renderEntries(mon.mythic, 2) : []),
-		].filter(Boolean)
+		].filter(Boolean);
 	}
 
 	static _getCardContents_spell (sp) {
@@ -480,7 +480,7 @@ class MakeCards extends BaseComponent {
 			return [
 				this._ct_section("At higher levels"),
 				...this._ct_renderEntries(ents, 2),
-			]
+			];
 		})() : null;
 
 		return [
@@ -488,7 +488,7 @@ class MakeCards extends BaseComponent {
 			this._ct_rule(),
 			this._ct_property("Casting Time", Parser.spTimeListToFull(sp.time)),
 			this._ct_property("Range", Parser.spRangeToFull(sp.range)),
-			this._ct_property("Components", Parser.spComponentsToFull(sp.components, sp.level)),
+			this._ct_property("Components", Parser.spComponentsToFull(sp.components, sp.level, {isPlainText: true})),
 			this._ct_property("Duration", Parser.spDurationToFull(sp.duration)),
 			this._ct_rule(),
 			...this._ct_renderEntries(sp.entries, 2),
@@ -541,11 +541,11 @@ class MakeCards extends BaseComponent {
 
 	static _getCardContents_feat (feat) {
 		const prerequisite = Renderer.utils.getPrerequisiteHtml(feat.prerequisite, {isListMode: true});
-		Renderer.feat.mergeAbilityIncrease(feat);
+		Renderer.feat.initFullEntries(feat);
 		return [
 			prerequisite ? this._ct_property("Prerequisites", prerequisite) : null,
 			prerequisite ? this._ct_rule() : null,
-			...this._ct_renderEntries(feat.entries, 2),
+			...this._ct_renderEntries(feat._fullEntries || feat.entries, 2),
 		].filter(Boolean);
 	}
 	// endregion
@@ -579,9 +579,9 @@ class MakeCards extends BaseComponent {
 		];
 
 		if (classIconNames.includes(iconName)) {
-			return `https://raw.githubusercontent.com/crobi/rpg-cards/gh-pages/generator/icons/${iconName}.png`
+			return `https://raw.githubusercontent.com/crobi/rpg-cards/gh-pages/generator/icons/${iconName}.png`;
 		}
-		return `https://raw.githubusercontent.com/crobi/rpg-cards/gh-pages/generator/icons/${iconName}.svg`
+		return `https://raw.githubusercontent.com/crobi/rpg-cards/gh-pages/generator/icons/${iconName}.svg`;
 	}
 
 	static _pGetUserIcon (initialVal) {
@@ -693,7 +693,7 @@ MakeCards._AVAILABLE_TYPES = {
 		fnGetTags: (mon) => {
 			const types = Parser.monTypeToFullObj(mon.type);
 			const cr = mon.cr == null ? "unknown CR" : `CR ${(mon.cr.cr || mon.cr)}`;
-			return ["creature", Parser.sourceJsonToAbv(mon.source), types.type, cr, Parser.sizeAbvToFull(mon.size)]
+			return ["creature", Parser.sourceJsonToAbv(mon.source), types.type, cr, Parser.sizeAbvToFull(mon.size)];
 		},
 	},
 	item: {
@@ -706,7 +706,7 @@ MakeCards._AVAILABLE_TYPES = {
 		fnGetContents: MakeCards._getCardContents_item.bind(MakeCards),
 		fnGetTags: (item) => {
 			const [typeListText] = Renderer.item.getHtmlAndTextTypes(item);
-			return ["item", Parser.sourceJsonToAbv(item.source), ...typeListText]
+			return ["item", Parser.sourceJsonToAbv(item.source), ...typeListText];
 		},
 	},
 	spell: {

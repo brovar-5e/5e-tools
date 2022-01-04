@@ -48,7 +48,7 @@ class LegendaryGroupBuilder extends Builder {
 			regionalEffects: [],
 			mythicEncounter: [],
 			source: this._ui ? this._ui.source : "",
-		}
+		};
 	}
 
 	setStateFromLoaded (state) {
@@ -75,7 +75,7 @@ class LegendaryGroupBuilder extends Builder {
 			if (!isNaN(this._state.page)) this._state.page = Number(this._state.page);
 
 			// do post-processing
-			TagCondition.tryTagConditions(this._state, true);
+			TagCondition.tryTagConditions(this._state, {isTagInflicted: true});
 
 			this.renderOutput();
 			this.doUiSave();

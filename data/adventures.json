@@ -4,6 +4,7 @@
 			"name": "Lost Mine of Phandelver",
 			"id": "LMoP",
 			"source": "LMoP",
+			"group": "supplement",
 			"coverUrl": "img/covers/LMoP.png",
 			"published": "2014-07-15",
 			"storyline": "Starter Set",
@@ -100,6 +101,7 @@
 			"name": "Hoard of the Dragon Queen",
 			"id": "HotDQ",
 			"source": "HotDQ",
+			"group": "supplement",
 			"coverUrl": "img/covers/HotDQ.png",
 			"published": "2014-08-19",
 			"storyline": "Tyranny of Dragons",
@@ -862,6 +864,7 @@
 			"name": "Rise of Tiamat",
 			"id": "RoT",
 			"source": "RoT",
+			"group": "supplement",
 			"coverUrl": "img/covers/RoT.png",
 			"published": "2014-11-04",
 			"storyline": "Tyranny of Dragons",
@@ -1418,6 +1421,7 @@
 			"name": "Princes of the Apocalypse",
 			"id": "PotA",
 			"source": "PotA",
+			"group": "supplement",
 			"coverUrl": "img/covers/PotA.png",
 			"published": "2015-04-07",
 			"storyline": "Elemental Evil",
@@ -1579,6 +1583,7 @@
 			"name": "Out of the Abyss",
 			"id": "OotA",
 			"source": "OotA",
+			"group": "supplement",
 			"coverUrl": "img/covers/OotA.png",
 			"published": "2015-09-15",
 			"storyline": "Rage of Demons",
@@ -1889,6 +1894,7 @@
 			"name": "Curse of Strahd",
 			"id": "CoS",
 			"source": "CoS",
+			"group": "supplement",
 			"coverUrl": "img/covers/CoS.png",
 			"published": "2016-03-15",
 			"storyline": "Ravenloft",
@@ -3504,6 +3510,7 @@
 			"name": "Storm King's Thunder",
 			"id": "SKT",
 			"source": "SKT",
+			"group": "supplement",
 			"coverUrl": "img/covers/SKT.png",
 			"published": "2016-09-06",
 			"storyline": "Storm King's Thunder",
@@ -3881,9 +3888,9 @@
 						"Peoples of the North",
 						"Civilized Folk",
 						"Northlanders",
-						"Reghed Barbarians",
-						"Uthgardt Barbarians",
-						"Orcs and Half-Orcs",
+						"Reghed Nomads",
+						"Uthgardt",
+						"Orcs",
 						"Shield Dwarves",
 						"Elves",
 						"Halflings",
@@ -4376,6 +4383,8 @@
 			"name": "Tales from the Yawning Portal: The Sunless Citadel",
 			"id": "TftYP-TSC",
 			"source": "TftYP-TSC",
+			"parentSource": "TftYP",
+			"group": "supplement",
 			"coverUrl": "img/covers/TftYP.png",
 			"published": "2017-03-24",
 			"publishedOrder": 0,
@@ -4479,6 +4488,8 @@
 			"name": "Tales from the Yawning Portal: The Forge of Fury",
 			"id": "TftYP-TFoF",
 			"source": "TftYP-TFoF",
+			"parentSource": "TftYP",
+			"group": "supplement",
 			"coverUrl": "img/covers/TftYP.png",
 			"published": "2017-03-24",
 			"publishedOrder": 1,
@@ -4604,6 +4615,8 @@
 			"name": "Tales from the Yawning Portal: The Hidden Shrine of Tamoachan",
 			"id": "TftYP-THSoT",
 			"source": "TftYP-THSoT",
+			"parentSource": "TftYP",
+			"group": "supplement",
 			"coverUrl": "img/covers/TftYP.png",
 			"published": "2017-03-24",
 			"publishedOrder": 2,
@@ -4622,8 +4635,9 @@
 					]
 				},
 				{
-					"name": "The Vault of Chicomoztoc",
+					"name": "The Lower Chambers",
 					"headers": [
+						"1. The Vault of Chicomoztoc",
 						"2. The Hall of Thrashing Canes",
 						"3. Roost of the Conch",
 						"4. Mud-Filled Doorway",
@@ -4653,8 +4667,9 @@
 					]
 				},
 				{
-					"name": "Ramp",
+					"name": "The First Tier",
 					"headers": [
+						"26. Ramp",
 						"27. Stairs",
 						"28. The Arc of Nanahuatcin",
 						"29. The Tomb of Pelota",
@@ -4672,8 +4687,9 @@
 					]
 				},
 				{
-					"name": "Dragon Breath",
+					"name": "The Second Tier",
 					"headers": [
+						"40. Dragon Breath",
 						"41. Free Gold",
 						"42. The Chapel of Kukulkan",
 						"43. The Smoking Mirrors",
@@ -4684,8 +4700,9 @@
 					]
 				},
 				{
-					"name": "Hound of the Bat",
+					"name": "The Third Tier",
 					"headers": [
+						"48. Hound of the Bat",
 						"49. Sacred Chitza-Atlan",
 						"50. Jade Wall",
 						"51. Wind Tunnel",
@@ -4720,6 +4737,8 @@
 			"name": "Tales from the Yawning Portal: White Plume Mountain",
 			"id": "TftYP-WPM",
 			"source": "TftYP-WPM",
+			"parentSource": "TftYP",
+			"group": "supplement",
 			"coverUrl": "img/covers/TftYP.png",
 			"published": "2017-03-24",
 			"publishedOrder": 3,
@@ -4789,6 +4808,8 @@
 			"name": "Tales from the Yawning Portal: Dead in Thay",
 			"id": "TftYP-DiT",
 			"source": "TftYP-DiT",
+			"parentSource": "TftYP",
+			"group": "supplement",
 			"coverUrl": "img/covers/TftYP.png",
 			"published": "2017-03-24",
 			"publishedOrder": 4,
@@ -5271,197 +5292,11 @@
 			]
 		},
 		{
-			"name": "Tales from the Yawning Portal: Tomb of Horrors",
-			"id": "TftYP-ToH",
-			"source": "TftYP-ToH",
-			"coverUrl": "img/covers/TftYP.png",
-			"published": "2017-03-24",
-			"publishedOrder": 6,
-			"storyline": "Tales from the Yawning Portal",
-			"level": {
-				"start": 10,
-				"end": 14
-			},
-			"contents": [
-				{
-					"name": "Introduction",
-					"headers": [
-						"Using This Book",
-						"The Yawning Portal"
-					]
-				},
-				{
-					"name": "Tomb of Horrors",
-					"headers": [
-						"Legend of the Tomb",
-						"Running the Adventure",
-						"Locations in the Tomb",
-						{
-							"depth": 1,
-							"header": "1. False Entrance Tunnel"
-						},
-						{
-							"depth": 1,
-							"header": "2. False Entrance Tunnel"
-						},
-						{
-							"depth": 1,
-							"header": "3. Entrance to the Tomb of Horrors"
-						},
-						{
-							"depth": 1,
-							"header": "4. Fresco of the Wizardly Work Room"
-						},
-						{
-							"depth": 1,
-							"header": "5. The Arch of Mist"
-						},
-						{
-							"depth": 1,
-							"header": "6. The Face of the Great Green Devil"
-						},
-						{
-							"depth": 1,
-							"header": "7. The Forsaken Prison"
-						},
-						{
-							"depth": 1,
-							"header": "8. Gargoyle Lair"
-						},
-						{
-							"depth": 1,
-							"header": "9. Complex of Secret Doors"
-						},
-						{
-							"depth": 1,
-							"header": "10. Great Hall of Spheres"
-						},
-						{
-							"depth": 1,
-							"header": "11. The Three-Armed Statue"
-						},
-						{
-							"depth": 1,
-							"header": "12. Trapped False Doors"
-						},
-						{
-							"depth": 1,
-							"header": "13. Chamber of Three Chests"
-						},
-						{
-							"depth": 1,
-							"header": "14. Chapel of Evil"
-						},
-						{
-							"depth": 1,
-							"header": "15. Stone Gate"
-						},
-						{
-							"depth": 1,
-							"header": "16. Locked Oaken Door"
-						},
-						{
-							"depth": 1,
-							"header": "17. Magical Secret Door"
-						},
-						{
-							"depth": 1,
-							"header": "18. Corridor Protected by Fear Gas"
-						},
-						{
-							"depth": 1,
-							"header": "18A. False Crypt"
-						},
-						{
-							"depth": 1,
-							"header": "19. Laboratory and Mummy Preparation Room"
-						},
-						{
-							"depth": 1,
-							"header": "20. Huge Pit Filled with Spikes"
-						},
-						{
-							"depth": 1,
-							"header": "21. The Agitated Chamber"
-						},
-						{
-							"depth": 1,
-							"header": "22. The Cavern of Gold and Silver Mists"
-						},
-						{
-							"depth": 1,
-							"header": "23. False/True Door"
-						},
-						{
-							"depth": 1,
-							"header": "23A. Knockout Corridor"
-						},
-						{
-							"depth": 1,
-							"header": "24. Adamantine Door"
-						},
-						{
-							"depth": 1,
-							"header": "25. Pillared Throne Room"
-						},
-						{
-							"depth": 1,
-							"header": "26. Small Room with a Door of Electric Blue"
-						},
-						{
-							"depth": 1,
-							"header": "27. The Portal of Scintillating Violet"
-						},
-						{
-							"depth": 1,
-							"header": "27A. Chamber of Hopelessness"
-						},
-						{
-							"depth": 1,
-							"header": "28. The Wondrous Foyer"
-						},
-						{
-							"depth": 1,
-							"header": "29. The Valves of Mithral"
-						},
-						{
-							"depth": 1,
-							"header": "30. False Treasure Room"
-						},
-						{
-							"depth": 1,
-							"header": "31. One-Way Doors"
-						},
-						{
-							"depth": 1,
-							"header": "32. Secret Door"
-						},
-						{
-							"depth": 1,
-							"header": "33. The Crypt of Acererak the Demilich"
-						}
-					]
-				},
-				{
-					"name": "Magic Items",
-					"ordinal": {
-						"type": "appendix",
-						"identifier": "A"
-					}
-				},
-				{
-					"name": "Creatures",
-					"ordinal": {
-						"type": "appendix",
-						"identifier": "B"
-					}
-				}
-			]
-		},
-		{
 			"name": "Tales from the Yawning Portal: Against the Giants",
 			"id": "TftYP-AtG",
 			"source": "TftYP-AtG",
+			"parentSource": "TftYP",
+			"group": "supplement",
 			"coverUrl": "img/covers/TftYP.png",
 			"published": "2017-03-24",
 			"publishedOrder": 5,
@@ -5688,9 +5523,200 @@
 			]
 		},
 		{
+			"name": "Tales from the Yawning Portal: Tomb of Horrors",
+			"id": "TftYP-ToH",
+			"source": "TftYP-ToH",
+			"parentSource": "TftYP",
+			"group": "supplement",
+			"coverUrl": "img/covers/TftYP.png",
+			"published": "2017-03-24",
+			"publishedOrder": 6,
+			"storyline": "Tales from the Yawning Portal",
+			"level": {
+				"start": 10,
+				"end": 14
+			},
+			"contents": [
+				{
+					"name": "Introduction",
+					"headers": [
+						"Using This Book",
+						"The Yawning Portal"
+					]
+				},
+				{
+					"name": "Tomb of Horrors",
+					"headers": [
+						"Legend of the Tomb",
+						"Running the Adventure",
+						"Locations in the Tomb",
+						{
+							"depth": 1,
+							"header": "1. False Entrance Tunnel"
+						},
+						{
+							"depth": 1,
+							"header": "2. False Entrance Tunnel"
+						},
+						{
+							"depth": 1,
+							"header": "3. Entrance to the Tomb of Horrors"
+						},
+						{
+							"depth": 1,
+							"header": "4. Fresco of the Wizardly Work Room"
+						},
+						{
+							"depth": 1,
+							"header": "5. The Arch of Mist"
+						},
+						{
+							"depth": 1,
+							"header": "6. The Face of the Great Green Devil"
+						},
+						{
+							"depth": 1,
+							"header": "7. The Forsaken Prison"
+						},
+						{
+							"depth": 1,
+							"header": "8. Gargoyle Lair"
+						},
+						{
+							"depth": 1,
+							"header": "9. Complex of Secret Doors"
+						},
+						{
+							"depth": 1,
+							"header": "10. Great Hall of Spheres"
+						},
+						{
+							"depth": 1,
+							"header": "11. The Three-Armed Statue"
+						},
+						{
+							"depth": 1,
+							"header": "12. Trapped False Doors"
+						},
+						{
+							"depth": 1,
+							"header": "13. Chamber of Three Chests"
+						},
+						{
+							"depth": 1,
+							"header": "14. Chapel of Evil"
+						},
+						{
+							"depth": 1,
+							"header": "15. Stone Gate"
+						},
+						{
+							"depth": 1,
+							"header": "16. Locked Oaken Door"
+						},
+						{
+							"depth": 1,
+							"header": "17. Magical Secret Door"
+						},
+						{
+							"depth": 1,
+							"header": "18. Corridor Protected by Fear Gas"
+						},
+						{
+							"depth": 1,
+							"header": "18A. False Crypt"
+						},
+						{
+							"depth": 1,
+							"header": "19. Laboratory and Mummy Preparation Room"
+						},
+						{
+							"depth": 1,
+							"header": "20. Huge Pit Filled with Spikes"
+						},
+						{
+							"depth": 1,
+							"header": "21. The Agitated Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "22. The Cavern of Gold and Silver Mists"
+						},
+						{
+							"depth": 1,
+							"header": "23. False/True Door"
+						},
+						{
+							"depth": 1,
+							"header": "23A. Knockout Corridor"
+						},
+						{
+							"depth": 1,
+							"header": "24. Adamantine Door"
+						},
+						{
+							"depth": 1,
+							"header": "25. Pillared Throne Room"
+						},
+						{
+							"depth": 1,
+							"header": "26. Small Room with a Door of Electric Blue"
+						},
+						{
+							"depth": 1,
+							"header": "27. The Portal of Scintillating Violet"
+						},
+						{
+							"depth": 1,
+							"header": "27A. Chamber of Hopelessness"
+						},
+						{
+							"depth": 1,
+							"header": "28. The Wondrous Foyer"
+						},
+						{
+							"depth": 1,
+							"header": "29. The Valves of Mithral"
+						},
+						{
+							"depth": 1,
+							"header": "30. False Treasure Room"
+						},
+						{
+							"depth": 1,
+							"header": "31. One-Way Doors"
+						},
+						{
+							"depth": 1,
+							"header": "32. Secret Door"
+						},
+						{
+							"depth": 1,
+							"header": "33. The Crypt of Acererak the Demilich"
+						}
+					]
+				},
+				{
+					"name": "Magic Items",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "A"
+					}
+				},
+				{
+					"name": "Creatures",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "B"
+					}
+				}
+			]
+		},
+		{
 			"name": "Tomb of Annihilation",
 			"id": "ToA",
 			"source": "ToA",
+			"group": "supplement",
 			"coverUrl": "img/covers/ToA.png",
 			"published": "2017-09-19",
 			"storyline": "Tomb of Annihilation",
@@ -5843,6 +5869,7 @@
 			"name": "The Tortle Package",
 			"id": "TTP",
 			"source": "TTP",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/TTP.png",
 			"published": "2017-11-03",
 			"storyline": "Tomb of Annihilation",
@@ -5917,9 +5944,105 @@
 			]
 		},
 		{
+			"name": "The Lost Kenku",
+			"id": "TLK",
+			"source": "TLK",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/TLK.png",
+			"published": "2017-11-28",
+			"storyline": "Extra Life",
+			"level": {
+				"start": 4,
+				"end": 4
+			},
+			"contents": [
+				{
+					"name": "The Lost Kenku"
+				}
+			]
+		},
+		{
+			"name": "X Marks the Spot",
+			"id": "XMtS",
+			"source": "XMtS",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/XMtS.png",
+			"published": "2017-12-11",
+			"storyline": "Ixalan",
+			"level": {
+				"start": 4,
+				"end": 4
+			},
+			"contents": [
+				{
+					"name": "Background"
+				},
+				{
+					"name": "Overview"
+				},
+				{
+					"name": "Adventure Hooks",
+					"headers": [
+						"Treasure"
+					]
+				},
+				{
+					"name": "Starting the Adventure",
+					"headers": [
+						"The Great Escape",
+						"Conqueror's Foothold",
+						"Field of Ruin",
+						"Fort Leor and Fort Durron",
+						"Primal Wellspring",
+						"Unclaimed Territory",
+						"Temple of Aclazotz"
+					]
+				},
+				{
+					"name": "Conclusion"
+				},
+				{
+					"name": "Monster and NPC Statistics",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "A"
+					}
+				},
+				{
+					"name": "Locations of Ixalan",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "B"
+					}
+				},
+				{
+					"name": "Map of Ixalan",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "C"
+					}
+				},
+				{
+					"name": "Hidden Plunder",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "D"
+					}
+				},
+				{
+					"name": "Player Characters",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "E"
+					}
+				}
+			]
+		},
+		{
 			"name": "Waterdeep: Dragon Heist",
 			"id": "WDH",
 			"source": "WDH",
+			"group": "supplement",
 			"coverUrl": "img/covers/WDH.png",
 			"published": "2018-09-18",
 			"storyline": "Waterdeep",
@@ -6169,6 +6292,7 @@
 			"name": "Lost Laboratory of Kwalish",
 			"id": "LLK",
 			"source": "LLK",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/LLK.png",
 			"published": "2018-11-10",
 			"storyline": "Extra Life",
@@ -6285,6 +6409,7 @@
 			"name": "Waterdeep: Dungeon of the Mad Mage",
 			"id": "WDMM",
 			"source": "WDMM",
+			"group": "supplement",
 			"coverUrl": "img/covers/WDMM.png",
 			"published": "2018-11-13",
 			"storyline": "Waterdeep",
@@ -9538,6 +9663,7 @@
 			"name": "Krenko's Way",
 			"id": "KKW",
 			"source": "KKW",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/GGR.png",
 			"published": "2018-11-20",
 			"storyline": "Ravnica",
@@ -9563,9 +9689,40 @@
 			]
 		},
 		{
+			"name": "A Zib for Your Thoughts",
+			"id": "AZfyT",
+			"source": "AZfyT",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/AZfyT.png",
+			"published": "2019-03-05",
+			"storyline": "Ravnica",
+			"level": {
+				"start": 2,
+				"end": 2
+			},
+			"contents": [
+				{
+					"name": "A Zib for Your Thoughts",
+					"headers": [
+						"Story Overview",
+						"Running the Adventure",
+						"Starting the Adventure",
+						"Getting to Work",
+						"House Dimir Intervenes",
+						"Argona",
+						"Delrim Munn",
+						"Herringbone",
+						"Return to Veszka",
+						"Further Adventures"
+					]
+				}
+			]
+		},
+		{
 			"name": "Ghosts of Saltmarsh",
 			"id": "GoS",
 			"source": "GoS",
+			"group": "supplement",
 			"coverUrl": "img/covers/GoS.png",
 			"published": "2019-05-21",
 			"storyline": "Ghosts of Saltmarsh",
@@ -9840,7 +9997,10 @@
 							"depth": 1,
 							"header": "30. Sea Cave"
 						},
-						"The Sea Ghost",
+						{
+							"header": "The Sea Ghost",
+							"index": 1
+						},
 						{
 							"depth": 1,
 							"header": "1. Main Deck"
@@ -10739,6 +10899,7 @@
 			"name": "Hunt for the Thessalhydra",
 			"id": "HftT",
 			"source": "HftT",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/HftT.png",
 			"published": "2019-05-21",
 			"storyline": "Stranger Things",
@@ -10767,6 +10928,7 @@
 			"name": "The Orrery of the Wanderer",
 			"id": "OoW",
 			"source": "OoW",
+			"group": "supplement",
 			"coverUrl": "img/covers/AI.png",
 			"published": "2019-06-18",
 			"storyline": "Acquisitions Incorporated",
@@ -11088,6 +11250,8 @@
 			"name": "Essentials Kit: Dragon of Icespire Peak",
 			"id": "DIP",
 			"source": "DIP",
+			"parentSource": "ESK",
+			"group": "supplement",
 			"coverUrl": "img/covers/ESK.png",
 			"published": "2019-06-24",
 			"publishedOrder": 0,
@@ -11241,6 +11405,8 @@
 			"name": "Essentials Kit: Storm Lord's Wrath",
 			"id": "SLW",
 			"source": "SLW",
+			"parentSource": "ESK",
+			"group": "supplement",
 			"coverUrl": "img/covers/ESK.png",
 			"published": "2019-09-03",
 			"publishedOrder": 1,
@@ -12039,6 +12205,8 @@
 			"name": "Essentials Kit: Sleeping Dragon's Wake",
 			"id": "SDW",
 			"source": "SDW",
+			"parentSource": "ESK",
+			"group": "supplement",
 			"coverUrl": "img/covers/ESK.png",
 			"published": "2019-09-03",
 			"publishedOrder": 2,
@@ -12766,6 +12934,8 @@
 			"name": "Essentials Kit: Divine Contention",
 			"id": "DC",
 			"source": "DC",
+			"parentSource": "ESK",
+			"group": "supplement",
 			"coverUrl": "img/covers/ESK.png",
 			"published": "2019-09-03",
 			"publishedOrder": 3,
@@ -13777,6 +13947,7 @@
 			"name": "Baldur's Gate: Descent Into Avernus",
 			"id": "BGDIA",
 			"source": "BGDIA",
+			"group": "supplement",
 			"coverUrl": "img/covers/BGDIA.png",
 			"published": "2019-09-18",
 			"storyline": "Baldur's Gate",
@@ -14664,6 +14835,7 @@
 			"name": "Locathah Rising",
 			"id": "LR",
 			"source": "LR",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/LR.png",
 			"published": "2019-09-19",
 			"storyline": "Extra Life",
@@ -14759,6 +14931,7 @@
 			"name": "Infernal Machine Rebuild",
 			"id": "IMR",
 			"source": "IMR",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/IMR.png",
 			"published": "2019-11-12",
 			"storyline": "Extra Life",
@@ -15132,6 +15305,7 @@
 			"name": "Eberron: Forgotten Relics",
 			"id": "EFR",
 			"source": "EFR",
+			"group": "supplement",
 			"coverUrl": "img/covers/ERLW.png",
 			"published": "2019-11-19",
 			"storyline": "Eberron",
@@ -15219,6 +15393,7 @@
 			"name": "The Lost Dungeon of Rickedness: Big Rick Energy",
 			"id": "RMBRE",
 			"source": "RMBRE",
+			"group": "supplement",
 			"coverUrl": "img/covers/RMR.png",
 			"published": "2019-11-19",
 			"storyline": "Rick and Morty",
@@ -15429,9 +15604,82 @@
 			]
 		},
 		{
+			"name": "Wildemount: Tide of Retribution",
+			"id": "ToR",
+			"source": "ToR",
+			"parentSource": "EGW",
+			"group": "supplement",
+			"coverUrl": "img/covers/EGW.png",
+			"published": "2020-03-17",
+			"publishedOrder": 0,
+			"storyline": "Wildemount",
+			"level": {
+				"start": 1,
+				"end": 3
+			},
+			"contents": [
+				{
+					"name": "Tide of Retribution",
+					"headers": [
+						"Story Overview",
+						"Adventure Summary",
+						"Setup and Starting Points",
+						"That Sinking Feeling",
+						{
+							"depth": 1,
+							"header": "P1. South Shore"
+						},
+						{
+							"depth": 1,
+							"header": "P2. West Shore"
+						},
+						{
+							"depth": 1,
+							"header": "P3. North Shore"
+						},
+						{
+							"depth": 1,
+							"header": "P4. East Shore"
+						},
+						{
+							"depth": 1,
+							"header": "P5. Bridge"
+						},
+						{
+							"depth": 1,
+							"header": "P6. Cliffs."
+						},
+						{
+							"depth": 1,
+							"header": "P7. Farmer's Cottage"
+						},
+						{
+							"depth": 1,
+							"header": "P8. Docks"
+						},
+						{
+							"depth": 1,
+							"header": "P9. Tavern"
+						},
+						{
+							"depth": 1,
+							"header": "P10. Public Square"
+						},
+						"Seafarers",
+						"Hunger of the Deep",
+						"Ambush at Palma Flora",
+						"Concluding the Adventure",
+						"Character Advancement"
+					]
+				}
+			]
+		},
+		{
 			"name": "Wildemount: Dangerous Designs",
 			"id": "DD",
 			"source": "DD",
+			"parentSource": "EGW",
+			"group": "supplement",
 			"coverUrl": "img/covers/EGW.png",
 			"published": "2020-03-17",
 			"publishedOrder": 1,
@@ -15568,6 +15816,8 @@
 			"name": "Wildemount: Frozen Sick",
 			"id": "FS",
 			"source": "FS",
+			"parentSource": "EGW",
+			"group": "supplement",
 			"coverUrl": "img/covers/EGW.png",
 			"published": "2020-03-17",
 			"publishedOrder": 2,
@@ -15692,78 +15942,11 @@
 			]
 		},
 		{
-			"name": "Wildemount: Tide of Retribution",
-			"id": "ToR",
-			"source": "ToR",
-			"coverUrl": "img/covers/EGW.png",
-			"published": "2020-03-17",
-			"publishedOrder": 0,
-			"storyline": "Wildemount",
-			"level": {
-				"start": 1,
-				"end": 3
-			},
-			"contents": [
-				{
-					"name": "Tide of Retribution",
-					"headers": [
-						"Story Overview",
-						"Adventure Summary",
-						"Setup and Starting Points",
-						"That Sinking Feeling",
-						{
-							"depth": 1,
-							"header": "P1. South Shore"
-						},
-						{
-							"depth": 1,
-							"header": "P2. West Shore"
-						},
-						{
-							"depth": 1,
-							"header": "P3. North Shore"
-						},
-						{
-							"depth": 1,
-							"header": "P4. East Shore"
-						},
-						{
-							"depth": 1,
-							"header": "P5. Bridge"
-						},
-						{
-							"depth": 1,
-							"header": "P6. Cliffs."
-						},
-						{
-							"depth": 1,
-							"header": "P7. Farmer's Cottage"
-						},
-						{
-							"depth": 1,
-							"header": "P8. Docks"
-						},
-						{
-							"depth": 1,
-							"header": "P9. Tavern"
-						},
-						{
-							"depth": 1,
-							"header": "P10. Public Square"
-						},
-						"Seafarers",
-						"Hunger of the Deep",
-						"Ambush at Palma Flora",
-						"Concluding the Adventure",
-						"Character Advancement"
-					]
-				}
-			]
-		},
-		{
 			"name": "Wildemount: Unwelcome Spirits",
 			"id": "US",
 			"source": "US",
+			"parentSource": "EGW",
+			"group": "supplement",
 			"coverUrl": "img/covers/EGW.png",
 			"published": "2020-03-17",
 			"publishedOrder": 3,
@@ -15873,6 +16056,7 @@
 			"name": "Theros: No Silent Secret",
 			"id": "MOT-NSS",
 			"source": "MOT",
+			"group": "supplement",
 			"coverUrl": "img/covers/MOT.png",
 			"published": "2020-06-02",
 			"storyline": "Mythic Odysseys of Theros",
@@ -15932,6 +16116,7 @@
 			"name": "Icewind Dale: Rime of the Frostmaiden",
 			"id": "IDRotF",
 			"source": "IDRotF",
+			"group": "supplement",
 			"coverUrl": "img/covers/IDRotF.png",
 			"published": "2020-09-15",
 			"storyline": "Icewind Dale",
@@ -17671,6 +17856,7 @@
 			"name": "Candlekeep Mysteries",
 			"id": "CM",
 			"source": "CM",
+			"group": "supplement",
 			"coverUrl": "img/covers/CM.png",
 			"published": "2021-03-16",
 			"storyline": "Candlekeep Mysteries",
@@ -18707,6 +18893,7 @@
 			"name": "Ravenloft: The House of Lament",
 			"id": "HoL",
 			"source": "HoL",
+			"group": "supplement",
 			"coverUrl": "img/covers/VRGR.png",
 			"published": "2021-05-18",
 			"storyline": "Ravenloft",
@@ -18863,9 +19050,58 @@
 			]
 		},
 		{
+			"name": "Return to the Glory",
+			"id": "RtG",
+			"source": "RtG",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/RtG.png",
+			"published": "2021-05-21",
+			"storyline": "Extra Life",
+			"level": {
+				"start": 6,
+				"end": 8
+			},
+			"contents": [
+				{
+					"name": "Adventure Primer",
+					"headers": [
+						"Boneyard",
+						"Eroding Ones",
+						"Chambers of the Overlox",
+						"Found Fortunate",
+						"Watchful Eye",
+						"Song Trackers",
+						"Lake of the Ancestors",
+						"Rotting Root",
+						"Red Wardens",
+						"Luthic's Zealots",
+						"Fang Trust",
+						"Quill Keepers",
+						"False Hope, Dark Promises"
+					]
+				},
+				{
+					"name": "Creatures",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "A"
+					}
+				},
+				{
+					"name": "Maps",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "B"
+					}
+				}
+			]
+		},
+		{
 			"name": "Adventures in the Forgotten Realms: In Scarlet Flames",
 			"id": "AitFR-ISF",
 			"source": "AitFR-ISF",
+			"parentSource": "AitFR",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/AitFR-ISF.png",
 			"published": "2021-06-30",
 			"storyline": "Adventures in the Forgotten Realms",
@@ -18965,6 +19201,8 @@
 			"name": "Adventures in the Forgotten Realms: The Hidden Page",
 			"id": "AitFR-THP",
 			"source": "AitFR-THP",
+			"parentSource": "AitFR",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/AitFR-THP.png",
 			"published": "2021-07-07",
 			"storyline": "Adventures in the Forgotten Realms",
@@ -19057,6 +19295,8 @@
 			"name": "Adventures in the Forgotten Realms: A Verdant Tomb",
 			"id": "AitFR-AVT",
 			"source": "AitFR-AVT",
+			"parentSource": "AitFR",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/AitFR-AVT.png",
 			"published": "2021-07-14",
 			"storyline": "Adventures in the Forgotten Realms",
@@ -19145,6 +19385,8 @@
 			"name": "Adventures in the Forgotten Realms: Darkest Night",
 			"id": "AitFR-DN",
 			"source": "AitFR-DN",
+			"parentSource": "AitFR",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/AitFR-DN.png",
 			"published": "2021-07-21",
 			"storyline": "Adventures in the Forgotten Realms",
@@ -19246,6 +19488,8 @@
 			"name": "Adventures in the Forgotten Realms: From Cyan Depths",
 			"id": "AitFR-FCD",
 			"source": "AitFR-FCD",
+			"parentSource": "AitFR",
+			"group": "supplement-alt",
 			"coverUrl": "img/covers/AitFR-FCD.png",
 			"published": "2021-07-28",
 			"storyline": "Adventures in the Forgotten Realms",
@@ -19338,9 +19582,342 @@
 			]
 		},
 		{
+			"name": "NERDS Restoring Harmony: The Candy Mountain Caper",
+			"id": "NRH-TCMC",
+			"source": "NRH-TCMC",
+			"parentSource": "NRH",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/NRH-TCMC.png",
+			"published": "2021-09-01",
+			"publishedOrder": 0,
+			"storyline": "NERDS Restoring Harmony",
+			"level": {
+				"start": 1,
+				"end": 3
+			},
+			"contents": [
+				{
+					"name": "Restoring Harmony: The Candy Mountain Caper",
+					"headers": [
+						"The Candy Mountain Caper",
+						{
+							"header": "Path 1: The Secret Tunnel",
+							"depth": 1
+						},
+						{
+							"header": "Path 2: Candy Mountain Mine",
+							"depth": 1
+						},
+						{
+							"header": "C1. Mine Perimeter",
+							"depth": 1
+						},
+						{
+							"header": "C2. Mining Camp",
+							"depth": 1
+						},
+						{
+							"header": "C3. Stairway",
+							"depth": 1
+						},
+						{
+							"header": "C4. Central Storage",
+							"depth": 1
+						},
+						{
+							"header": "C5. Mine Shafts",
+							"depth": 1
+						},
+						{
+							"header": "C5A. Secret Tunnel Cavern",
+							"depth": 1
+						},
+						{
+							"header": "C5B. Rock Candy Mother Lode",
+							"depth": 1
+						},
+						{
+							"header": "C5C. Net Trap",
+							"depth": 1
+						},
+						{
+							"header": "C5D. The Coral Gem",
+							"depth": 1
+						},
+						{
+							"header": "C5E. Dragon Fossil",
+							"depth": 1
+						},
+						"Completing the Mission",
+						"Magic Items"
+					]
+				}
+			]
+		},
+		{
+			"name": "NERDS Restoring Harmony: A Voice in the Wilderness",
+			"id": "NRH-AVitW",
+			"source": "NRH-AVitW",
+			"parentSource": "NRH",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/NRH-AVitW.png",
+			"published": "2021-09-01",
+			"publishedOrder": 1,
+			"storyline": "NERDS Restoring Harmony",
+			"level": {
+				"start": 1,
+				"end": 3
+			},
+			"contents": [
+				{
+					"name": "Restoring Harmony: A Voice in the Wilderness",
+					"headers": [
+						"A Voice in the Wilderness",
+						"Temple of the Scarlet Sentinel",
+						{
+							"header": "R1. Cliff Ledge Entrance",
+							"depth": 1
+						},
+						{
+							"header": "R2. Passageway",
+							"depth": 1
+						},
+						{
+							"header": "R3. Chamber of the Sentinel",
+							"depth": 1
+						},
+						"Completing the Mission",
+						"Magic Items"
+					]
+				}
+			]
+		},
+		{
+			"name": "NERDS Restoring Harmony: A Sticky Situation",
+			"id": "NRH-ASS",
+			"source": "NRH-ASS",
+			"parentSource": "NRH",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/NRH-ASS.png",
+			"published": "2021-09-01",
+			"publishedOrder": 2,
+			"storyline": "NERDS Restoring Harmony",
+			"level": {
+				"start": 1,
+				"end": 3
+			},
+			"contents": [
+				{
+					"name": "Restoring Harmony: A Sticky Situation",
+					"headers": [
+						"A Sticky Situation",
+						"Ruined Mausoleum",
+						{
+							"header": "M1. Entrance",
+							"depth": 1
+						},
+						{
+							"header": "M2. Mausoleum",
+							"depth": 1
+						},
+						"Completing the Mission",
+						"Magic Items"
+					]
+				}
+			]
+		},
+		{
+			"name": "NERDS Restoring Harmony: Circus of Illusion",
+			"id": "NRH-CoI",
+			"source": "NRH-CoI",
+			"parentSource": "NRH",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/NRH-CoI.png",
+			"published": "2021-09-01",
+			"publishedOrder": 3,
+			"storyline": "NERDS Restoring Harmony",
+			"level": {
+				"start": 1,
+				"end": 3
+			},
+			"contents": [
+				{
+					"name": "Restoring Harmony: Circus of Illusions",
+					"headers": [
+						"Harmony",
+						"Circus of Illusions",
+						"Getting In",
+						"Encounters at the Circus",
+						"Exploring the Circus",
+						{
+							"header": "C1. Ticket Booth",
+							"depth": 1
+						},
+						{
+							"header": "C2. Main Tent",
+							"depth": 1
+						},
+						{
+							"header": "C3. Magnifico's Tent",
+							"depth": 1
+						},
+						{
+							"header": "C4. Rubina's Tent",
+							"depth": 1
+						},
+						{
+							"header": "C5. Filippo Fleetfinger's Tent",
+							"depth": 1
+						},
+						{
+							"header": "C6. Imelda the Strongwoman's Tent",
+							"depth": 1
+						},
+						{
+							"header": "C7. Vendors",
+							"depth": 1
+						},
+						"Completing the Mission",
+						"Magic Items"
+					]
+				}
+			]
+		},
+		{
+			"name": "NERDS Restoring Harmony: The Lost Tomb",
+			"id": "NRH-TLT",
+			"source": "NRH-TLT",
+			"parentSource": "NRH",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/NRH-TLT.png",
+			"published": "2021-09-01",
+			"publishedOrder": 4,
+			"storyline": "NERDS Restoring Harmony",
+			"level": {
+				"start": 1,
+				"end": 3
+			},
+			"contents": [
+				{
+					"name": "Restoring Harmony: The Lost Tomb",
+					"headers": [
+						"Adventure 5: The Lost Tomb",
+						"Herald's Crypt Locations",
+						{
+							"header": "H1. Crypt Door",
+							"depth": 1
+						},
+						{
+							"header": "H2. Herald's Crypt",
+							"depth": 1
+						},
+						{
+							"header": "H3. Secret Passage",
+							"depth": 1
+						},
+						{
+							"header": "H4. Tomb of Professor Prism",
+							"depth": 1
+						},
+						"Completing the Mission",
+						"Magic Items"
+					]
+				}
+			]
+		},
+		{
+			"name": "NERDS Restoring Harmony: A Web of Lies",
+			"id": "NRH-AWoL",
+			"source": "NRH-AWoL",
+			"parentSource": "NRH",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/NRH-AWoL.png",
+			"published": "2021-09-01",
+			"publishedOrder": 5,
+			"storyline": "NERDS Restoring Harmony",
+			"level": {
+				"start": 1,
+				"end": 3
+			},
+			"contents": [
+				{
+					"name": "Restoring Harmony: A Web of Lies",
+					"headers": [
+						"Adventure 6: A Sticky Situation",
+						"Temple of Miel",
+						{
+							"header": "The Well",
+							"depth": 1
+						},
+						{
+							"header": "T1. Narrow Tunnel",
+							"depth": 1
+						},
+						{
+							"header": "T2. Beehive Room",
+							"depth": 1
+						},
+						"Completing the Mission",
+						"Magic Items"
+					]
+				}
+			]
+		},
+		{
+			"name": "NERDS Restoring Harmony: Adventure Together",
+			"id": "NRH-AT",
+			"source": "NRH-AT",
+			"parentSource": "NRH",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/NRH-AT.png",
+			"published": "2021-09-01",
+			"publishedOrder": 6,
+			"storyline": "NERDS Restoring Harmony",
+			"level": {
+				"start": 1,
+				"end": 3
+			},
+			"contents": [
+				{
+					"name": "Restoring Harmony",
+					"headers": [
+						"Adventure 7: Adventure Together",
+						"Mystery Mountain",
+						{
+							"header": "M1. Cave Entrance",
+							"depth": 1
+						},
+						{
+							"header": "M2. Gaseous Cave",
+							"depth": 1
+						},
+						{
+							"header": "M3. Skeleton Room",
+							"depth": 1
+						},
+						{
+							"header": "M4. Chasm of Doom",
+							"depth": 1
+						},
+						{
+							"header": "M5. Flumph Cloister",
+							"depth": 1
+						},
+						{
+							"header": "M6. Prismatic Well",
+							"depth": 1
+						},
+						"Completing the Mission",
+						"Magic Items"
+					]
+				}
+			]
+		},
+		{
 			"name": "The Wild Beyond the Witchlight",
 			"id": "WBtW",
 			"source": "WBtW",
+			"group": "supplement",
 			"coverUrl": "img/covers/WBtW.png",
 			"published": "2021-09-21",
 			"storyline": "The Wild Beyond the Witchlight",
@@ -20008,6 +20585,705 @@
 				},
 				{
 					"name": "Story Tracker"
+				}
+			]
+		},
+		{
+			"name": "Strixhaven: Campus Kerfuffle",
+			"id": "SCC-CK",
+			"source": "SCC-CK",
+			"parentSource": "SCC",
+			"group": "supplement",
+			"coverUrl": "img/covers/SCC.png",
+			"published": "2021-12-07",
+			"publishedOrder": 0,
+			"storyline": "Strixhaven",
+			"level": {
+				"start": 1,
+				"end": 4
+			},
+			"contents": [
+				{
+					"name": "Campus Kerfuffle",
+					"headers": [
+						"Running This Adventure",
+						"First Day on Campus",
+						{
+							"depth": 1,
+							"header": "B1. Main Entrance"
+						},
+						{
+							"depth": 1,
+							"header": "B2. Biblioplex Lounge"
+						},
+						{
+							"depth": 1,
+							"header": "B3. Student Café Seating"
+						},
+						{
+							"depth": 1,
+							"header": "B4. Information Desk"
+						},
+						{
+							"depth": 1,
+							"header": "B5. Student Store"
+						},
+						{
+							"depth": 1,
+							"header": "B6. Biblioplex Café"
+						},
+						{
+							"depth": 1,
+							"header": "B7. Lecture Hall"
+						},
+						{
+							"depth": 1,
+							"header": "B8. Study Area"
+						},
+						{
+							"depth": 1,
+							"header": "B9. Book Garden"
+						},
+						{
+							"depth": 1,
+							"header": "B10. Main Stacks"
+						},
+						{
+							"depth": 1,
+							"header": "B11. Hall of Oracles"
+						},
+						{
+							"depth": 1,
+							"header": "B12. Student and Alumni Art Gallery"
+						},
+						{
+							"depth": 1,
+							"header": "B13. Amphitheater"
+						},
+						{
+							"depth": 1,
+							"header": "B14. Student Activities Center"
+						},
+						{
+							"depth": 1,
+							"header": "B15. Student Council Hall"
+						},
+						{
+							"depth": 1,
+							"header": "B16. Advanced Student Stacks"
+						},
+						{
+							"depth": 1,
+							"header": "B17. Advanced Student Office"
+						},
+						{
+							"depth": 1,
+							"header": "B18. Advanced Student Lounge"
+						},
+						{
+							"depth": 1,
+							"header": "B19. The Compendium"
+						},
+						"Orientation Challenge",
+						"Frog's the Word",
+						{
+							"depth": 1,
+							"header": "F1. Study Tables"
+						},
+						{
+							"depth": 1,
+							"header": "F2. Seating Area"
+						},
+						{
+							"depth": 1,
+							"header": "F3. Barista Station"
+						},
+						{
+							"depth": 1,
+							"header": "F4. Newsstand"
+						},
+						{
+							"depth": 1,
+							"header": "F5. Fireside Lounge"
+						},
+						{
+							"depth": 1,
+							"header": "F6. Quiet Room"
+						},
+						"Magical Physiologies Exam: Slaadi",
+						"Advance to 2nd Level!",
+						"Work Hard, Play Harder",
+						"Bow's End Tavern",
+						{
+							"depth": 1,
+							"header": "E1. Patio Seating"
+						},
+						{
+							"depth": 1,
+							"header": "E2. Main Dining Room"
+						},
+						{
+							"depth": 1,
+							"header": "E3. Servers' Station and Bar"
+						},
+						{
+							"depth": 1,
+							"header": "E4. Overflow Seating"
+						},
+						{
+							"depth": 1,
+							"header": "E5. Back Exit"
+						},
+						{
+							"depth": 1,
+							"header": "E6. Kitchen"
+						},
+						"Magical Physiologies Exam: Owlbears",
+						"Campus Daredevils",
+						{
+							"depth": 1,
+							"header": "C1. Veranda"
+						},
+						{
+							"depth": 1,
+							"header": "C2. Foyer"
+						},
+						{
+							"depth": 1,
+							"header": "C3. Grand Hall"
+						},
+						{
+							"depth": 1,
+							"header": "C4. Dining Hall"
+						},
+						{
+							"depth": 1,
+							"header": "C5. Portrait Salon"
+						},
+						{
+							"depth": 1,
+							"header": "C6. Drawing Room"
+						},
+						{
+							"depth": 1,
+							"header": "C7. Hall of Beauty"
+						},
+						{
+							"depth": 1,
+							"header": "C8. Kitchen"
+						},
+						{
+							"depth": 1,
+							"header": "C9. Curio Room"
+						},
+						{
+							"depth": 1,
+							"header": "C10. Grand Deck"
+						},
+						{
+							"depth": 1,
+							"header": "C11. Side Deck"
+						},
+						{
+							"depth": 1,
+							"header": "C12. Faculty Office"
+						},
+						{
+							"depth": 1,
+							"header": "C13. Captain Dapplewing's Study"
+						},
+						{
+							"depth": 1,
+							"header": "C14. Central Passageway"
+						},
+						{
+							"depth": 1,
+							"header": "C15. Faculty Storage"
+						},
+						{
+							"depth": 1,
+							"header": "C16. Reflection Room"
+						},
+						{
+							"depth": 1,
+							"header": "C17. Grand Lounge"
+						},
+						{
+							"depth": 1,
+							"header": "C18. Tea Room"
+						},
+						{
+							"depth": 1,
+							"header": "C19. Student Storage"
+						},
+						{
+							"depth": 1,
+							"header": "C20. Attic"
+						},
+						"Advance to 3rd Level!",
+						"Magical Physiologies Exam: Otyughs",
+						"All the World's a Stage",
+						"The Rose Stage",
+						{
+							"depth": 1,
+							"header": "R1. General Seating"
+						},
+						{
+							"depth": 1,
+							"header": "R2. Orchestra Pit"
+						},
+						{
+							"depth": 1,
+							"header": "R3. Main Stage"
+						},
+						{
+							"depth": 1,
+							"header": "R4. Backstage Doors"
+						},
+						{
+							"depth": 1,
+							"header": "R5. Rose Room"
+						},
+						{
+							"depth": 1,
+							"header": "R6. Storage Hall"
+						},
+						{
+							"depth": 1,
+							"header": "R7. Stage Storage Area"
+						},
+						"Secrets in Sedgemoor",
+						{
+							"depth": 1,
+							"header": "S1. Marsh Banks"
+						},
+						{
+							"depth": 1,
+							"header": "S2. South Islet"
+						},
+						{
+							"depth": 1,
+							"header": "S3. Central Islet"
+						},
+						{
+							"depth": 1,
+							"header": "S4. South Research Shed"
+						},
+						{
+							"depth": 1,
+							"header": "S5. North Research Shed"
+						},
+						{
+							"depth": 1,
+							"header": "S6. East Islet"
+						},
+						{
+							"depth": 1,
+							"header": "S7. Underwater Spring"
+						},
+						"Advance to 4th Level!"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					}
+				}
+			]
+		},
+		{
+			"name": "Strixhaven: Hunt for Mage Tower",
+			"id": "SCC-HfMT",
+			"source": "SCC-HfMT",
+			"parentSource": "SCC",
+			"group": "supplement",
+			"coverUrl": "img/covers/SCC.png",
+			"published": "2021-12-07",
+			"publishedOrder": 1,
+			"storyline": "Strixhaven",
+			"level": {
+				"start": 4,
+				"end": 6
+			},
+			"contents": [
+				{
+					"name": "Hunt for Mage Tower",
+					"headers": [
+						"Running This Adventure",
+						"Back in Session",
+						"Mascots Everywhere!",
+						{
+							"depth": 1,
+							"header": "W1. Hall and Learning Platform"
+						},
+						{
+							"depth": 1,
+							"header": "W2. Observation Hut A"
+						},
+						{
+							"depth": 1,
+							"header": "W3. Southwest Clearing"
+						},
+						{
+							"depth": 1,
+							"header": "W4. Southern Outskirts"
+						},
+						{
+							"depth": 1,
+							"header": "W5. Southern Clearing"
+						},
+						{
+							"depth": 1,
+							"header": "W6. Southeastern Clearing"
+						},
+						{
+							"depth": 1,
+							"header": "W7. Observation Hut B"
+						},
+						{
+							"depth": 1,
+							"header": "W8. Western Clearing"
+						},
+						{
+							"depth": 1,
+							"header": "W9. Observation Hut C"
+						},
+						{
+							"depth": 1,
+							"header": "W10. Observation Hut D"
+						},
+						{
+							"depth": 1,
+							"header": "W11. Northwestern Clearing"
+						},
+						{
+							"depth": 1,
+							"header": "W12. Northern Clearing"
+						},
+						{
+							"depth": 1,
+							"header": "W13. Northern Outskirts"
+						},
+						{
+							"depth": 1,
+							"header": "W14. Observation Hut E"
+						},
+						"Scrivening and Symbology Exam: Glyph of Warding",
+						"Advance to 5th Level!",
+						"Party at the Rose Stage",
+						"Stack 'Em High",
+						"It's Got Three Heads!",
+						"Practice Makes Perfect",
+						{
+							"depth": 1,
+							"header": "A1. Southwestern Outbuilding"
+						},
+						{
+							"depth": 1,
+							"header": "A2. Southeastern Outbuilding"
+						},
+						{
+							"depth": 1,
+							"header": "A3. Practice Field"
+						},
+						{
+							"depth": 1,
+							"header": "A4. Dugout"
+						},
+						{
+							"depth": 1,
+							"header": "A5. Bleachers"
+						},
+						"Scrivening and Symbology Exam: Symbol Glyphs",
+						"Getting Some Air",
+						"Dangerous Knowledge",
+						"Scriptoria Collections",
+						"Scrivening and Symbology Exam: Augury",
+						"Tell Us In Song!",
+						"Battle of Strixhaven",
+						{
+							"depth": 1,
+							"header": "X1. Strixhaven Field"
+						},
+						{
+							"depth": 1,
+							"header": "X2. Locker Room"
+						},
+						"Advance to 6th Level!"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 4
+					}
+				}
+			]
+		},
+		{
+			"name": "Strixhaven: The Magister's Masquerade",
+			"id": "SCC-TMM",
+			"source": "SCC-TMM",
+			"parentSource": "SCC",
+			"group": "supplement",
+			"coverUrl": "img/covers/SCC.png",
+			"published": "2021-12-07",
+			"publishedOrder": 2,
+			"storyline": "Strixhaven",
+			"level": {
+				"start": 6,
+				"end": 8
+			},
+			"contents": [
+				{
+					"name": "The Magister's Masquerade",
+					"headers": [
+						"Running This Adventure",
+						"Cordially Invited",
+						"Reception at Bow's End",
+						"Fate at Furygale",
+						"Advanced Arcane History Exam: Relics",
+						"Dressing for Success",
+						"The Masquerade's Theme",
+						"Party Preparations",
+						"Advanced Arcane History Exam: Devices",
+						"Suspicions",
+						"Fancying Up Footwork",
+						"Preparing the Hall",
+						{
+							"depth": 1,
+							"header": "K1. Serenity Quadrants"
+						},
+						{
+							"depth": 1,
+							"header": "K2. Wise Kollema"
+						},
+						{
+							"depth": 1,
+							"header": "K3. Demonstration Stage"
+						},
+						{
+							"depth": 1,
+							"header": "K4. Second-Floor Study"
+						},
+						{
+							"depth": 1,
+							"header": "K5. Infirmary Intake"
+						},
+						{
+							"depth": 1,
+							"header": "K6. Infirmary Hall"
+						},
+						{
+							"depth": 1,
+							"header": "K7. Sickroom"
+						},
+						"Advance to 7th Level!",
+						"Advanced Arcane History Exam: Unearthed Arcana",
+						"A Starlit Night",
+						"Preparing for the Masquerade",
+						"Arriving at the Masquerade",
+						"Masquerade Events",
+						"The Masquerade's Conclusion",
+						"Midnight at Lorehold",
+						{
+							"depth": 1,
+							"header": "L1. Main Hall"
+						},
+						{
+							"depth": 1,
+							"header": "L2. Administrative Office"
+						},
+						{
+							"depth": 1,
+							"header": "L3. Porch"
+						},
+						{
+							"depth": 1,
+							"header": "L4. Records Room"
+						},
+						{
+							"depth": 1,
+							"header": "L5. Restricted Records Room"
+						},
+						{
+							"depth": 1,
+							"header": "L6. Deans' Reception Room"
+						},
+						{
+							"depth": 1,
+							"header": "L7. Dean Plargg's Office"
+						},
+						{
+							"depth": 1,
+							"header": "L8. Dean Tullus's Office"
+						},
+						{
+							"depth": 1,
+							"header": "L9. Deans' Records Room"
+						},
+						"Aftermath",
+						"Advance to 8th Level!"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 5
+					}
+				}
+			]
+		},
+		{
+			"name": "Strixhaven: A Reckoning in Ruins",
+			"id": "SCC-ARiR",
+			"source": "SCC-ARiR",
+			"parentSource": "SCC",
+			"group": "supplement",
+			"coverUrl": "img/covers/SCC.png",
+			"published": "2021-12-07",
+			"publishedOrder": 3,
+			"storyline": "Strixhaven",
+			"level": {
+				"start": 8,
+				"end": 10
+			},
+			"contents": [
+				{
+					"name": "A Reckoning in Ruins",
+					"headers": [
+						"Running This Adventure",
+						"A Sinister Shadow",
+						"A Brief Distraction",
+						"Arcane Herbology Exam: Vegetation Identification",
+						"Clue in the Bayou",
+						{
+							"depth": 1,
+							"header": "D1. The Stickiest Crate"
+						},
+						{
+							"depth": 1,
+							"header": "D2. Angry Trudges"
+						},
+						{
+							"depth": 1,
+							"header": "D3. Lonely Crate"
+						},
+						{
+							"depth": 1,
+							"header": "D4. Confused Constructs"
+						},
+						{
+							"depth": 1,
+							"header": "D5. Empty Crate"
+						},
+						{
+							"depth": 1,
+							"header": "D6. Unstable Crate"
+						},
+						"Advance to 9th Level!",
+						"No Time to Lose",
+						"But What about Classes?",
+						"The Stage Is Set",
+						"About Murgaxor",
+						"Into the Badlands",
+						{
+							"depth": 1,
+							"header": "T1. Watchtowers"
+						},
+						{
+							"depth": 1,
+							"header": "T2. Collapsing Cave"
+						},
+						{
+							"depth": 1,
+							"header": "T4. Supply Room"
+						},
+						{
+							"depth": 1,
+							"header": "T5. Lab"
+						},
+						{
+							"depth": 1,
+							"header": "T6. Mushroom Cave"
+						},
+						{
+							"depth": 1,
+							"header": "T7. Gorgon's Cave"
+						},
+						{
+							"depth": 1,
+							"header": "U1. Meditation Alcove"
+						},
+						{
+							"depth": 1,
+							"header": "U2. Ritual Area"
+						},
+						{
+							"depth": 1,
+							"header": "U3. Guard Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "U4. Living Area"
+						},
+						"This Is Surreal, Isn't It?",
+						"Ruins of Caerdoon",
+						{
+							"depth": 1,
+							"header": "N1. Haunted Watchtower"
+						},
+						{
+							"depth": 1,
+							"header": "N2. Wailing Moat"
+						},
+						{
+							"depth": 1,
+							"header": "N3. Wreckage"
+						},
+						{
+							"depth": 1,
+							"header": "N4. Supply Train"
+						},
+						{
+							"depth": 1,
+							"header": "N5. Siege Towers"
+						},
+						{
+							"depth": 1,
+							"header": "N6. Fortress"
+						},
+						"Advance to 10th Level!",
+						"Confronting Murgaxor",
+						"Ritual Stones",
+						"Basement Features",
+						"Locations in the Basement",
+						{
+							"depth": 1,
+							"header": "M1. Central Chamber"
+						},
+						{
+							"depth": 1,
+							"header": "M2. Munition Storage"
+						},
+						{
+							"depth": 1,
+							"header": "M3. Broken Elevator"
+						},
+						{
+							"depth": 1,
+							"header": "M4. Ruined Storage"
+						},
+						{
+							"depth": 1,
+							"header": "M5. Armory"
+						},
+						{
+							"depth": 1,
+							"header": "M6. Immortality Ritual"
+						},
+						"Heroes of Strixhaven",
+						"Failing to Stop the Ritual"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 6
+					}
 				}
 			]
 		}

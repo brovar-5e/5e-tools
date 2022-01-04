@@ -163,7 +163,9 @@
 											},
 											"title": "Map: The Sword Coast",
 											"width": 2105,
-											"height": 2933
+											"height": 2933,
+											"imageType": "map",
+											"id": "25b"
 										},
 										{
 											"type": "image",
@@ -173,7 +175,12 @@
 											},
 											"title": "(Player Version)",
 											"width": 2153,
-											"height": 3000
+											"height": 3000,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "25b",
+												"autoScale": true
+											}
 										}
 									]
 								},
@@ -498,7 +505,9 @@
 											},
 											"title": "Map: Phandalin",
 											"width": 2550,
-											"height": 1830
+											"height": 1830,
+											"imageType": "map",
+											"id": "25c"
 										},
 										{
 											"type": "image",
@@ -508,7 +517,12 @@
 											},
 											"title": "(Player Version)",
 											"width": 3000,
-											"height": 2153
+											"height": 2153,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "25c",
+												"autoScale": true
+											}
 										}
 									]
 								},
@@ -687,7 +701,7 @@
 										"After the characters complete two starting quests, the following three quests are added to the job board:",
 										"{@b Butterskull Ranch Quest}. \"Orcs have attacked Butterskull Ranch, five miles east of Conyberry along the Triboar Trail! Travel there with haste, assess the damage, and help any way you can. Ranch owner Alfonse \"Big Al\" Kalazorn is a retired sheriff who can reward you for your efforts. If he's dead, return to Townmaster Harbin Wester with proof of Kalazorn's demise to receive a reward of 100 gp.\" If the characters undertake this quest, proceed with \"{@adventure Butterskull Ranch|DIP|2}.\"",
 										"{@b Loggers' Camp Quest}. \"Deep in Neverwinter Wood, along the river that flows west toward Neverwinter, is a logging camp. Every two months, Phandalin delivers fresh supplies to the camp, which is run by the half-brother of Phandalin's townmaster, Harbin Wester. Barthen, the local provisioner, has prepared a new delivery. He needs someone to bear the supplies safely to the camp. Return to Harbin Wester with a notice of delivery signed by his half-brother, Tibor Wester, to claim your reward of 100 gp.\" If the characters undertake this quest, proceed with \"{@adventure Loggers' Camp|DIP|9}.\"",
-										"{@b Mountain's Toe Quest}. \"The Mountain's Toe Gold Mine lies fifteen miles northeast of Phandalin. The new overseer, Don-Jon Raskin, just made the trip from Neverwinter to Phandalin and needs to be escorted to the mine. There's no telling what dangers lie between here and there. Once you deliver Raskin safe and sound, return to Townmaster Harbin Wester to collect a reward of 100 gp.\" If the characters undertake this quest, proceed with \"{@adventure Mountain's Toe Gold Mine|DIP|10}.\"",
+										"{@b Mountain's Toe Quest}. \"The Mountain's Toe Gold Mine lies fifteen miles northeast of Phandalin. The new overseer, {@creature Don-Jon Raskin|DIP}, just made the trip from Neverwinter to Phandalin and needs to be escorted to the mine. There's no telling what dangers lie between here and there. Once you deliver Raskin safe and sound, return to Townmaster Harbin Wester to collect a reward of 100 gp.\" If the characters undertake this quest, proceed with \"{@adventure Mountain's Toe Gold Mine|DIP|10}.\"",
 										"After the characters complete two follow-up quests, another three follow-up quests are added to the job board:",
 										"{@b Axeholm Quest}. \"Within a mountain fifteen miles south of Phandalin stands the ancient dwarven fortress of Axeholm, which has been sealed for years. If a dragon attack is imminent, the people of Phandalin might need to evacuate and take refuge in Axeholm. To that end, someone needs to open the fortress and make it safe for habitation. Once you accomplish these tasks, return to Townmaster Wester to collect a reward of 250 gp.\" If the characters undertake this quest, proceed with \"{@adventure Axeholm|DIP|1}.\"",
 										"{@b Dragon Barrow Quest}. \"The dragon that besets us is not the first to threaten this region. Between here and Neverwinter lies the barrow mound of a warrior whose magical dragon-slaying sword helped fell a green dragon terrorizing the High Road a century ago. Rumor has it the {@item dragon slayer} sword is buried there too. Retrieve it, and let the sword be its own reward!\" If the characters undertake this quest, proceed with \"{@adventure Dragon Barrow|DIP|4}.\"",
@@ -948,7 +962,9 @@
 											},
 											"title": "Map: Axeholm",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "25d"
 										},
 										{
 											"type": "image",
@@ -958,7 +974,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "25d"
+											}
 										}
 									]
 								},
@@ -1362,7 +1382,9 @@
 									},
 									"title": "Map: Butterskull Ranch",
 									"width": 2888,
-									"height": 1838
+									"height": 1838,
+									"imageType": "map",
+									"id": "25e"
 								},
 								{
 									"type": "image",
@@ -1372,7 +1394,11 @@
 									},
 									"title": "(Player Version)",
 									"width": 2888,
-									"height": 1838
+									"height": 1838,
+									"imageType": "mapPlayer",
+									"mapParent": {
+										"id": "25e"
+									}
 								}
 							]
 						},
@@ -1653,7 +1679,9 @@
 											},
 											"title": "Map: Circle of Thunder",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "25f"
 										},
 										{
 											"type": "image",
@@ -1663,7 +1691,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "25f"
+											}
 										}
 									]
 								},
@@ -1848,7 +1880,9 @@
 											},
 											"title": "Map: Dragon Barrow",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "260"
 										},
 										{
 											"type": "image",
@@ -1858,7 +1892,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "260"
+											}
 										}
 									]
 								},
@@ -2003,7 +2041,9 @@
 											},
 											"title": "Map: Dwarven Excavation",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "261"
 										},
 										{
 											"type": "image",
@@ -2013,7 +2053,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "261"
+											}
 										}
 									]
 								},
@@ -2308,7 +2352,9 @@
 											},
 											"title": "Falcon's Hunting Lodge",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "262"
 										},
 										{
 											"type": "image",
@@ -2318,7 +2364,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "262"
+											}
 										}
 									]
 								},
@@ -2624,7 +2674,9 @@
 											},
 											"title": "Map: Gnomengarde",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "263"
 										},
 										{
 											"type": "image",
@@ -2634,7 +2686,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "263"
+											}
 										}
 									]
 								},
@@ -2988,7 +3044,9 @@
 											},
 											"title": "Map: Icespire Hold",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "264"
 										},
 										{
 											"type": "image",
@@ -2998,7 +3056,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "264"
+											}
 										}
 									]
 								},
@@ -3373,7 +3435,9 @@
 											},
 											"title": "Map: Logger's Camp",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "265"
 										},
 										{
 											"type": "image",
@@ -3383,7 +3447,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "265"
+											}
 										}
 									]
 								},
@@ -3569,7 +3637,9 @@
 											},
 											"title": "Map: Mountain's Toe Gold Mine",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "266"
 										},
 										{
 											"type": "image",
@@ -3579,7 +3649,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "266"
+											}
 										}
 									]
 								},
@@ -3612,7 +3686,7 @@
 									"name": "M4. Wererat Den",
 									"id": "167",
 									"entries": [
-										"Scattered about this cave are pickaxes, shovels, and other mining tools. The northeast section contains four {@creature Giant Rat||giant rats}. The southwest section contains {@creature Wererat||wererats} in human form: one male wererat for each party member (including Don-Jon Raskin but not sidekicks) plus a female wererat named Zeleen Varnaster\u2014the leader of the Whiskered Gang. If Zeleen dies, another wererat takes over as leader as long as any of them survive.",
+										"Scattered about this cave are pickaxes, shovels, and other mining tools. The northeast section contains four {@creature Giant Rat||giant rats}. The southwest section contains {@creature Wererat||wererats} in human form: one male wererat for each party member (including {@creature Don-Jon Raskin|DIP} but not sidekicks) plus a female wererat named Zeleen Varnaster\u2014the leader of the Whiskered Gang. If Zeleen dies, another wererat takes over as leader as long as any of them survive.",
 										"The wererats invaded the mine after orcs pushed them out of their previous lair\u2014an old shrine near {@area Conyberry|00f|x} (see \"{@adventure Shrine of Savras|DIP|11}\"). The wererats say they'll go back to their old lair if the characters get rid of the orcs at the shrine, but this is a only a ploy. The wererats have no intention of abandoning the mine.",
 										{
 											"type": "entries",
@@ -3793,7 +3867,9 @@
 											},
 											"title": "Map: Shrine of Savras",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "267"
 										},
 										{
 											"type": "image",
@@ -3803,7 +3879,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "267"
+											}
 										}
 									]
 								},
@@ -3995,7 +4075,9 @@
 											},
 											"title": "Map: Tower of Storms",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "268"
 										},
 										{
 											"type": "image",
@@ -4005,7 +4087,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "268"
+											}
 										}
 									]
 								},
@@ -4251,7 +4337,9 @@
 											},
 											"title": "Map: Umbrage Hill",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "269"
 										},
 										{
 											"type": "image",
@@ -4261,7 +4349,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "269"
+											}
 										}
 									]
 								},
@@ -4406,7 +4498,9 @@
 											},
 											"title": "Map: Woodland Manse",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "map",
+											"id": "26a"
 										},
 										{
 											"type": "image",
@@ -4416,7 +4510,11 @@
 											},
 											"title": "(Player Version)",
 											"width": 2888,
-											"height": 1838
+											"height": 1838,
+											"imageType": "mapPlayer",
+											"mapParent": {
+												"id": "26a"
+											}
 										}
 									]
 								},

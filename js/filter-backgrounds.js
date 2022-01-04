@@ -7,7 +7,8 @@ class PageFilterBackgrounds extends PageFilter {
 		this._skillFilter = new Filter({header: "Skill Proficiencies", displayFn: StrUtil.toTitleCase});
 		this._toolFilter = new Filter({header: "Tool Proficiencies", displayFn: StrUtil.toTitleCase});
 		this._languageFilter = new Filter({header: "Language Proficiencies", displayFn: it => it === "anyStandard" ? "Any Standard" : StrUtil.toTitleCase(it)});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Has Info", "Has Images", "SRD"], isSrdFilter: true});
+		this._otherBenefitsFilter = new Filter({header: "Other Benefits"});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["Has Info", "Has Images", "SRD", "Basic Rules"], isMiscFilter: true});
 	}
 
 	static mutateForFilters (bg) {
@@ -15,9 +16,14 @@ class PageFilterBackgrounds extends PageFilter {
 		const skillDisplay = Renderer.background.getSkillSummary(bg.skillProficiencies, true, bg._fSkills = []);
 		Renderer.background.getToolSummary(bg.toolProficiencies, true, bg._fTools = []);
 		Renderer.background.getLanguageSummary(bg.languageProficiencies, true, bg._fLangs = []);
-		bg._fMisc = bg.srd ? ["SRD"] : [];
+		bg._fMisc = [];
+		if (bg.srd) bg._fMisc.push("SRD");
+		if (bg.basicRules) bg._fMisc.push("Basic Rules");
 		if (bg.hasFluff) bg._fMisc.push("Has Info");
 		if (bg.hasFluffImages) bg._fMisc.push("Has Images");
+		bg._fOtherBenifits = [];
+		if (bg.feats) bg._fOtherBenifits.push("Feat");
+		if (bg.additionalSpells) bg._fOtherBenifits.push("Additional Spells");
 		bg._skillDisplay = skillDisplay;
 	}
 
@@ -28,6 +34,7 @@ class PageFilterBackgrounds extends PageFilter {
 		this._skillFilter.addItem(bg._fSkills);
 		this._toolFilter.addItem(bg._fTools);
 		this._languageFilter.addItem(bg._fLangs);
+		this._otherBenefitsFilter.addItem(bg._fOtherBenifits);
 	}
 
 	async _pPopulateBoxOptions (opts) {
@@ -36,6 +43,7 @@ class PageFilterBackgrounds extends PageFilter {
 			this._skillFilter,
 			this._toolFilter,
 			this._languageFilter,
+			this._otherBenefitsFilter,
 			this._miscFilter,
 		];
 	}
@@ -47,8 +55,9 @@ class PageFilterBackgrounds extends PageFilter {
 			bg._fSkills,
 			bg._fTools,
 			bg._fLangs,
+			bg._fOtherBenifits,
 			bg._fMisc,
-		)
+		);
 	}
 }
 

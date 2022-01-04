@@ -59,7 +59,7 @@ class CharCreationOptionsPage extends ListPage {
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	getSublistItem (it, pinId) {
+	pGetSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 
 		const $ele = $$`<div class="lst__row lst__row--sublist flex-col">
@@ -72,7 +72,7 @@ class CharCreationOptionsPage extends ListPage {
 			.click(evt => ListUtil.sublist.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
-			pinId,
+			ix,
 			$ele,
 			it.name,
 			{
@@ -125,11 +125,6 @@ class CharCreationOptionsPage extends ListPage {
 		});
 
 		ListUtil.updateSelected();
-	}
-
-	async pDoLoadSubHash (sub) {
-		sub = this._filterBox.setFromSubHashes(sub);
-		await ListUtil.pSetFromSubHashes(sub);
 	}
 }
 

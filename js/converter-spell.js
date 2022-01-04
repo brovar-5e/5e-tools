@@ -176,7 +176,7 @@ class SpellParser extends BaseParser {
 				}
 			});
 		};
-		TagCondition.tryTagConditions(stats, true);
+		TagCondition.tryTagConditions(stats, {isTagInflicted: true});
 		if (stats.entries) {
 			stats.entries = stats.entries.map(it => DiceConvert.getTaggedEntry(it));
 			EntryConvert.tryRun(stats, "entries");
@@ -185,7 +185,7 @@ class SpellParser extends BaseParser {
 			stats.entries = SenseTag.tryRun(stats.entries);
 		}
 		if (stats.entriesHigherLevel) {
-			stats.entriesHigherLevel = stats.entriesHigherLevel.map(it => DiceConvert.getTaggedEntry(it))
+			stats.entriesHigherLevel = stats.entriesHigherLevel.map(it => DiceConvert.getTaggedEntry(it));
 			EntryConvert.tryRun(stats, "entriesHigherLevel");
 			stats.entriesHigherLevel = SkillTag.tryRun(stats.entriesHigherLevel);
 			stats.entriesHigherLevel = ActionTag.tryRun(stats.entriesHigherLevel);

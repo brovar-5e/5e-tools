@@ -65,7 +65,7 @@ class DeitiesPage extends ListPage {
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	getSublistItem (g, pinId) {
+	pGetSublistItem (g, ix) {
 		const hash = UrlUtil.autoEncodeHash(g);
 
 		const alignment = g.alignment ? g.alignment.join("") : "\u2014";
@@ -83,7 +83,7 @@ class DeitiesPage extends ListPage {
 			.click(evt => ListUtil.sublist.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
-			pinId,
+			ix,
 			$ele,
 			g.name,
 			{
@@ -102,11 +102,6 @@ class DeitiesPage extends ListPage {
 		this._$pgContent.empty().append(RenderDeities.$getRenderedDeity(deity));
 
 		ListUtil.updateSelected();
-	}
-
-	async pDoLoadSubHash (sub) {
-		sub = this._filterBox.setFromSubHashes(sub);
-		await ListUtil.pSetFromSubHashes(sub);
 	}
 }
 

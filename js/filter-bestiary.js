@@ -3,7 +3,7 @@
 class PageFilterBestiary extends PageFilter {
 	// region static
 	static sortMonsters (a, b, o) {
-		if (o.sortBy === "count") return SortUtil.ascSort(a.values.count, b.values.count) || SortUtil.compareListNames(a, b);
+		if (o.sortBy === "count") return SortUtil.ascSort(a.data.count, b.data.count) || SortUtil.compareListNames(a, b);
 		switch (o.sortBy) {
 			case "name": return SortUtil.compareListNames(a, b);
 			case "type": return SortUtil.ascSort(a.values.type, b.values.type) || SortUtil.compareListNames(a, b);
@@ -66,7 +66,7 @@ class PageFilterBestiary extends PageFilter {
 			itemSortFn: null,
 		});
 		this._speedFilter = new RangeFilter({header: "Speed", min: 30, max: 30, suffix: " ft"});
-		this._speedTypeFilter = new Filter({header: "Speed Type", items: ["walk", "burrow", "climb", "fly", "hover", "swim"], displayFn: StrUtil.uppercaseFirst});
+		this._speedTypeFilter = new Filter({header: "Speed Type", items: [...Parser.SPEED_MODES, "hover"], displayFn: StrUtil.uppercaseFirst});
 		this._strengthFilter = new RangeFilter({header: "Strength", min: 1, max: 30});
 		this._dexterityFilter = new RangeFilter({header: "Dexterity", min: 1, max: 30});
 		this._constitutionFilter = new RangeFilter({header: "Constitution", min: 1, max: 30});
@@ -106,17 +106,17 @@ class PageFilterBestiary extends PageFilter {
 		});
 		this._conditionsInflictedFilterBase = new Filter({
 			header: "By Traits/Actions",
-			displayFn: StrUtil.toTitleCase,
+			displayFn: uid => uid.split("|")[0].toTitleCase(),
 			items: [...Parser.CONDITIONS],
 		});
 		this._conditionsInflictedFilterLegendary = new Filter({
 			header: "By Lair Actions/Regional Effects",
-			displayFn: StrUtil.toTitleCase,
+			displayFn: uid => uid.split("|")[0].toTitleCase(),
 			items: [...Parser.CONDITIONS],
 		});
 		this._conditionsInflictedFilterSpells = new Filter({
 			header: "By Spells",
-			displayFn: StrUtil.toTitleCase,
+			displayFn: uid => uid.split("|")[0].toTitleCase(),
 			items: [...Parser.CONDITIONS],
 		});
 		this._conditionsInflictedFilter = new MultiFilter({header: "Conditions Inflicted", filters: [this._conditionsInflictedFilterBase, this._conditionsInflictedFilterLegendary, this._conditionsInflictedFilterSpells]});
@@ -178,11 +178,11 @@ class PageFilterBestiary extends PageFilter {
 		});
 		this._miscFilter = new Filter({
 			header: "Miscellaneous",
-			items: ["Familiar", ...Object.keys(Parser.MON_MISC_TAG_TO_FULL), "Bonus Actions", "Lair Actions", "Legendary", "Mythic", "Adventure NPC", "Spellcaster", ...Object.values(Parser.ATB_ABV_TO_FULL).map(it => `${PageFilterBestiary.MISC_FILTER_SPELLCASTER}${it}`), "Regional Effects", "Reactions", "Swarm", "Has Variants", "Modified Copy", "Has Alternate Token", "Has Info", "Has Images", "Has Token", "Has Recharge", "SRD", "AC from Item(s)", "AC from Natural Armor", "AC from Unarmored Defense"],
+			items: ["Familiar", ...Object.keys(Parser.MON_MISC_TAG_TO_FULL), "Bonus Actions", "Lair Actions", "Legendary", "Mythic", "Adventure NPC", "Spellcaster", ...Object.values(Parser.ATB_ABV_TO_FULL).map(it => `${PageFilterBestiary.MISC_FILTER_SPELLCASTER}${it}`), "Regional Effects", "Reactions", "Swarm", "Has Variants", "Modified Copy", "Has Alternate Token", "Has Info", "Has Images", "Has Token", "Has Recharge", "SRD", "Basic Rules", "AC from Item(s)", "AC from Natural Armor", "AC from Unarmored Defense"],
 			displayFn: (it) => Parser.monMiscTagToFull(it).uppercaseFirst(),
 			deselFn: (it) => it === "Adventure NPC",
 			itemSortFn: PageFilterBestiary.ascSortMiscFilter,
-			isSrdFilter: true,
+			isMiscFilter: true,
 		});
 		this._spellcastingTypeFilter = new Filter({
 			header: "Spellcasting Type",
@@ -256,6 +256,7 @@ class PageFilterBestiary extends PageFilter {
 		if (mon._isCopy) mon._fMisc.push("Modified Copy");
 		if (mon.altArt) mon._fMisc.push("Has Alternate Token");
 		if (mon.srd) mon._fMisc.push("SRD");
+		if (mon.basicRules) mon._fMisc.push("Basic Rules");
 		if (mon.tokenUrl || mon.hasToken) mon._fMisc.push("Has Token");
 		if (mon.mythic) mon._fMisc.push("Mythic");
 		if (mon.hasFluff) mon._fMisc.push("Has Info");
@@ -267,11 +268,16 @@ class PageFilterBestiary extends PageFilter {
 			if (it.from.includes("Unarmored Defense")) mon._fMisc.push("AC from Unarmored Defense");
 		}
 		if (this._hasRecharge(mon)) mon._fMisc.push("Has Recharge");
+		if (mon._versionBase_isVersion) mon._fMisc.push("Is Variant");
+
 		const spellcasterMeta = this._getSpellcasterMeta(mon);
 		if (spellcasterMeta) {
 			if (spellcasterMeta.spellLevels.size) mon._fSpellSlotLevels = [...spellcasterMeta.spellLevels];
 			if (spellcasterMeta.spellSet.size) mon._fSpellsKnown = [...spellcasterMeta.spellSet];
 		}
+
+		if (mon.languageTags?.length) mon._fLanguageTags = mon.languageTags;
+		else mon._fLanguageTags = ["None"];
 	}
 
 	static _getSpellcasterMeta (mon) {
@@ -292,7 +298,7 @@ class PageFilterBestiary extends PageFilter {
 				{
 					string: this._getSpellcasterMeta_stringHandler.bind(null, spellSet),
 				},
-			)
+			);
 		}
 
 		return {spellLevels, spellSet};
@@ -343,12 +349,17 @@ class PageFilterBestiary extends PageFilter {
 		this._passivePerceptionFilter.addItem(mon._fPassive);
 		this._spellSlotLevelFilter.addItem(mon._fSpellSlotLevels);
 		this._spellKnownFilter.addItem(mon._fSpellsKnown);
+		if (mon._versionBase_isVersion) this._miscFilter.addItem("Is Variant");
+		this._conditionsInflictedFilterBase.addItem(mon.conditionInflict);
+		this._conditionsInflictedFilterLegendary.addItem(mon.conditionInflictLegendary);
+		this._conditionsInflictedFilterSpells.addItem(mon.conditionInflictSpell);
 	}
 
 	async _pPopulateBoxOptions (opts) {
 		Object.entries(Parser.MON_LANGUAGE_TAG_TO_FULL)
 			.sort(([, vA], [, vB]) => SortUtil.ascSortLower(vA, vB))
 			.forEach(([k]) => this._languageFilter.addItem(k));
+		this._languageFilter.addItem("None");
 
 		opts.filters = [
 			this._sourceFilter,
@@ -408,7 +419,7 @@ class PageFilterBestiary extends PageFilter {
 			m._fSkill,
 			m.senseTags,
 			m._fPassive,
-			m.languageTags,
+			m._fLanguageTags,
 			m.damageTags,
 			[
 				m.conditionInflict,
@@ -476,7 +487,7 @@ class ModalFilterBestiary extends ModalFilter {
 			modalTitle: `Creature${opts.isRadio ? "" : "s"}`,
 			pageFilter: new PageFilterBestiary(),
 			fnSort: PageFilterBestiary.sortMonsters,
-		})
+		});
 	}
 
 	_$getColumnHeaders () {

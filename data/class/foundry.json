@@ -644,9 +644,57 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Primal Champion",
+			"source": "PHB",
+			"className": "Barbarian",
+			"classSource": "PHB",
+			"level": 20,
+			"effects": [
+				{
+					"changes": [
+						{
+							"key": "data.abilities.str.value",
+							"mode": "ADD",
+							"value": 4
+						},
+						{
+							"key": "data.abilities.con.value",
+							"mode": "ADD",
+							"value": 4
+						}
+					]
+				}
+			]
 		}
 	],
 	"subclassFeature": [
+		{
+			"name": "Arcane Firearm",
+			"source": "TCE",
+			"className": "Artificer",
+			"classSource": "TCE",
+			"subclassShortName": "Artillerist",
+			"subclassSource": "TCE",
+			"level": 5,
+			"effects": [
+				{
+					"changes": [
+						{
+							"key": "data.bonuses.msak.damage",
+							"mode": "ADD",
+							"value": "1d8"
+						},
+						{
+							"key": "data.bonuses.rsak.damage",
+							"mode": "ADD",
+							"value": "1d8"
+						}
+					]
+				}
+			]
+		},
 		{
 			"name": "Remarkable Athlete",
 			"source": "PHB",
@@ -662,6 +710,99 @@
 							"key": "flags.dnd5e.remarkableAthlete",
 							"mode": "OVERRIDE",
 							"value": true
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Additional Fighting Style",
+			"source": "PHB",
+			"className": "Fighter",
+			"classSource": "PHB",
+			"subclassShortName": "Champion",
+			"subclassSource": "PHB",
+			"level": 10,
+			"entries": [
+				{
+					"type": "options",
+					"count": 1,
+					"entries": [
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Archery"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Close Quarters Shooter|UALightDarkUnderdark"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Defense"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Dueling"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Great Weapon Fighting"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Mariner|UAWaterborneAdventures"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Protection"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Tunnel Fighter|UALightDarkUnderdark"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Two-Weapon Fighting"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Superior Technique|UAClassFeatureVariants"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Blind Fighting|UAClassFeatureVariants"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Interception|UAClassFeatureVariants"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Thrown Weapon Fighting|UAClassFeatureVariants"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Unarmed Fighting|UAClassFeatureVariants"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Blind Fighting|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Interception|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Superior Technique|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Thrown Weapon Fighting|TCE"
+						},
+						{
+							"type": "refOptionalfeature",
+							"optionalfeature": "Unarmed Fighting|TCE"
 						}
 					]
 				}
@@ -2425,7 +2566,7 @@
 			"subclassSource": "XGE",
 			"level": 6,
 			"entryData": {
-				"immune": [
+				"resist": [
 					"radiant"
 				]
 			}
@@ -4725,6 +4866,58 @@
 				"uses.per": null,
 				"uses.max": "2 * @classes.wizard.levels + floor((@abilities.int.value - 10) / 2)"
 			}
+		},
+		{
+			"name": "Draconic Disciple",
+			"source": "FTD",
+			"className": "Monk",
+			"classSource": "PHB",
+			"subclassShortName": "Ascendant Dragon",
+			"subclassSource": "FTD",
+			"level": 3,
+			"entryData": {
+				"languageProficiencies": [
+					{
+						"any": 1
+					}
+				]
+			}
+		},
+		{
+			"name": "Draconic Gift",
+			"source": "FTD",
+			"className": "Ranger",
+			"classSource": "PHB",
+			"subclassShortName": "Drakewarden",
+			"subclassSource": "FTD",
+			"level": 3,
+			"entryData": {
+				"languageProficiencies": [
+					{
+						"any": 1
+					}
+				]
+			}
+		},
+		{
+			"name": "Blessing of the All Father",
+			"source": "UAGiantSoulSorcerer",
+			"className": "Sorcerer",
+			"classSource": "PHB",
+			"subclassShortName": "Giant Soul (UA)",
+			"subclassSource": "UAGiantSoulSorcerer",
+			"level": 18,
+			"effects": [
+				{
+					"changes": [
+						{
+							"key": "data.abilities.con.value",
+							"mode": "ADD",
+							"value": 2
+						}
+					]
+				}
+			]
 		}
 	]
 }

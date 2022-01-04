@@ -97,8 +97,8 @@
 				"average": 2,
 				"formula": "1d8"
 			},
-			"hasToken": true,
-			"miscTags": []
+			"miscTags": [],
+			"hasToken": true
 		},
 		{
 			"name": "Armored Saber-Toothed Tiger",
@@ -154,7 +154,9 @@
 		},
 		{
 			"name": "Baba Lysaga",
-			"group": "Hags",
+			"group": [
+				"Hags"
+			],
 			"isNpc": true,
 			"source": "CoS",
 			"page": 228,
@@ -322,7 +324,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Shapechanger"
 			],
@@ -345,6 +346,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -443,7 +445,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Antimagic Susceptibility",
 				"Siege Monster"
@@ -462,6 +463,7 @@
 				"RCH",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -509,10 +511,10 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"damageTags": [
 				"P"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Barovian Scout",
@@ -534,11 +536,11 @@
 					}
 				}
 			},
-			"hasToken": true,
 			"miscTags": [
 				"MW",
 				"RW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Barovian Witch",
@@ -630,7 +632,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -649,6 +650,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -794,7 +796,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Antimagic Susceptibility",
 				"False Appearance"
@@ -811,6 +812,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -873,10 +875,10 @@
 					}
 				}
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Davian Martikov",
@@ -1207,7 +1209,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -1230,6 +1231,7 @@
 			"conditionInflictSpell": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1366,7 +1368,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Antimagic Susceptibility",
 				"False Appearance"
@@ -1385,6 +1386,7 @@
 				"charmed",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1564,7 +1566,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Brute"
 			],
@@ -1581,6 +1582,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1685,13 +1687,13 @@
 					"ability": "int"
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Fey Ancestry"
 			],
 			"senseTags": [
 				"D"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Kiril Stoyanovich",
@@ -2105,7 +2107,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"AB",
 				"C",
@@ -2128,6 +2129,7 @@
 			"conditionInflictSpell": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2242,10 +2244,10 @@
 				"C",
 				"E"
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Spider Climb"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Mongrelfolk",
@@ -2339,7 +2341,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -2355,6 +2356,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2605,7 +2607,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Incorporeal Movement"
 			],
@@ -2624,6 +2625,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2716,7 +2718,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Ambusher"
 			],
@@ -2732,6 +2733,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2850,7 +2852,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -2878,6 +2879,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -3025,7 +3027,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -3044,6 +3045,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -3080,10 +3082,10 @@
 				"Common"
 			],
 			"cr": "3",
-			"hasToken": true,
 			"languageTags": [
 				"C"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Sangzor",
@@ -3210,10 +3212,10 @@
 					"ability": "wis"
 				}
 			],
-			"hasToken": true,
 			"spellcastingTags": [
 				"CP"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Snow Maiden",
@@ -3247,11 +3249,11 @@
 				"necrotic",
 				"poison"
 			],
-			"hasToken": true,
 			"damageTags": [
 				"C",
 				"O"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Stanimir",
@@ -3592,7 +3594,6 @@
 				"name": "Strahd von Zarovich",
 				"source": "CoS"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Regeneration",
@@ -3632,6 +3633,7 @@
 				"invisible",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -3712,7 +3714,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -3730,6 +3731,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -3834,7 +3836,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Antimagic Susceptibility",
 				"False Appearance"
@@ -3856,6 +3857,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4065,10 +4067,10 @@
 				"Common"
 			],
 			"cr": "3",
-			"hasToken": true,
 			"languageTags": [
 				"C"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Tree Blight",
@@ -4140,12 +4142,6 @@
 					]
 				},
 				{
-					"name": "Bite",
-					"entries": [
-						"{@atk mw} {@hit 9} to hit, reach 5 ft., one target. {@h}19 ({@damage 3d8 + 6}) piercing damage."
-					]
-				},
-				{
 					"name": "Branch",
 					"entries": [
 						"{@atk mw} {@hit 9} to hit, reach 15 ft., one target. {@h}16 ({@damage 3d6 + 6}) bludgeoning damage."
@@ -4158,7 +4154,14 @@
 					]
 				}
 			],
-			"hasToken": true,
+			"bonus": [
+				{
+					"name": "Bite",
+					"entries": [
+						"{@atk mw} {@hit 9} to hit, reach 5 ft., one creature {@condition grappled} by the blight. {@h}19 ({@damage 3d8 + 6}) piercing damage."
+					]
+				}
+			],
 			"traitTags": [
 				"False Appearance",
 				"Siege Monster"
@@ -4185,6 +4188,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4482,7 +4486,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Regeneration",
 				"Rejuvenation",
@@ -4505,6 +4508,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4553,11 +4557,14 @@
 			"conditionImmune": [
 				"charmed",
 				"frightened"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Wereraven",
-			"group": "Lycanthropes",
+			"group": [
+				"Lycanthropes"
+			],
 			"source": "CoS",
 			"page": 242,
 			"otherSources": [
@@ -4654,7 +4661,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Regeneration",
 				"Shapechanger"
@@ -4674,6 +4680,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4754,10 +4761,10 @@
 			"senses": [
 				"darkvision 60 ft."
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
-			]
+			],
+			"hasToken": true
 		}
 	]
 }

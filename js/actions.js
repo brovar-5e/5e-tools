@@ -66,7 +66,7 @@ class ActionsPage extends ListPage {
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	getSublistItem (it, pinId) {
+	pGetSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 
 		const time = it.time ? it.time.map(tm => PageFilterActions.getTimeText(tm)).join("/") : "\u2014";
@@ -81,7 +81,7 @@ class ActionsPage extends ListPage {
 			.click(evt => ListUtil.sublist.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
-			pinId,
+			ix,
 			$ele,
 			it.name,
 			{
@@ -96,11 +96,6 @@ class ActionsPage extends ListPage {
 		const it = this._dataList[id];
 		this._$pgContent.empty().append(RenderActions.$getRenderedAction(it));
 		ListUtil.updateSelected();
-	}
-
-	async pDoLoadSubHash (sub) {
-		sub = this._filterBox.setFromSubHashes(sub);
-		await ListUtil.pSetFromSubHashes(sub);
 	}
 }
 

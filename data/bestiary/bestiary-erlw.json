@@ -196,7 +196,6 @@
 				"name": "Belashyrra",
 				"source": "ERLW"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -230,6 +229,7 @@
 			"conditionInflictLegendary": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -354,7 +354,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -374,6 +373,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -457,7 +457,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -479,11 +478,14 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Clawfoot",
-			"group": "Dinosaurs",
+			"group": [
+				"Dinosaurs"
+			],
 			"source": "ERLW",
 			"page": 289,
 			"otherSources": [
@@ -553,7 +555,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"altArt": [
 				{
 					"name": "Clawfoot Raptor",
@@ -577,6 +578,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -608,11 +610,11 @@
 				"average": 21,
 				"formula": "6d6"
 			},
-			"hasToken": true,
 			"languageTags": [
 				"H",
 				"X"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Dolgaunt",
@@ -702,7 +704,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"B"
 			],
@@ -725,6 +726,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -803,7 +805,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -823,6 +824,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -941,7 +943,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -971,6 +972,7 @@
 				"incapacitated",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1126,7 +1128,6 @@
 				"name": "Dyrrn",
 				"source": "ERLW"
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -1160,12 +1161,15 @@
 			"conditionInflictLegendary": [
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Expeditious Messenger",
-			"group": "Homunculi",
+			"group": [
+				"Homunculi"
+			],
 			"source": "ERLW",
 			"page": 293,
 			"size": "T",
@@ -1231,7 +1235,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Flyby"
 			],
@@ -1244,11 +1247,14 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
 			"name": "Fastieth",
-			"group": "Dinosaurs",
+			"group": [
+				"Dinosaurs"
+			],
 			"source": "ERLW",
 			"page": 289,
 			"size": "M",
@@ -1290,13 +1296,13 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"damageTags": [
 				"P"
 			],
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1318,7 +1324,9 @@
 		},
 		{
 			"name": "Hashalaq Quori",
-			"group": "Quori",
+			"group": [
+				"Quori"
+			],
 			"source": "ERLW",
 			"page": 305,
 			"size": "M",
@@ -1432,7 +1440,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -1457,6 +1464,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1623,7 +1631,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -1642,12 +1649,71 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
-			"hasFluffImages": true
+			"hasFluffImages": true,
+			"_versions": [
+				{
+					"name": "Inspired (Quori Vessel; Hashalaq)",
+					"source": "EGW",
+					"_mod": {
+						"_": {
+							"mode": "addSpells",
+							"daily": {
+								"3e": [
+									"{@spell suggestion}"
+								]
+							}
+						}
+					},
+					"variant": null
+				},
+				{
+					"name": "Inspired (Quori Vessel; Kalaraq)",
+					"source": "EGW",
+					"_mod": {
+						"_": {
+							"mode": "addSpells",
+							"daily": {
+								"3e": [
+									"{@spell arcane eye}"
+								]
+							}
+						},
+						"trait": {
+							"mode": "appendArr",
+							"items": {
+								"name": "All Around Vision",
+								"entries": [
+									"The Inspired can't be surprised."
+								]
+							}
+						}
+					},
+					"variant": null
+				},
+				{
+					"name": "Inspired (Quori Vessel; Tsucora)",
+					"source": "EGW",
+					"_mod": {
+						"_": {
+							"mode": "addSpells",
+							"daily": {
+								"1e": [
+									"{@spell fear}"
+								]
+							}
+						}
+					},
+					"variant": null
+				}
+			]
 		},
 		{
 			"name": "Iron Defender",
-			"group": "Homunculi",
+			"group": [
+				"Homunculi"
+			],
 			"source": "ERLW",
 			"page": 293,
 			"size": "M",
@@ -1717,7 +1783,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -1736,12 +1801,15 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Kalaraq Quori",
-			"group": "Quori",
+			"group": [
+				"Quori"
+			],
 			"source": "ERLW",
 			"page": 306,
 			"size": "M",
@@ -1901,7 +1969,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Incorporeal Movement",
 				"Magic Resistance"
@@ -1936,6 +2003,7 @@
 				"frightened",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2005,7 +2073,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"TP"
@@ -2019,6 +2086,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2116,7 +2184,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Pack Tactics",
 				"Undead Fortitude"
@@ -2140,6 +2207,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2385,7 +2453,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance",
@@ -2393,6 +2460,9 @@
 			],
 			"senseTags": [
 				"U"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"languageTags": [
 				"C",
@@ -2424,6 +2494,7 @@
 				"restrained",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2515,7 +2586,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amorphous",
 				"Magic Resistance"
@@ -2529,6 +2599,7 @@
 			"miscTags": [
 				"AOE"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2627,7 +2698,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amorphous",
 				"Magic Resistance"
@@ -2644,6 +2714,7 @@
 			"miscTags": [
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2741,7 +2812,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amorphous",
 				"Magic Resistance"
@@ -2758,6 +2828,7 @@
 			"miscTags": [
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2823,7 +2894,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"X"
@@ -2836,6 +2906,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2985,7 +3056,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -3006,6 +3076,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3134,7 +3205,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -3165,6 +3235,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3347,7 +3418,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance"
@@ -3356,7 +3426,8 @@
 				"U"
 			],
 			"actionTags": [
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"TP",
@@ -3373,6 +3444,7 @@
 				"RCH",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3457,7 +3529,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -3470,6 +3541,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3665,7 +3737,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance"
@@ -3674,7 +3745,8 @@
 				"U"
 			],
 			"actionTags": [
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"TP",
@@ -3696,6 +3768,7 @@
 				"paralyzed",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3805,7 +3878,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -3828,6 +3900,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4034,7 +4107,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Charge"
 			],
@@ -4060,12 +4132,18 @@
 				"RCH",
 				"RW"
 			],
+			"conditionInflict": [
+				"prone"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
 		{
 			"name": "Tsucora Quori",
-			"group": "Quori",
+			"group": [
+				"Quori"
+			],
 			"source": "ERLW",
 			"page": 307,
 			"size": "M",
@@ -4169,7 +4247,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -4202,6 +4279,7 @@
 				"charmed",
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4399,7 +4477,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -4431,6 +4508,7 @@
 				"paralyzed",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4530,7 +4608,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Illumination",
 				"Turn Resistance"
@@ -4555,6 +4632,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4616,7 +4694,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -4632,6 +4709,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4696,7 +4774,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -4715,6 +4792,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4769,7 +4847,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"CS",
@@ -4782,6 +4859,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4916,7 +4994,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Immutable Form",
 				"Legendary Resistances",
@@ -4948,6 +5025,7 @@
 				"prone",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -5035,7 +5113,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -5051,6 +5128,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5145,7 +5223,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Siege Monster"
 			],
@@ -5169,6 +5246,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5295,7 +5373,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Weapons"
 			],
@@ -5321,6 +5398,10 @@
 				"RW",
 				"THW"
 			],
+			"conditionInflict": [
+				"prone"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		}

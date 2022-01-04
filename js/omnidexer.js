@@ -18,6 +18,7 @@ class Omnidexer {
 		 *   uh: "spell name_phb, // Optional; hash for href if the link should be different from the hover lookup hash.
 		 *   p: 110, // page
 		 *   h: 1 // if isHover enabled, otherwise undefined
+		 *   r: 1 // if SRD
 		 *   c: 10, // category ID
 		 *   id: 123 // index ID
 		 * }
@@ -81,6 +82,7 @@ class Omnidexer {
 				p: Omnidexer.getProperty(it, arbiter.page || "page"),
 			};
 			if (arbiter.isHover) toAdd.h = 1;
+			if (it.srd) toAdd.r = 1;
 			if (options.alt) {
 				if (options.alt.additionalProperties) Object.entries(options.alt.additionalProperties).forEach(([k, getV]) => toAdd[k] = getV(it));
 			}
@@ -103,6 +105,8 @@ class Omnidexer {
 				if (!arbiter.filter || !arbiter.filter(it)) index.push(toAdd);
 			});
 		};
+
+		if (arbiter.postLoad) json = arbiter.postLoad(json);
 
 		const dataArr = Omnidexer.getProperty(json, arbiter.listProp);
 		if (dataArr) {
@@ -723,6 +727,7 @@ class IndexableFileRaces extends IndexableFile {
 			file: "races.json",
 			listProp: "race",
 			baseUrl: "races.html",
+			postLoad: DataUtil.race._getPostProcessedSiteJson,
 			isOnlyDeep: true,
 			isHover: true,
 		});
@@ -858,7 +863,7 @@ class IndexableFileQuickReference extends IndexableFile {
 					return [
 						IndexableFileQuickReference._getDeepDoc(indexer, primary, nameMeta),
 						...(nameMeta.alias || []).map(alias => IndexableFileQuickReference._getDeepDoc(indexer, primary, nameMeta, alias)),
-					]
+					];
 				}).flat();
 			})
 			.flat();
@@ -1160,7 +1165,7 @@ class IndexableSpecialPages extends IndexableSpecial {
 				n: name,
 				c: Parser.CAT_ID_PAGE,
 				u: page,
-			}))
+			}));
 	}
 }
 

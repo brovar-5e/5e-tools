@@ -8,6 +8,12 @@ if (typeof module !== "undefined") {
 	global.PropOrder = require("./utils-proporder.js");
 }
 
+// TODO easy improvements to be made:
+//    - improve "broken line" fixing:
+//      - across lines that end with: "Melee Weapon Attack:"
+//      - creature's name breaking across multiple lines
+//      - lines starting "DC" breaking across multiple lines
+//      - lines starting with attack range e.g. "100/400 ft."
 class CreatureParser extends BaseParser {
 	/**
 	 * Parses statblocks from raw text pastes
@@ -25,7 +31,7 @@ class CreatureParser extends BaseParser {
 		options = this._getValidOptions(options);
 
 		function startNextPhase (cur) {
-			return (!cur.toUpperCase().indexOf("ACTION") || !cur.toUpperCase().indexOf("LEGENDARY ACTION") || !cur.toUpperCase().indexOf("MYTHIC ACTION") || !cur.toUpperCase().indexOf("REACTION") || !cur.toUpperCase().indexOf("BONUS ACTION"))
+			return /^(?:action|legendary action|mythic action|reaction|bonus action)s?(?:\s+\([^)]+\))?$/i.test(cur);
 		}
 
 		/**
@@ -291,7 +297,7 @@ class CreatureParser extends BaseParser {
 					isTraits = false;
 
 					isActions = ConvertUtil.isStatblockLineHeaderStart("ACTION", curLine.toUpperCase())
-						|| ConvertUtil.isStatblockLineHeaderStart("ACTIONs", curLine.toUpperCase());
+						|| ConvertUtil.isStatblockLineHeaderStart("ACTIONS", curLine.toUpperCase());
 					if (isActions) {
 						const mActionNote = /actions:?\s*\((.*?)\)/gi.exec(curLine);
 						if (mActionNote) stats.actionNote = mActionNote[1];
@@ -376,8 +382,13 @@ class CreatureParser extends BaseParser {
 				curTrait = {};
 			}
 
+			CreatureParser._PROPS_ENTRIES.forEach(prop => this._doMergeBulletedLists(stats, prop));
+			CreatureParser._PROPS_ENTRIES.forEach(prop => this._doMergeNumberedLists(stats, prop));
+			["action"].forEach(prop => this._doMergeBreathWeaponLists(stats, prop));
+
 			// Remove keys if they are empty
 			if (stats.trait.length === 0) delete stats.trait;
+			if (stats.action.length === 0) delete stats.action;
 			if (stats.bonus.length === 0) delete stats.bonus;
 			if (stats.reaction.length === 0) delete stats.reaction;
 			if (stats.legendary.length === 0) delete stats.legendary;
@@ -400,6 +411,112 @@ class CreatureParser extends BaseParser {
 		this._doStatblockPostProcess(stats, false, options);
 		const statsOut = PropOrder.getOrdered(stats, "monster");
 		options.cbOutput(statsOut, options.isAppend);
+	}
+
+	static _doMergeBulletedLists (stats, prop) {
+		if (!stats[prop]) return;
+
+		stats[prop]
+			.forEach(block => {
+				if (!block?.entries?.length) return;
+
+				for (let i = 0; i < block.entries.length; ++i) {
+					const curLine = block.entries[i];
+
+					if (typeof curLine !== "string" || !curLine.trim().endsWith(":")) continue;
+
+					let lst = null;
+					let offset = 1;
+
+					while (block.entries.length) {
+						let nxtLine = block.entries[i + offset];
+
+						if (typeof nxtLine !== "string" || !nxtLine.trim().startsWith("•")) break;
+
+						nxtLine = nxtLine.replace(/^•\s*/, "");
+
+						if (!lst) {
+							lst = {type: "list", items: [nxtLine]};
+							block.entries[i + offset] = lst;
+							offset++;
+						} else {
+							lst.items.push(nxtLine);
+							block.entries.splice(i + offset, 1);
+						}
+					}
+				}
+			});
+	}
+
+	static _doMergeNumberedLists (stats, prop) {
+		if (!stats[prop]) return;
+
+		for (let i = 0; i < stats[prop].length; ++i) {
+			const cur = stats[prop][i];
+
+			if (
+				typeof cur?.entries?.last() === "string"
+				&& cur?.entries?.last().trim().endsWith(":")
+			) {
+				let lst = null;
+
+				while (stats[prop].length) {
+					const nxt = stats[prop][i + 1];
+
+					if (/^\d+[.!?:] [A-Za-z]/.test(nxt?.name || "")) {
+						if (!lst) {
+							lst = {type: "list", style: "list-hang-notitle", items: []};
+							cur.entries.push(lst);
+						}
+
+						nxt.type = "item";
+						nxt.name += ".";
+						lst.items.push(nxt);
+						stats[prop].splice(i + 1, 1);
+
+						continue;
+					}
+
+					break;
+				}
+			}
+		}
+	}
+
+	static _doMergeBreathWeaponLists (stats, prop) {
+		if (!stats[prop]) return;
+
+		for (let i = 0; i < stats[prop].length; ++i) {
+			const cur = stats[prop][i];
+
+			if (
+				typeof cur?.entries?.last() === "string"
+				&& cur?.entries?.last().trim().endsWith(":")
+				&& cur?.entries?.last().trim().includes("following breath weapon")
+			) {
+				let lst = null;
+
+				while (stats[prop].length) {
+					const nxt = stats[prop][i + 1];
+
+					if (/\bbreath\b/i.test(nxt?.name || "")) {
+						if (!lst) {
+							lst = {type: "list", style: "list-hang-notitle", items: []};
+							cur.entries.push(lst);
+						}
+
+						nxt.type = "item";
+						nxt.name += ".";
+						lst.items.push(nxt);
+						stats[prop].splice(i + 1, 1);
+
+						continue;
+					}
+
+					break;
+				}
+			}
+		}
 	}
 
 	/**
@@ -440,7 +557,7 @@ class CreatureParser extends BaseParser {
 			return {
 				source: options.source,
 				page: options.page,
-			}
+			};
 		};
 
 		let step = 0;
@@ -468,7 +585,7 @@ class CreatureParser extends BaseParser {
 			return [
 				ConvertUtil.getCleanTraitActionName(name),
 				text.replace(/\*Hit(\*:|:\*) /g, "Hit: "), // clean hit tags for later replacement
-			]
+			];
 		};
 
 		const getCleanLegendaryActionText = (line) => {
@@ -856,9 +973,21 @@ class CreatureParser extends BaseParser {
 		TagAttack.tryTagAttacks(stats, (atk) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Manual attack tagging required for "${atk}"`));
 		TagHit.tryTagHits(stats);
 		TagDc.tryTagDcs(stats);
-		TagCondition.tryTagConditions(stats, true);
-		TagCondition.tryTagConditionsSpells(stats, (sp) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Spell "${sp}" could not be found during condition tagging`));
-		TagCondition.tryTagConditionsRegionalsLairs(stats, (legendaryGroup) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Legendary group "${legendaryGroup.name} :: ${legendaryGroup.source}" could not be found during condition tagging`));
+		TagCondition.tryTagConditions(stats, {isTagInflicted: true});
+		TagCondition.tryTagConditionsSpells(
+			stats,
+			{
+				cbMan: (sp) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Spell "${sp}" could not be found during condition tagging`),
+				isTagInflicted: true,
+			},
+		);
+		TagCondition.tryTagConditionsRegionalsLairs(
+			stats,
+			{
+				cbMan: (legendaryGroup) => options.cbWarning(`${stats.name ? `(${stats.name}) ` : ""}Legendary group "${legendaryGroup.name} :: ${legendaryGroup.source}" could not be found during condition tagging`),
+				isTagInflicted: true,
+			},
+		);
 		TraitActionTag.tryRun(stats);
 		LanguageTag.tryRun(stats);
 		SenseFilterTag.tryRun(stats);
@@ -894,7 +1023,7 @@ class CreatureParser extends BaseParser {
 
 	static _tryConvertNumber (strNumber) {
 		try {
-			return Number(strNumber.replace(/—/g, "-"))
+			return Number(strNumber.replace(/—/g, "-"));
 		} catch (e) {
 			return strNumber;
 		}
@@ -910,12 +1039,12 @@ class CreatureParser extends BaseParser {
 				return { // retain any leading junk, as we'll parse it out in a later step
 					type: `${mSwarm[1]}${swarmTypeSingular}`,
 					swarmSize: mSwarm[2][0].toUpperCase(),
-				}
+				};
 			}
 
 			const mParens = /^(.*?) (\(.*?\))\s*$/.exec(strType);
 			if (mParens) {
-				return {type: mParens[1], tags: mParens[2].split(",").map(s => s.replace(/\(/g, "").replace(/\)/g, "").trim())}
+				return {type: mParens[1], tags: mParens[2].split(",").map(s => s.replace(/\(/g, "").replace(/\)/g, "").trim())};
 			}
 
 			return strType;
@@ -940,7 +1069,7 @@ class CreatureParser extends BaseParser {
 	}
 
 	static _mutAbilityScoresFromSingleLine (stats, toConvert, iCur) {
-		const abilities = toConvert[iCur].trim().split(/ ?\(([+\-—])?[0-9]*\) ?/g);
+		const abilities = toConvert[iCur].trim().replace(/[-\u2012\u2013\u2014]+/g, "-").split(/ ?\(([+-])?[0-9]*\) ?/g);
 		stats.str = this._tryConvertNumber(abilities[0]);
 		stats.dex = this._tryConvertNumber(abilities[2]);
 		stats.con = this._tryConvertNumber(abilities[4]);
@@ -967,7 +1096,7 @@ class CreatureParser extends BaseParser {
 	static _tryParseDamageResVulnImmune (ipt, modProp, options) {
 		// handle the case where a comma is mistakenly used instead of a semicolon
 		if (ipt.toLowerCase().includes(", bludgeoning, piercing, and slashing from")) {
-			ipt = ipt.replace(/, (bludgeoning, piercing, and slashing from)/gi, "; $1")
+			ipt = ipt.replace(/, (bludgeoning, piercing, and slashing from)/gi, "; $1");
 		}
 
 		const splSemi = ipt.toLowerCase().split(";").map(it => it.trim()).filter(Boolean);
@@ -1049,7 +1178,7 @@ class CreatureParser extends BaseParser {
 				}
 				section = section.replace(/and/g, "");
 				section.split(",").forEach(s => pushArray.push(s.trim()));
-				if ("note" in tempDamage) newDamage.push(tempDamage)
+				if ("note" in tempDamage) newDamage.push(tempDamage);
 			});
 			return newDamage;
 		} catch (ignored) {
@@ -1151,7 +1280,7 @@ class CreatureParser extends BaseParser {
 			stats.skill = newSkills;
 			if (stats.skill[""]) delete stats.skill[""]; // remove empty properties
 		} catch (ignored) {
-			setTimeout(() => { throw ignored });
+			setTimeout(() => { throw ignored; });
 		}
 	}
 
@@ -1204,7 +1333,7 @@ class CreatureParser extends BaseParser {
 						.replace(/All/g, "all")
 						.replace(/Understands/g, "understands")
 						.replace(/Cant/g, "cant")
-						.replace(/Can/g, "can")
+						.replace(/Can/g, "can");
 				})
 				.join("")
 				.split(StrUtil.COMMA_SPACE_NOT_IN_PARENTHESES_REGEX);
@@ -1227,6 +1356,14 @@ CreatureParser.SKILL_SPACE_MAP = {
 	"sleightofhand": "sleight of hand",
 	"animalhandling": "animal handling",
 };
+CreatureParser._PROPS_ENTRIES = [
+	"trait",
+	"action",
+	"bonus",
+	"reaction",
+	"legendary",
+	"mythic",
+];
 
 if (typeof module !== "undefined") {
 	module.exports = {

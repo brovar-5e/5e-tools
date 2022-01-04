@@ -3,7 +3,7 @@
 class PageFilterOptionalFeatures extends PageFilter {
 	// region static
 	static _filterFeatureTypeSort (a, b) {
-		return SortUtil.ascSort(Parser.optFeatureTypeToFull(a.item), Parser.optFeatureTypeToFull(b.item))
+		return SortUtil.ascSort(Parser.optFeatureTypeToFull(a.item), Parser.optFeatureTypeToFull(b.item));
 	}
 
 	static sortOptionalFeatures (itemA, itemB, options) {
@@ -59,7 +59,7 @@ class PageFilterOptionalFeatures extends PageFilter {
 				this._featureFilter,
 			],
 		});
-		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Grants Additional Spells"], isSrdFilter: true});
+		this._miscFilter = new Filter({header: "Miscellaneous", items: ["SRD", "Grants Additional Spells"], isMiscFilter: true});
 	}
 
 	static mutateForFilters (it) {
@@ -142,6 +142,6 @@ class PageFilterOptionalFeatures extends PageFilter {
 				it._fprereqFeature,
 			],
 			it._fMisc,
-		)
+		);
 	}
 }

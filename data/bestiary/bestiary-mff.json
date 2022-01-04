@@ -78,7 +78,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -103,6 +102,7 @@
 				"paralyzed",
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -173,7 +173,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"U"
 			],
@@ -188,6 +187,7 @@
 			"conditionInflict": [
 				"blinded"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -250,7 +250,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -268,6 +267,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -354,7 +354,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -373,6 +372,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -509,7 +509,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Turn Immunity"
 			],
@@ -533,6 +532,10 @@
 			"miscTags": [
 				"MW"
 			],
+			"conditionInflict": [
+				"frightened"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -643,7 +646,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -666,6 +668,7 @@
 				"RCH",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -775,7 +778,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -802,6 +804,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -887,7 +890,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -906,6 +908,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -983,7 +986,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -997,6 +999,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1061,7 +1064,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -1076,6 +1078,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1142,7 +1145,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -1158,6 +1160,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1244,7 +1247,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"B"
 			],
@@ -1265,6 +1267,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1339,7 +1342,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"B"
 			],
@@ -1354,6 +1356,7 @@
 				"MW",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1433,7 +1436,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -1451,6 +1453,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1538,7 +1541,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -1556,6 +1558,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1628,7 +1631,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -1644,6 +1646,7 @@
 			"conditionInflict": [
 				"incapacitated"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1719,7 +1722,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -1740,6 +1742,7 @@
 				"paralyzed",
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1933,7 +1936,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance"
@@ -1969,6 +1971,7 @@
 				"stunned",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		}

@@ -63,7 +63,7 @@ class CultsBoonsPage extends ListPage {
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	getSublistItem (it, pinId) {
+	pGetSublistItem (it, ix) {
 		const hash = UrlUtil.autoEncodeHash(it);
 
 		const $ele = $(`<div class="lst__row lst__row--sublist flex-col">
@@ -77,7 +77,7 @@ class CultsBoonsPage extends ListPage {
 			.click(evt => ListUtil.sublist.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
-			pinId,
+			ix,
 			$ele,
 			it.name,
 			{
@@ -95,11 +95,6 @@ class CultsBoonsPage extends ListPage {
 		this._$pgContent.empty().append(RenderCultsBoons.$getRenderedCultBoon(it));
 
 		ListUtil.updateSelected();
-	}
-
-	async pDoLoadSubHash (sub) {
-		sub = this._filterBox.setFromSubHashes(sub);
-		await ListUtil.pSetFromSubHashes(sub);
 	}
 }
 

@@ -652,6 +652,20 @@
 			]
 		},
 		{
+			"name": "One Grung Above",
+			"id": "OGA",
+			"source": "OGA",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/OGA.png",
+			"published": "2017-10-11",
+			"author": "Extra Life",
+			"contents": [
+				{
+					"name": "One Grung Above"
+				}
+			]
+		},
+		{
 			"name": "Xanathar's Guide to Everything",
 			"id": "XGE",
 			"source": "XGE",
@@ -1917,6 +1931,38 @@
 			]
 		},
 		{
+			"name": "Dungeon Master's Screen: Dungeon Kit",
+			"id": "ScreenDungeonKit",
+			"source": "ScreenDungeonKit",
+			"group": "screen",
+			"coverUrl": "img/covers/ScreenDungeonKit.webp",
+			"published": "2020-09-21",
+			"contents": [
+				{
+					"name": "Screen",
+					"headers": [
+						"Long Jump",
+						"High Jump",
+						"Suffocating",
+						"Concentration",
+						"Exhaustion",
+						"Conditions",
+						"State of Ruin",
+						"Dungeon Encounters",
+						"Dungeon Chambers"
+					]
+				},
+				{
+					"name": "Included Accessories",
+					"headers": [
+						"Condition and Hazard Cards",
+						"Initiative Cards",
+						"Geomorph Cards"
+					]
+				}
+			]
+		},
+		{
 			"name": "Dungeon Master's Screen: Wilderness Kit",
 			"id": "ScreenWildernessKit",
 			"source": "ScreenWildernessKit",
@@ -2717,6 +2763,459 @@
 				},
 				{
 					"name": "Spirit Board",
+					"ordinal": {
+						"type": "appendix"
+					}
+				}
+			]
+		},
+		{
+			"name": "Domains of Delight",
+			"id": "DoD",
+			"source": "DoD",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/DoD.png",
+			"published": "2021-09-21",
+			"contents": [
+				{
+					"name": "Feywild Overview",
+					"headers": [
+						"Feywild Features",
+						{
+							"depth": 1,
+							"header": "Seelie and Unseelie Fey"
+						},
+						{
+							"depth": 1,
+							"header": "Spells in the Feywild"
+						},
+						{
+							"depth": 1,
+							"header": "Weather"
+						},
+						{
+							"depth": 1,
+							"header": "Domain Borders"
+						},
+						"Feywild Guides",
+						"Fey Outlook",
+						{
+							"depth": 1,
+							"header": "Reciprocity"
+						},
+						{
+							"depth": 1,
+							"header": "Hospitality"
+						},
+						{
+							"depth": 1,
+							"header": "Gifts"
+						},
+						"Fey Contracts",
+						"Accidental Fey Contracts",
+						{
+							"depth": 1,
+							"header": "Making a Contract"
+						},
+						{
+							"depth": 1,
+							"header": "Price of a Contract"
+						},
+						{
+							"depth": 1,
+							"header": "Breaking a Contract"
+						},
+						"Fey Curses",
+						"Fey Abodes"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 1
+					}
+				},
+				{
+					"name": "Creating an Archfey",
+					"headers": [
+						"Where to Start?",
+						{
+							"depth": 1,
+							"header": "Encountering the Archfey"
+						},
+						{
+							"depth": 1,
+							"header": "Fey Court Allegiances"
+						},
+						{
+							"depth": 1,
+							"header": "Appearance"
+						},
+						{
+							"depth": 1,
+							"header": "Personality"
+						},
+						{
+							"depth": 1,
+							"header": "Obsessions"
+						},
+						{
+							"depth": 1,
+							"header": "Signature Magic"
+						},
+						{
+							"depth": 1,
+							"header": "Magical Gifts"
+						},
+						"Archfey Statistics"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 2
+					}
+				},
+				{
+					"name": "Creating a Domain of Delight",
+					"headers": [
+						"Geographical Features",
+						"Domain Theme",
+						"Coming and Going",
+						"Travel in the Domain",
+						{
+							"depth": 1,
+							"header": "Mapping a Domain of Delight"
+						},
+						{
+							"depth": 1,
+							"header": "Magical Shortcuts"
+						},
+						"Drama",
+						"Weird Magic",
+						"Domain Denizens",
+						{
+							"depth": 1,
+							"header": "Domain Visitors"
+						}
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					}
+				},
+				{
+					"name": "Putting It All Together",
+					"headers": [
+						"Yarnspinner",
+						"Fablerise"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 4
+					}
+				},
+				{
+					"name": "Adventure Aids",
+					"ordinal": {
+						"type": "appendix",
+						"identifier": "A"
+					}
+				}
+			]
+		},
+		{
+			"name": "Minsc and Boo's Journal of Villainy",
+			"id": "MaBJoV",
+			"source": "MaBJoV",
+			"group": "supplement-alt",
+			"coverUrl": "img/covers/MaBJoV.png",
+			"published": "2021-10-05",
+			"author": "Wizards RPG Team",
+			"contents": [
+				{
+					"name": "Preface"
+				},
+				{
+					"name": "Heroic Stories",
+					"headers": [
+						"Hometowns",
+						"Group Patrons",
+						"Campaign Villains"
+					]
+				},
+				{
+					"name": "Hometowns",
+					"headers": [
+						"Athkatla",
+						"Baldur's Gate",
+						"Suldanessellar",
+						"Ust Natha"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 1
+					}
+				},
+				{
+					"name": "Group Patrons",
+					"headers": [
+						"Adventurer's Guild",
+						"Candlekeep",
+						"Church of Sune",
+						"Emerald Enclave",
+						"Flaming Fist",
+						"Harpers",
+						"Knights of Bahamut",
+						"Order of Icarus",
+						"Raven Circle",
+						"Shadow Thieves"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 2
+					}
+				},
+				{
+					"name": "Campaign Villains",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					}
+				},
+				{
+					"name": "Henchmen",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 4
+					}
+				},
+				{
+					"name": "Monsters",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 5
+					}
+				}
+			]
+		},
+		{
+			"name": "Fizban's Treasury of Dragons",
+			"id": "FTD",
+			"source": "FTD",
+			"group": "supplement",
+			"coverUrl": "img/covers/FTD.png",
+			"published": "2021-10-26",
+			"author": "Wizards RPG Team",
+			"contents": [
+				{
+					"name": "Elegy for the First World",
+					"headers": [
+						"A Treasury of Dragons",
+						"The First World"
+					]
+				},
+				{
+					"name": "Character Creation",
+					"headers": [
+						"Draconic Races",
+						"Subclass Options",
+						"Heroes of the Dragon",
+						"Draconic Feats"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 1
+					}
+				},
+				{
+					"name": "Dragon Magic",
+					"headers": [
+						"Spells",
+						"Magic Items",
+						"Hoard Magic Items",
+						"Draconic Gifts"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 2
+					}
+				},
+				{
+					"name": "Dragons in Play",
+					"headers": [
+						"Roleplaying Dragons",
+						"Followers",
+						"Dragon Encounters",
+						"Dragon Adventures",
+						"Dragon Campaigns"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					}
+				},
+				{
+					"name": "Lairs and Hoards",
+					"headers": [
+						"Dragon Lairs",
+						"Dragon Hoards",
+						"What's in a Hoard?"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 4
+					}
+				},
+				{
+					"name": "Draconomicon",
+					"headers": [
+						"Using the Entries",
+						"Amethyst Dragons",
+						"Black Dragons",
+						"Blue Dragons",
+						"Brass Dragons",
+						"Bronze Dragons",
+						"Copper Dragons",
+						"Crystal Dragons",
+						"Deep Dragons",
+						"Dragon Turtles",
+						"Emerald Dragons",
+						"Faerie Dragons",
+						"Gold Dragons",
+						"Green Dragons",
+						"Moonstone Dragons",
+						"Red Dragons",
+						"Sapphire Dragons",
+						"Shadow Dragons",
+						"Silver Dragons",
+						"Topaz Dragons",
+						"White Dragons"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 5
+					}
+				},
+				{
+					"name": "Bestiary",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 6
+					}
+				},
+				{
+					"name": "Creature Lists",
+					"headers": [
+						"Challenge Ratings",
+						"Creature Types"
+					]
+				}
+			]
+		},
+		{
+			"name": "Strixhaven: A Curriculum of Chaos",
+			"id": "SCC",
+			"source": "SCC",
+			"group": "supplement",
+			"coverUrl": "img/covers/SCC.png",
+			"published": "2021-12-07",
+			"author": "Wizards RPG Team",
+			"contents": [
+				{
+					"name": "Welcome to Strixhaven",
+					"headers": [
+						"About This Book",
+						"Orientation",
+						"Strixhaven's World"
+					]
+				},
+				{
+					"name": "Life at Strixhaven",
+					"headers": [
+						"Magical Study",
+						"Campus Overview",
+						"Lorehold College",
+						"Prismari College",
+						"Quandrix College",
+						"Silverquill College",
+						"Witherbloom College"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 1
+					}
+				},
+				{
+					"name": "Character Options",
+					"headers": [
+						"Race Option",
+						"Choosing a College",
+						"Strixhaven Backgrounds",
+						"Feats",
+						"Spells",
+						"Magic Items"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 2
+					}
+				},
+				{
+					"name": "School Is in Session",
+					"headers": [
+						"Running the Adventures",
+						"Strixhaven Tracking Sheet",
+						"Extracurriculars",
+						"Jobs",
+						"Exams",
+						"Relationships",
+						"Session Zero",
+						"Using These Rules",
+						"Making Friends and Rivals",
+						"Fellow Students"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					}
+				},
+				{
+					"name": "Campus Kerfuffle",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 3
+					}
+				},
+				{
+					"name": "Hunt for Mage Tower",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 4
+					}
+				},
+				{
+					"name": "The Magister's Masquerade",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 5
+					}
+				},
+				{
+					"name": "A Reckoning in Ruins",
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 6
+					}
+				},
+				{
+					"name": "Friends and Foes",
+					"headers": [
+						"Using a Stat Block"
+					],
+					"ordinal": {
+						"type": "chapter",
+						"identifier": 7
+					}
+				},
+				{
+					"name": "Campus Map",
 					"ordinal": {
 						"type": "appendix"
 					}

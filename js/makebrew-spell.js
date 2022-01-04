@@ -84,7 +84,7 @@ class SpellBuilder extends Builder {
 			},
 			entries: [],
 			source: this._ui ? this._ui.source : "",
-		}
+		};
 	}
 
 	setStateFromLoaded (state) {
@@ -128,7 +128,7 @@ class SpellBuilder extends Builder {
 			if (!isNaN(this._state.page)) this._state.page = Number(this._state.page);
 
 			// do post-processing
-			TagCondition.tryTagConditions(this._state, true);
+			TagCondition.tryTagConditions(this._state, {isTagInflicted: true});
 
 			this.renderOutput();
 			this.doUiSave();
@@ -507,7 +507,7 @@ class SpellBuilder extends Builder {
 						text: $iptMaterial.val().trim() || true,
 					};
 					// TODO add support for "optional" consume type
-					if ($cbConsumed.prop("checked")) out.m.consumed = true;
+					if ($cbConsumed.prop("checked")) out.m.consume = true;
 					if ($iptCost.val().trim()) {
 						out.m.cost = UiUtil.strToInt($iptCost.val());
 						$iptCost.val(out.m.cost);
@@ -793,7 +793,7 @@ class SpellBuilder extends Builder {
 			return {
 				name: $iptClass.val().trim(),
 				source: $selClassSource.val().unescapeQuotes(),
-			}
+			};
 		};
 
 		const $iptClass = $(`<input class="form-control form-control--minimal input-xs">`)

@@ -133,6 +133,10 @@ i > i {
 .copyable {
 	cursor: copy !important;
 }
+
+.ve-draggable {
+	cursor: grab;
+}
 // endregion
 
 // region Events
@@ -148,6 +152,10 @@ i > i {
 // region Scrolling
 .smooth-scroll {
 	transform: translateZ(0) !important;
+}
+
+.scrollbar-stable {
+	scrollbar-gutter: stable;
 }
 
 .overflow-auto {
@@ -185,6 +193,11 @@ i > i {
 
 .overflow-ellipsis {
 	@include overflow-dots();
+}
+
+.overflow-overlay {
+	overflow: auto;
+	overflow: overlay;
 }
 // endregion
 

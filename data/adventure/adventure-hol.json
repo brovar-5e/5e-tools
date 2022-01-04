@@ -817,7 +817,8 @@
 									"imageType": "map",
 									"title": "Map 4.1: the house of lament",
 									"width": 4000,
-									"height": 5700
+									"height": 5700,
+									"id": "000"
 								},
 								{
 									"type": "image",
@@ -825,10 +826,13 @@
 										"type": "internal",
 										"path": "book/VRGR/117-map-4.1-the-house-of-lament-player.jpg"
 									},
-									"imageType": "map",
+									"imageType": "mapPlayer",
 									"title": "Player Version",
 									"width": 4000,
-									"height": 5700
+									"height": 5700,
+									"mapParent": {
+										"id": "000"
+									}
 								}
 							]
 						},

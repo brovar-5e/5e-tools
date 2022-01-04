@@ -293,7 +293,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance"
@@ -319,6 +318,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -481,7 +481,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance"
@@ -507,6 +506,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -663,7 +663,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Magic Resistance"
@@ -688,6 +687,7 @@
 			"conditionInflict": [
 				"blinded"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -841,7 +841,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -865,6 +864,7 @@
 			"conditionInflictSpell": [
 				"incapacitated"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -939,7 +939,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Charge"
 			],
@@ -959,6 +958,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1151,7 +1151,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -1169,6 +1168,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1295,7 +1295,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -1326,6 +1325,7 @@
 				"prone",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1402,7 +1402,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Reckless"
 			],
@@ -1425,6 +1424,7 @@
 			"conditionInflict": [
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1560,7 +1560,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Immutable Form",
 				"Magic Resistance",
@@ -1570,6 +1569,7 @@
 				"SD"
 			],
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"damageTags": [
@@ -1585,6 +1585,7 @@
 			"conditionInflict": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -1826,70 +1827,21 @@
 			"name": "Chimeric Rat",
 			"source": "IDRotF",
 			"page": 246,
-			"_isCopy": true,
-			"size": "T",
-			"type": "beast",
-			"alignment": [
-				"U"
-			],
-			"ac": [
-				10
-			],
-			"hp": {
-				"average": 1,
-				"formula": "1d4 - 1"
-			},
-			"speed": {
-				"walk": 40,
-				"climb": 30
-			},
-			"str": 2,
-			"dex": 11,
-			"con": 9,
-			"int": 2,
-			"wis": 10,
-			"cha": 4,
-			"skill": {
-				"perception": "+3",
-				"stealth": "+4"
-			},
-			"passive": 10,
-			"cr": "0",
-			"trait": [
-				{
-					"name": "Keen Smell",
-					"entries": [
-						"The rat has advantage on Wisdom (Perception) checks that rely on smell."
-					]
-				},
-				{
-					"name": "Chimeric Creation",
-					"entries": [
-						"The rat has gills, iridescent scales, and the ability to breathe air and water."
-					]
+			"_copy": {
+				"name": "Rat",
+				"source": "MM",
+				"_mod": {
+					"trait": {
+						"mode": "appendArr",
+						"items": {
+							"name": "Chimeric Creation",
+							"entries": [
+								"The rat has gills, iridescent scales, and the ability to breathe air and water."
+							]
+						}
+					}
 				}
-			],
-			"action": [
-				{
-					"name": "Bite",
-					"entries": [
-						"{@atk mw} {@hit 0} to hit, reach 5 ft., one target. {@h}1 piercing damage."
-					]
-				}
-			],
-			"traitTags": [
-				"Keen Senses"
-			],
-			"senseTags": [
-				"B",
-				"T"
-			],
-			"damageTags": [
-				"P"
-			],
-			"miscTags": [
-				"MW"
-			]
+			}
 		},
 		{
 			"name": "Chimeric Weasel",
@@ -2059,7 +2011,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -2077,6 +2028,7 @@
 			"conditionInflict": [
 				"blinded"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2165,7 +2117,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -2184,6 +2135,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2317,7 +2269,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"AB",
 				"C",
@@ -2335,6 +2286,7 @@
 			"conditionInflictSpell": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2440,7 +2392,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"AB",
 				"C",
@@ -2458,6 +2409,7 @@
 			"conditionInflictSpell": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2489,6 +2441,7 @@
 			"cr": "0",
 			"spellcasting": null,
 			"action": null,
+			"actionTags": [],
 			"spellcastingTags": [],
 			"miscTags": [],
 			"conditionInflict": [],
@@ -2546,7 +2499,6 @@
 				}
 			],
 			"familiar": true,
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -2559,6 +2511,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2714,12 +2667,12 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
 			"actionTags": [
-				"Multiattack"
+				"Multiattack",
+				"Shapechanger"
 			],
 			"languageTags": [
 				"C",
@@ -2741,6 +2694,7 @@
 				"charmed",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2822,7 +2776,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -2844,6 +2797,7 @@
 			"conditionInflict": [
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -2933,7 +2887,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -2949,6 +2902,7 @@
 			"miscTags": [
 				"AOE"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3011,7 +2965,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Hold Breath"
 			],
@@ -3028,6 +2981,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3168,7 +3122,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses",
 				"Rampage",
@@ -3198,6 +3151,7 @@
 				"frightened",
 				"poisoned"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3308,7 +3262,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -3345,6 +3298,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3425,7 +3379,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -3453,6 +3406,11 @@
 				"AOE",
 				"MW"
 			],
+			"conditionInflict": [
+				"grappled",
+				"stunned"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3547,7 +3505,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -3564,6 +3521,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3700,7 +3658,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses",
 				"Shapechanger"
@@ -3720,6 +3677,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3816,7 +3774,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Sunlight Sensitivity"
 			],
@@ -3838,6 +3795,7 @@
 			"conditionInflictSpell": [
 				"invisible"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -3929,7 +3887,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -3948,6 +3905,7 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4108,7 +4066,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Damage Absorption",
 				"Immutable Form",
@@ -4132,6 +4089,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4326,11 +4284,10 @@
 				{
 					"name": "Suggestion",
 					"entries": [
-						"The magen casts the suggestion spell (save {@dc 12}), requiring no material components. The target must be a creature that the magen can communicate with telepathically. If it succeeds on its saving throw, the target is immune to this magen's suggestion spell for the next 24 hours. The magen's spellcasting ability is Intelligence."
+						"The magen casts the {@spell suggestion} spell (save {@dc 12}), requiring no material components. The target must be a creature that the magen can communicate with telepathically. If it succeeds on its saving throw, the target is immune to this magen's {@spell suggestion} spell for the next 24 hours. The magen's spellcasting ability is Intelligence."
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -4341,6 +4298,7 @@
 			"damageTags": [
 				"Y"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4410,7 +4368,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"False Appearance",
 				"Spider Climb"
@@ -4426,6 +4383,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4513,7 +4471,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses",
 				"Regeneration"
@@ -4535,6 +4492,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4620,7 +4578,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Pack Tactics",
 				"Sunlight Sensitivity"
@@ -4640,6 +4597,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4713,7 +4671,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Undead Fortitude"
 			],
@@ -4731,6 +4688,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4826,7 +4784,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -4847,6 +4804,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -4936,7 +4894,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Brute"
 			],
@@ -4956,6 +4913,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -5068,7 +5026,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -5094,6 +5051,7 @@
 				"paralyzed",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5149,7 +5107,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Hold Breath"
 			],
@@ -5165,6 +5122,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5357,7 +5315,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Water Breathing"
 			],
@@ -5371,6 +5328,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5468,7 +5426,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Pack Tactics",
 				"Regeneration",
@@ -5488,6 +5445,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5581,7 +5539,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -5595,6 +5552,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5698,7 +5656,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
@@ -5708,6 +5665,7 @@
 			"damageTags": [
 				"O"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5792,13 +5750,13 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance"
 			],
 			"senseTags": [
 				"D"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5912,7 +5870,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Incorporeal Movement"
 			],
@@ -5931,6 +5888,7 @@
 			"conditionInflict": [
 				"frightened"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6087,7 +6045,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Charge"
 			],
@@ -6100,6 +6057,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6249,7 +6207,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Incorporeal Movement"
 			],
@@ -6272,6 +6229,11 @@
 			"miscTags": [
 				"MW"
 			],
+			"conditionInflict": [
+				"frightened",
+				"incapacitated"
+			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6377,7 +6339,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"DR",
@@ -6393,6 +6354,7 @@
 			"conditionInflictSpell": [
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6608,7 +6570,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Brute"
 			],
@@ -6631,6 +6592,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -6718,7 +6680,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"DU"
@@ -6735,6 +6696,7 @@
 			"conditionInflictSpell": [
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -6797,7 +6759,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Pack Tactics"
 			],
@@ -6812,6 +6773,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -6884,7 +6846,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Hold Breath",
 				"Keen Senses"
@@ -6898,6 +6859,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -6989,7 +6951,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -7009,6 +6970,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7112,7 +7074,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Damage Absorption",
 				"Immutable Form"
@@ -7131,6 +7092,7 @@
 				"MW",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7202,7 +7164,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -7219,6 +7180,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -7325,7 +7287,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -7346,6 +7307,7 @@
 			"conditionInflictSpell": [
 				"charmed"
 			],
+			"hasToken": true,
 			"hasFluffImages": true
 		},
 		{
@@ -7424,7 +7386,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Hold Breath",
 				"Keen Senses"
@@ -7445,6 +7406,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7555,7 +7517,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"False Appearance",
 				"Magic Resistance",
@@ -7579,6 +7540,7 @@
 			"conditionInflict": [
 				"grappled"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -7790,7 +7752,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"B"
 			],
@@ -7812,6 +7773,7 @@
 				"RCH",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8010,7 +7972,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"D",
@@ -8030,6 +7991,7 @@
 				"poisoned",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8126,7 +8088,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -8153,6 +8114,7 @@
 			"conditionInflictSpell": [
 				"deafened"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -8224,7 +8186,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -8240,6 +8201,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8287,7 +8249,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Hold Breath"
 			],
@@ -8297,6 +8258,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -8431,7 +8393,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Sunlight Sensitivity"
 			],
@@ -8456,9 +8417,13 @@
 			"miscTags": [
 				"MW"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
 			"conditionInflictSpell": [
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8527,7 +8492,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -8545,6 +8509,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8611,7 +8576,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -8628,6 +8592,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8694,7 +8659,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -8711,6 +8675,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -8777,7 +8742,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses"
 			],
@@ -8794,6 +8758,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		}

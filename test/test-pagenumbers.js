@@ -35,6 +35,7 @@ const BLACKLIST_KEYS = new Set([
 	"itemTypeAdditionalEntries",
 	"legendaryGroup",
 	"languageScript",
+	"dragonMundaneItems",
 ]);
 
 // Sources which only exist in digital form
@@ -44,9 +45,7 @@ const BLACKLIST_SOURCES = new Set([
 	"SDW",
 ]);
 
-const SUB_KEYS = {
-	race: ["subraces"],
-};
+const SUB_KEYS = {};
 
 function run (isModificationMode) {
 	console.log(`##### Checking for Missing Page Numbers #####`);
@@ -80,7 +79,7 @@ function run (isModificationMode) {
 											.filter(subIt => subIt.name)
 											.filter(subIt => !BLACKLIST_SOURCES.has(subIt.source))
 											.filter(subIt => !subIt.page));
-									})
+									});
 							});
 						}
 

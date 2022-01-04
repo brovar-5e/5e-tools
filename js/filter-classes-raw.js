@@ -1,7 +1,7 @@
 "use strict";
 
 // TODO refactor the "feature" parts of this to a `PageFilterFeatures`
-class PageFilterClassesRaw extends PageFilterClasses {
+class PageFilterClassesRaw extends PageFilterClassesBase {
 	async _pPopulateBoxOptions (opts) {
 		await super._pPopulateBoxOptions(opts);
 		opts.isCompact = false;
@@ -646,13 +646,13 @@ class ModalFilterClasses extends ModalFilter {
 				if (isScLi) {
 					li.data.tglSel.classList.toggle("disabled", this._isSubclassDisabled || (this._isClassDisabled && li.data.ixClass !== this._ixPrevSelectedClass));
 				} else {
-					li.data.tglSel.classList.toggle("disabled", this._isClassDisabled)
+					li.data.tglSel.classList.toggle("disabled", this._isClassDisabled);
 				}
 			});
 
 			if (selectedClass != null) {
 				// region Restore selection
-				const ixSubclass = ~this._ixPrevSelectedClass && selectedSubclass != null ? this._filterCache.allData[this._ixPrevSelectedClass].subclasses.findIndex(it => it.name === selectedSubclass.name && it.source === selectedSubclass.source) : -1
+				const ixSubclass = ~this._ixPrevSelectedClass && selectedSubclass != null ? this._filterCache.allData[this._ixPrevSelectedClass].subclasses.findIndex(it => it.name === selectedSubclass.name && it.source === selectedSubclass.source) : -1;
 
 				if (~this._ixPrevSelectedClass) {
 					ModalFilterClasses._doListDeselectAll(this._filterCache.list);
@@ -779,6 +779,8 @@ class ModalFilterClasses extends ModalFilter {
 				});
 			};
 
+			pageFilter.trimState();
+
 			pageFilter.filterBox.on(FilterBox.EVNT_VALCHANGE, handleFilterChange);
 			pageFilter.filterBox.render();
 			handleFilterChange();
@@ -862,7 +864,7 @@ class ModalFilterClasses extends ModalFilter {
 		return [
 			this._getListItems_getClassItem(pageFilter, cls, clsI),
 			...cls.subclasses.map((sc, scI) => this._getListItems_getSubclassItem(pageFilter, cls, clsI, sc, scI)),
-		]
+		];
 	}
 
 	_getListItems_getClassItem (pageFilter, cls, clsI) {

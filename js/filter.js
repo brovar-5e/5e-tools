@@ -35,12 +35,14 @@ class PageFilter {
 		return this._filterBox;
 	}
 
+	trimState () { return this._filterBox.trimState_(); }
+
 	// region Helpers
 	static _getClassFilterItem ({className, classSource, isVariantClass, definedInSource}) {
 		const nm = className.split("(")[0].trim();
-		const variantSuffix = isVariantClass ? ` [${definedInSource ? Parser.sourceJsonToAbv(definedInSource) : "Unknown"}]` : ""
+		const variantSuffix = isVariantClass ? ` [${definedInSource ? Parser.sourceJsonToAbv(definedInSource) : "Unknown"}]` : "";
 		const sourceSuffix = (SourceUtil.isNonstandardSource(classSource || SRC_PHB) || BrewUtil.hasSourceJson(classSource || SRC_PHB))
-			? ` (${Parser.sourceJsonToAbv(classSource)})` : ""
+			? ` (${Parser.sourceJsonToAbv(classSource)})` : "";
 		const name = `${nm}${variantSuffix}${sourceSuffix}`;
 
 		const opts = {
@@ -52,7 +54,7 @@ class PageFilter {
 
 		if (isVariantClass) {
 			opts.nest = definedInSource ? Parser.sourceJsonToFull(definedInSource) : "Unknown";
-			opts.userData.equivalentClassName = `${nm}${sourceSuffix}`
+			opts.userData.equivalentClassName = `${nm}${sourceSuffix}`;
 			opts.userData.definedInSource = definedInSource;
 		}
 
@@ -105,6 +107,8 @@ class ModalFilter {
 
 	get pageFilter () { return this._pageFilter; }
 
+	get allData () { return this._allData; }
+
 	_$getWrpList () { return $(`<div class="list ui-list__wrp overflow-x-hidden overflow-y-auto h-100 min-h-0"></div>`); }
 
 	_$getColumnHeaderPreviewAll (opts) {
@@ -136,7 +140,7 @@ class ModalFilter {
 			${$iptSearch}
 			<div class="lst__wrp-search-glass no-events flex-vh-center"><span class="glyphicon glyphicon-search"></span></div>
 			${$dispNumVisible}
-		</div>`
+		</div>`;
 
 		const $wrpFormTop = $$`<div class="flex input-group btn-group w-100 lst__form-top">${$wrpIptSearch}${$btnReset}</div>`;
 
@@ -205,6 +209,8 @@ class ModalFilter {
 			});
 		};
 
+		this._pageFilter.trimState();
+
 		this._pageFilter.filterBox.on(FilterBox.EVNT_VALCHANGE, handleFilterChange);
 		this._pageFilter.filterBox.render();
 		handleFilterChange();
@@ -226,7 +232,7 @@ class ModalFilter {
 			list: this._list,
 			$cbSelAll,
 			$btnSendAllToRight,
-		}
+		};
 	}
 
 	/**
@@ -281,7 +287,7 @@ class ModalFilter {
 
 		const filterSubhashMeta = Renderer.getFilterSubhashes(Renderer.splitTagByPipe(filterExpression), this._namespace);
 		const subhashes = filterSubhashMeta.subhashes.map(it => `${it.key}${HASH_SUB_KV_SEP}${it.value}`);
-		this.pageFilter.filterBox.setFromSubHashes(subhashes, true);
+		this.pageFilter.filterBox.setFromSubHashes(subhashes, {force: true, $iptSearch: this._filterCache.$iptSearch});
 	}
 
 	_getNameStyle () { return `bold`; }
@@ -394,9 +400,12 @@ class FilterBox extends ProxyBase {
 		return this;
 	}
 
-	off (identifier) {
+	off (identifier, fn = null) {
 		const [eventName, namespace] = identifier.split(".");
-		this._eventListeners[eventName] = (this._eventListeners[eventName] || []).filter(it => it.namespace !== namespace);
+		this._eventListeners[eventName] = (this._eventListeners[eventName] || []).filter(it => {
+			if (fn != null) return it.namespace !== namespace || it.fn !== fn;
+			return it.namespace !== namespace;
+		});
 		if (!this._eventListeners[eventName].length) delete this._eventListeners[eventName];
 		return this;
 	}
@@ -411,7 +420,7 @@ class FilterBox extends ProxyBase {
 	}
 	// endregion
 
-	_getNamespacedStorageKey () { return `${FilterBox._STORAGE_KEY}${this._namespace ? `.${this._namespace}` : ""}` }
+	_getNamespacedStorageKey () { return `${FilterBox._STORAGE_KEY}${this._namespace ? `.${this._namespace}` : ""}`; }
 	getNamespacedHashKey (k) { return `${k || "_".repeat(FilterUtil.SUB_HASH_PREFIX_LENGTH)}${this._namespace ? `.${this._namespace}` : ""}`; }
 
 	async pGetStoredActiveSources () {
@@ -469,6 +478,10 @@ class FilterBox extends ProxyBase {
 
 	async _pDoSaveState () {
 		await StorageUtil.pSetForPage(this._getNamespacedStorageKey(), this._getSaveableState());
+	}
+
+	trimState_ () {
+		this._filters.forEach(f => f.trimState_());
 	}
 
 	render () {
@@ -730,7 +743,7 @@ class FilterBox extends ProxyBase {
 		this._filters.forEach(f => f.hide());
 	}
 
-	setFromSubHashes (subHashes, force = false) {
+	setFromSubHashes (subHashes, {force = false, $iptSearch = null} = {}) {
 		const unpacked = {};
 		subHashes.forEach(s => {
 			const unpackedPart = UrlUtil.unpackSubHash(s, true);
@@ -768,40 +781,40 @@ class FilterBox extends ProxyBase {
 					if (prefix === VeCt.FILTER_BOX_SUB_HASH_SEARCH_PREFIX) filterInitialSearch = data.clean[0];
 					else filterBoxState[prefix] = data.clean;
 					consumed.add(data.raw);
-				} else if (FilterUtil.SUB_HASH_PREFIXES.has(prefix)) throw new Error(`Could not find filter with header ${urlHeader} for subhash ${data.raw}`)
+				} else if (FilterUtil.SUB_HASH_PREFIXES.has(prefix)) throw new Error(`Could not find filter with header ${urlHeader} for subhash ${data.raw}`);
 			});
 
-		if (consumed.size || force) {
-			this._setFromSubHashState(urlHeaderToFilter, filterBoxState);
+		if (!consumed.size && !force) return subHashes;
 
-			Object.entries(statePerFilter).forEach(([urlHeader, state]) => {
-				const filter = urlHeaderToFilter[urlHeader];
-				filter.setFromSubHashState(state);
+		this._setFromSubHashState(urlHeaderToFilter, filterBoxState);
+
+		Object.entries(statePerFilter).forEach(([urlHeader, state]) => {
+			const filter = urlHeaderToFilter[urlHeader];
+			filter.setFromSubHashState(state);
+		});
+
+		// reset any other state/meta state/etc
+		Object.keys(urlHeaderToFilter)
+			.filter(k => !updatedUrlHeaders.has(k))
+			.forEach(k => {
+				const filter = urlHeaderToFilter[k];
+				filter.resetShallow(true);
 			});
 
-			// reset any other state/meta state/etc
-			Object.keys(urlHeaderToFilter)
-				.filter(k => !updatedUrlHeaders.has(k))
-				.forEach(k => {
-					const filter = urlHeaderToFilter[k];
-					filter.resetShallow(true);
-				});
+		const [link] = Hist.getHashParts();
 
-			const [link] = Hist.getHashParts();
+		const outSub = [];
+		Object.values(unpacked)
+			.filter(v => !consumed.has(v.raw))
+			.forEach(v => outSub.push(v.raw));
 
-			const outSub = [];
-			Object.values(unpacked)
-				.filter(v => !consumed.has(v.raw))
-				.forEach(v => outSub.push(v.raw));
+		Hist.setSuppressHistory(true);
+		Hist.replaceHistoryHash(`${link}${outSub.length ? `${HASH_PART_SEP}${outSub.join(HASH_PART_SEP)}` : ""}`);
 
-			Hist.setSuppressHistory(true);
-			Hist.replaceHistoryHash(`${link}${outSub.length ? `${HASH_PART_SEP}${outSub.join(HASH_PART_SEP)}` : ""}`);
-
-			if (filterInitialSearch && this._$iptSearch) this._$iptSearch.val(filterInitialSearch).change().keydown().keyup();
-			this.fireChangeEvent();
-			Hist.hashChange();
-			return outSub;
-		} else return subHashes;
+		if (filterInitialSearch && ($iptSearch || this._$iptSearch)) ($iptSearch || this._$iptSearch).val(filterInitialSearch).change().keydown().keyup();
+		this.fireChangeEvent();
+		Hist.hashChange();
+		return outSub;
 	}
 
 	_setFromSubHashState (urlHeaderToFilter, filterBoxState) {
@@ -925,10 +938,10 @@ class FilterBox extends ProxyBase {
 					const f = filters[i];
 					if (!this._combineAs[f.header] || this._combineAs[f.header] === "and") { // default to "and" if undefined
 						andFilters.push(f);
-						andValues.push(entryVals[i])
+						andValues.push(entryVals[i]);
 					} else {
 						orFilters.push(f);
-						orValues.push(entryVals[i])
+						orValues.push(entryVals[i]);
 					}
 				}
 
@@ -1051,7 +1064,7 @@ class FilterBase extends BaseComponent {
 		const anyNotDefault = Object.keys(defaultMeta).find(k => this._meta[k] !== defaultMeta[k]);
 		if (anyNotDefault) {
 			const serMeta = Object.keys(defaultMeta).map(k => UrlUtil.mini.compress(this._meta[k] === undefined ? defaultMeta[k] : this._meta[k]));
-			return [UrlUtil.packSubHash(this.getSubHashPrefix("meta", this.header), serMeta)]
+			return [UrlUtil.packSubHash(this.getSubHashPrefix("meta", this.header), serMeta)];
 		} else return null;
 	}
 
@@ -1134,6 +1147,7 @@ class FilterBase extends BaseComponent {
 	setFromValues () { throw new Error(`Unimplemented!`); }
 	handleSearch () { throw new Error(`Unimplemented`); }
 	_doTeardown () { /* No-op */ }
+	trimState_ () { /* No-op */ }
 }
 FilterBase._DEFAULT_META = {
 	isHidden: false,
@@ -1191,7 +1205,7 @@ class Filter extends FilterBase {
 	 * @param [opts.umbrellaItems] Items which should, when set active, show everything in the filter. E.g. "All".
 	 * @param [opts.umbrellaExcludes] Items which should ignore the state of any `umbrellaItems`
 	 * @param [opts.isSortByDisplayItems] If items should be sorted by their display value, rather than their internal value.
-	 * @param [opts.isSrdFilter] If this filter's items include the "SRD" tag.
+	 * @param [opts.isMiscFilter] If this is the Misc. filter (containing "SRD" and "Basic Rules" tags).
 	 */
 	constructor (opts) {
 		super(opts);
@@ -1211,7 +1225,9 @@ class Filter extends FilterBase {
 		this._umbrellaItems = Filter._getAsFilterItems(opts.umbrellaItems);
 		this._umbrellaExcludes = Filter._getAsFilterItems(opts.umbrellaExcludes);
 		this._isSortByDisplayItems = !!opts.isSortByDisplayItems;
-		this._isSrdFilter = !!opts.isSrdFilter;
+		this._isReprintedFilter = !!opts.isMiscFilter && this._items.some(it => it.item === "Reprinted");
+		this._isSrdFilter = !!opts.isMiscFilter && this._items.some(it => it.item === "SRD");
+		this._isBasicRulesFilter = !!opts.isMiscFilter && this._items.some(it => it.item === "Basic Rules");
 
 		Filter._validateItemNests(this._items, this._nests);
 
@@ -1229,7 +1245,9 @@ class Filter extends FilterBase {
 		this._pillGroupsMeta = {};
 	}
 
+	get isReprintedFilter () { return this._isReprintedFilter; }
 	get isSrdFilter () { return this._isSrdFilter; }
+	get isBasicRulesFilter () { return this._isBasicRulesFilter; }
 
 	getSaveableState () {
 		return {
@@ -1277,7 +1295,7 @@ class Filter extends FilterBase {
 		if (!out.length) return null;
 
 		// Always extend default state
-		out.push(UrlUtil.packSubHash(this.getSubHashPrefix("options", this.header), ["extend"]))
+		out.push(UrlUtil.packSubHash(this.getSubHashPrefix("options", this.header), ["extend"]));
 		return out;
 	}
 
@@ -1402,7 +1420,6 @@ class Filter extends FilterBase {
 		const hook = () => {
 			const val = FilterBox._PILL_STATES[this._state[item.item]];
 			btnPill.attr("state", val);
-			if (item.pFnChange) item.pFnChange(item.item, val);
 		};
 		this._addHook("state", item.item, hook);
 		hook();
@@ -1424,7 +1441,7 @@ class Filter extends FilterBase {
 			const isDefaultSel = this._selFn && this._selFn(it.item);
 			it.btnMini
 				.toggleClass("fltr__mini-pill--default-desel", isDefaultDesel)
-				.toggleClass("fltr__mini-pill--default-sel", isDefaultSel)
+				.toggleClass("fltr__mini-pill--default-sel", isDefaultSel);
 		});
 	}
 
@@ -1442,7 +1459,12 @@ class Filter extends FilterBase {
 			},
 		}).attr("state", FilterBox._PILL_STATES[this._state[item.item]]);
 
-		const hook = () => btnMini.attr("state", FilterBox._PILL_STATES[this._state[item.item]]);
+		const hook = () => {
+			const val = FilterBox._PILL_STATES[this._state[item.item]];
+			btnMini.attr("state", val);
+			// Bind change handlers in the mini-pill render step, as the mini-pills should always be available.
+			if (item.pFnChange) item.pFnChange(item.item, val);
+		};
 		this._addHook("state", item.item, hook);
 
 		const hideHook = () => btnMini.toggleClass("ve-hidden", this._filterBox.isMinisHidden(this.header));
@@ -1733,7 +1755,7 @@ class Filter extends FilterBase {
 			existingMeta.wrpPills.appendTo(this.__wrpPills);
 			existingMeta.isAttached = true;
 		}
-		if (existingMeta) return
+		if (existingMeta) return;
 
 		this._pillGroupsMeta[group] = {
 			hrDivider: this._doRenderPills_doRenderWrpGroup_getHrDivider(group).appendTo(this.__wrpPills),
@@ -2101,7 +2123,7 @@ class SourceFilter extends Filter {
 		opts.displayFn = opts.displayFn === undefined ? item => Parser.sourceJsonToFullCompactPrefix(item.item || item) : opts.displayFn;
 		opts.itemSortFn = opts.itemSortFn === undefined ? (a, b) => SortUtil.ascSortLower(Parser.sourceJsonToFull(a.item), Parser.sourceJsonToFull(b.item)) : opts.itemSortFn;
 		opts.groupFn = opts.groupFn === undefined ? SourceUtil.getFilterGroup : opts.groupFn;
-		opts.selFn = opts.selFn === undefined ? PageFilter.defaultSourceSelFn : opts.selFn
+		opts.selFn = opts.selFn === undefined ? PageFilter.defaultSourceSelFn : opts.selFn;
 
 		super(opts);
 
@@ -2177,6 +2199,11 @@ class SourceFilter extends Filter {
 			new ContextUtil.Action(
 				"Select SRD Sources",
 				() => this._doSetPinsSrd(),
+				{title: `Select System Reference Document Sources.`},
+			),
+			new ContextUtil.Action(
+				"Select Basic Rules Sources",
+				() => this._doSetPinsBasicRules(),
 			),
 			null,
 			new ContextUtil.Action(
@@ -2247,8 +2274,30 @@ class SourceFilter extends Filter {
 		Object.keys(this._state).forEach(k => this._state[k] = SourceFilter._SRD_SOURCES.has(k) ? 1 : 0);
 
 		const srdFilter = this._filterBox.filters.find(it => it.isSrdFilter);
-		if (!srdFilter) return;
-		srdFilter.setValue("SRD", 1);
+		if (srdFilter) srdFilter.setValue("SRD", 1);
+
+		const basicRulesFilter = this._filterBox.filters.find(it => it.isBasicRulesFilter);
+		if (basicRulesFilter) basicRulesFilter.setValue("Basic Rules", 0);
+
+		// also disable "Reprinted" otherwise some Deities are missing
+		const reprintedFilter = this._filterBox.filters.find(it => it.isReprintedFilter);
+		if (reprintedFilter) reprintedFilter.setValue("Reprinted", 0);
+	}
+
+	_doSetPinsBasicRules () {
+		SourceFilter._BASIC_RULES_SOURCES = SourceFilter._BASIC_RULES_SOURCES || new Set([SRC_PHB, SRC_MM, SRC_DMG]);
+
+		Object.keys(this._state).forEach(k => this._state[k] = SourceFilter._BASIC_RULES_SOURCES.has(k) ? 1 : 0);
+
+		const basicRulesFilter = this._filterBox.filters.find(it => it.isBasicRulesFilter);
+		if (basicRulesFilter) basicRulesFilter.setValue("Basic Rules", 1);
+
+		const srdFilter = this._filterBox.filters.find(it => it.isSrdFilter);
+		if (srdFilter) srdFilter.setValue("SRD", 0);
+
+		// also disable "Reprinted" otherwise some Deities are missing
+		const reprintedFilter = this._filterBox.filters.find(it => it.isReprintedFilter);
+		if (reprintedFilter) reprintedFilter.setValue("Reprinted", 0);
 	}
 
 	static getCompleteFilterSources (ent) {
@@ -2314,7 +2363,7 @@ class SourceFilter extends Filter {
 					.filter(k => SourceUtil.isNonstandardSource(k))
 					.forEach(k => {
 						const sourceDate = Parser.sourceJsonToDate(k);
-						nxtState[k] = allowedDateSet.has(sourceDate) ? 1 : 0
+						nxtState[k] = allowedDateSet.has(sourceDate) ? 1 : 0;
 					});
 				this._proxyAssign("state", "_state", "__state", nxtState);
 			},
@@ -2433,8 +2482,9 @@ class SourceFilter extends Filter {
 }
 SourceFilter._DEFAULT_META = {
 	isIncludeOtherSources: false,
-}
+};
 SourceFilter._SRD_SOURCES = null;
+SourceFilter._BASIC_RULES_SOURCES = null;
 
 class RangeFilter extends FilterBase {
 	/**
@@ -2443,13 +2493,17 @@ class RangeFilter extends FilterBase {
 	 * @param [opts.headerHelp] Filter header help text (tooltip)
 	 * @param [opts.min] Minimum slider value.
 	 * @param [opts.max] Maximum slider value.
+	 * @param [opts.isSparse] If this slider should only display known values, rather than a continual range.
 	 * @param [opts.isLabelled] If this slider has labels.
 	 * @param [opts.labels] Initial labels to populate this filter with.
 	 * @param [opts.isAllowGreater] If this slider should allow all items greater than its max.
+	 * @param [opts.isRequireFullRangeMatch] If range values, e.g. `[1, 5]`, must be entirely within the slider's
+	 * selected range in order to be produce a positive `toDisplay` result.
 	 * @param [opts.suffix] Suffix to add to number displayed above slider.
 	 * @param [opts.labelSortFn] Function used to sort labels if new labels are added. Defaults to ascending alphabetical.
 	 * @param [opts.labelDisplayFn] Function which converts a label to a display value.
 	 * @param [opts.displayFn] Function which converts a (non-label) value to a display value.
+	 * @param [opts.displayFnTooltip] Function which converts a (non-label) value to a tooltip display value.
 	 */
 	constructor (opts) {
 		super(opts);
@@ -2459,14 +2513,15 @@ class RangeFilter extends FilterBase {
 
 		this._min = Number(opts.min || 0);
 		this._max = Number(opts.max || 0);
-		this._hasPredefinedMin = opts.min != null;
-		this._hasPredefinedMax = opts.max != null;
 		this._labels = opts.isLabelled ? opts.labels : null;
 		this._isAllowGreater = !!opts.isAllowGreater;
+		this._isRequireFullRangeMatch = !!opts.isRequireFullRangeMatch;
+		this._sparseValues = opts.isSparse ? [] : null;
 		this._suffix = opts.suffix;
 		this._labelSortFn = opts.labelSortFn === undefined ? SortUtil.ascSort : opts.labelSortFn;
 		this._labelDisplayFn = opts.labelDisplayFn;
 		this._displayFn = opts.displayFn;
+		this._displayFnTooltip = opts.displayFnTooltip;
 
 		this._filterBox = null;
 		Object.assign(
@@ -2480,13 +2535,18 @@ class RangeFilter extends FilterBase {
 		);
 		this.__$wrpFilter = null;
 		this.__$wrpMini = null;
-		this._$slider = null;
+		this._slider = null;
 
 		this._labelSearchCache = null;
 
 		this._$btnMiniGt = null;
 		this._$btnMiniLt = null;
 		this._$btnMiniEq = null;
+
+		// region Trimming
+		this._seenMin = this._min;
+		this._seenMax = this._max;
+		// endregion
 	}
 
 	set isUseDropdowns (val) { this._meta.isUseDropdowns = !!val; }
@@ -2501,48 +2561,42 @@ class RangeFilter extends FilterBase {
 	}
 
 	setStateFromLoaded (filterState) {
-		if (filterState && filterState[this.header]) {
-			const toLoad = filterState[this.header];
+		if (!filterState?.[this.header]) return;
 
-			// region Ensure the provided min/max are a lower/upper bounds for the range to be set
-			if (this._hasPredefinedMax) {
-				const tgt = (toLoad.state || {});
+		const toLoad = filterState[this.header];
 
-				if (tgt.max == null) tgt.max = this._max;
-				else if (tgt.max > this._max) tgt.max = this._max;
+		// region Ensure to-be-loaded state is populated with sensible data
+		const tgt = (toLoad.state || {});
 
-				if (tgt.curMax == null) tgt.curMax = tgt.max;
-				else if (tgt.curMax > tgt.max) tgt.curMax = tgt.max;
-			}
-
-			if (this._hasPredefinedMin) {
-				const tgt = (toLoad.state || {});
-
-				if (tgt.min == null) tgt.min = this._min;
-				else if (tgt.min < this._min) tgt.min = this._min;
-
-				if (tgt.curMin == null) tgt.curMin = tgt.min;
-				else if (tgt.curMin < tgt.min) tgt.curMin = tgt.min;
-			}
-			// endregion
-
-			this.setBaseStateFromLoaded(toLoad);
-
-			// Reduce the maximum/minimum ranges to their current values +/-1
-			//   This allows the range filter to recover from being stretched out by homebrew
-			//   The off-by-one trick is to prevent later filter expansion from assuming the filters are set to their min/max
-			if (toLoad.state && !this._labels) {
-				if (!this._hasPredefinedMax && toLoad.state.curMax != null && toLoad.state.max != null) {
-					if (toLoad.state.curMax + 1 < toLoad.state.max) toLoad.state.max = toLoad.state.curMax + 1;
-				}
-
-				if (!this._hasPredefinedMin && toLoad.state.curMin != null && toLoad.state.min != null) {
-					if (toLoad.state.curMin - 1 > toLoad.state.min) toLoad.state.min = toLoad.state.curMin - 1;
-				}
-			}
-
-			Object.assign(this._state, toLoad.state);
+		if (tgt.max == null) tgt.max = this._max;
+		else if (this._max > tgt.max) {
+			if (tgt.max === tgt.curMax) tgt.curMax = this._max; // If it's set to "max", respect this
+			tgt.max = this._max;
 		}
+
+		if (tgt.curMax == null) tgt.curMax = tgt.max;
+		else if (tgt.curMax > tgt.max) tgt.curMax = tgt.max;
+
+		if (tgt.min == null) tgt.min = this._min;
+		else if (this._min < tgt.min) {
+			if (tgt.min === tgt.curMin) tgt.curMin = this._min; // If it's set to "min", respect this
+			tgt.min = this._min;
+		}
+
+		if (tgt.curMin == null) tgt.curMin = tgt.min;
+		else if (tgt.curMin < tgt.min) tgt.curMin = tgt.min;
+		// endregion
+
+		this.setBaseStateFromLoaded(toLoad);
+
+		Object.assign(this._state, toLoad.state);
+	}
+
+	trimState_ () {
+		if (this._seenMin <= this._state.min && this._seenMax >= this._state.max) return;
+
+		const nxtState = {min: this._seenMin, curMin: this._seenMin, max: this._seenMax, curMax: this._seenMax};
+		this._proxyAssignSimple("state", nxtState);
 	}
 
 	getSubHashes () {
@@ -2642,7 +2696,7 @@ class RangeFilter extends FilterBase {
 
 			$wrpSummary
 				.title(isRange ? `Hidden range` : isCapped ? `Hidden limit` : "")
-				.text(isRange ? `${this._getDisplayText(cur.min)}-${this._getDisplayText(cur.max)}` : !cur.isMinVal ? `≥ ${this._getDisplayText(cur.min)}` : !cur.isMaxVal ? `≤ ${this._getDisplayText(cur.max)}` : "")
+				.text(isRange ? `${this._getDisplayText(cur.min)}-${this._getDisplayText(cur.max)}` : !cur.isMinVal ? `≥ ${this._getDisplayText(cur.min)}` : !cur.isMaxVal ? `≤ ${this._getDisplayText(cur.max)}` : "");
 		};
 		this._addHook("meta", "isHidden", hkIsHidden);
 		hkIsHidden();
@@ -2655,8 +2709,8 @@ class RangeFilter extends FilterBase {
 		</div>`;
 	}
 
-	_getDisplayText (value, {isBeyondMax = false} = {}) {
-		value = `${this._labels ? this._labelDisplayFn ? this._labelDisplayFn(value) : value : this._displayFn ? this._displayFn(value) : value}${isBeyondMax ? "+" : ""}`;
+	_getDisplayText (value, {isBeyondMax = false, isTooltip = false} = {}) {
+		value = `${this._labels ? this._labelDisplayFn ? this._labelDisplayFn(this._labels[value]) : this._labels[value] : (isTooltip && this._displayFnTooltip) ? this._displayFnTooltip(value) : this._displayFn ? this._displayFn(value) : value}${isBeyondMax ? "+" : ""}`;
 		if (this._suffix) value += this._suffix;
 		return value;
 	}
@@ -2685,40 +2739,48 @@ class RangeFilter extends FilterBase {
 		hookHidden();
 
 		// region Slider
+		// ensure sparse values are correctly constrained
+		if (this._sparseValues?.length) {
+			const sparseMin = this._sparseValues[0];
+			if (this._state.min < sparseMin) {
+				this._state.curMin = Math.max(this._state.curMin, sparseMin);
+				this._state.min = sparseMin;
+			}
+
+			const sparseMax = this._sparseValues.last();
+			if (this._state.max > sparseMax) {
+				this._state.curMax = Math.min(this._state.curMax, sparseMax);
+				this._state.max = sparseMax;
+			}
+		}
+
 		// prepare slider options
 		const getSliderOpts = () => {
+			const fnDisplay = (val, {isTooltip = false} = {}) => {
+				return this._getDisplayText(val, {isBeyondMax: this._isAllowGreater && val === this._state.max, isTooltip});
+			};
+
 			return {
 				propMin: "min",
 				propMax: "max",
 				propCurMin: "curMin",
 				propCurMax: "curMax",
-				fnDisplay: (val) => {
-					let out;
-
-					if (this._labels) {
-						if (this._labelSortFn) this._labels.sort(this._labelSortFn);
-
-						const labels = this._labelDisplayFn ? this._labels.map(it => this._labelDisplayFn(it)) : this._labels;
-
-						out = labels[val] ?? val;
-					} else {
-						out = this._getDisplayText(val, {isBeyondMax: this._isAllowGreater && val === this._state.max});
-					}
-
-					return out;
-				},
+				fnDisplay: (val) => fnDisplay(val),
+				fnDisplayTooltip: (val) => fnDisplay(val, {isTooltip: true}),
+				sparseValues: this._sparseValues,
 			};
 		};
 
 		const hkUpdateLabelSearchCache = () => {
-			if (!this._labels) return this._labelSearchCache = null;
-			this._labelSearchCache = (this._labelDisplayFn ? this._labels.map(it => this._labelDisplayFn(it)) : this._labels).join(" -- ").toLowerCase();
+			if (this._labels) return this._doUpdateLabelSearchCache();
+			this._labelSearchCache = null;
 		};
 		this._addHook("state", "curMin", hkUpdateLabelSearchCache);
 		this._addHook("state", "curMax", hkUpdateLabelSearchCache);
 		hkUpdateLabelSearchCache();
 
-		this._$slider = ComponentUiUtil.$getSliderRange(this, getSliderOpts()).appendTo($wrpSlider);
+		this._slider = new ComponentUiUtil.RangeSlider({comp: this, ...getSliderOpts()});
+		$wrpSlider.append(this._slider.get());
 		// endregion
 
 		// region Dropdowns
@@ -2765,7 +2827,7 @@ class RangeFilter extends FilterBase {
 		handleLimitUpdate();
 
 		if (opts.isMulti) {
-			this._$slider.addClass("ve-grow");
+			this._slider.get().classList.add("ve-grow");
 			$wrpSlider.addClass("ve-grow");
 			$wrpDropdowns.addClass("ve-grow");
 
@@ -2832,16 +2894,16 @@ class RangeFilter extends FilterBase {
 
 				this._$btnMiniEq
 					.attr("state", this._state.min === this._state.curMin && this._state.max === this._state.curMax ? FilterBox._PILL_STATES[0] : FilterBox._PILL_STATES[1])
-					.text(`${this.header} = ${this._labels ? this._labels[this._state.curMin] : this._state.curMin}`);
+					.text(`${this.header} = ${this._getDisplayText(this._state.curMin, {isBeyondMax: this._isAllowGreater && this._state.curMin === this._state.max})}`);
 			} else {
 				if (this._state.min !== this._state.curMin) {
 					this._$btnMiniGt.attr("state", FilterBox._PILL_STATES[1])
-						.text(`${this.header} ≥ ${this._labels ? this._labels[this._state.curMin] : this._state.curMin}${this._suffix || ""}`);
+						.text(`${this.header} ≥ ${this._getDisplayText(this._state.curMin)}`);
 				} else this._$btnMiniGt.attr("state", FilterBox._PILL_STATES[0]);
 
 				if (this._state.max !== this._state.curMax) {
 					this._$btnMiniLt.attr("state", FilterBox._PILL_STATES[1])
-						.text(`${this.header} ≤ ${this._labels ? this._labels[this._state.curMax] : this._state.curMax}${this._suffix || ""}`);
+						.text(`${this.header} ≤ ${this._getDisplayText(this._state.curMax)}`);
 				} else this._$btnMiniLt.attr("state", FilterBox._PILL_STATES[0]);
 
 				this._$btnMiniEq.attr("state", FilterBox._PILL_STATES[0]);
@@ -2912,14 +2974,20 @@ class RangeFilter extends FilterBase {
 
 		if (this._labels) {
 			const slice = this._labels.slice(filterState.min, filterState.max + 1);
-			if (entryVal instanceof Array) {
-				return !!entryVal.find(it => slice.includes(it));
-			} else {
-				return slice.includes(entryVal);
-			}
+
+			// Special case for "isAllowGreater" filters, which assumes the labels are numerical values
+			if (this._isAllowGreater && filterState.max === this._state.max && entryVal > this._state.max) return true;
+
+			if (entryVal instanceof Array) return !!entryVal.find(it => slice.includes(it));
+			return slice.includes(entryVal);
 		} else {
-			// If any of the item's values are in the range, return true
-			if (entryVal instanceof Array) return entryVal.some(ev => this._toDisplay_isToDisplayEntry(filterState, ev));
+			if (entryVal instanceof Array) {
+				// If we require a full match on the range, take the lowest/highest input and test them against our min/max
+				if (this._isRequireFullRangeMatch) return filterState.min <= entryVal[0] && filterState.max >= entryVal.last();
+
+				// Otherwise, If any of the item's values are in the range, return true
+				return entryVal.some(ev => this._toDisplay_isToDisplayEntry(filterState, ev));
+			}
 			return this._toDisplay_isToDisplayEntry(filterState, entryVal);
 		}
 	}
@@ -2936,21 +3004,36 @@ class RangeFilter extends FilterBase {
 		if (item instanceof Array) return item.forEach(it => this.addItem(it));
 
 		if (this._labels) {
-			if (!this._labels.some(it => it === item)) {
-				this._labels.push(item);
-				// Fake an update to trigger label handling
-			}
+			if (!this._labels.some(it => it === item)) this._labels.push(item);
 
-			this._labelSearchCache = this._labels.join(" -- ").toLowerCase();
+			this._doUpdateLabelSearchCache();
 
+			// Fake an update to trigger label handling
 			this._addItem_addNumber(this._labels.length - 1);
 		} else {
 			this._addItem_addNumber(item);
 		}
 	}
 
+	_doUpdateLabelSearchCache () {
+		this._labelSearchCache = [...new Array(Math.max(0, this._max - this._min))]
+			.map((_, i) => i + this._min)
+			.map(val => this._getDisplayText(val, {isBeyondMax: this._isAllowGreater && val === this._state.max, isTooltip: true}))
+			.join(" -- ")
+			.toLowerCase();
+	}
+
 	_addItem_addNumber (number) {
 		if (number == null || isNaN(number)) return;
+
+		this._seenMin = Math.min(this._seenMin, number);
+		this._seenMax = Math.max(this._seenMax, number);
+
+		if (this._sparseValues && !this._sparseValues.includes(number)) {
+			this._sparseValues.push(number);
+			this._sparseValues.sort(SortUtil.ascSort);
+		}
+
 		if (number >= this._state.min && number <= this._state.max) return; // it's already in the range
 		if (this._state.min == null && this._state.max == null) this._state.min = this._state.max = number;
 		else {
@@ -3191,7 +3274,7 @@ class OptionsFilter extends FilterBase {
 
 			$wrpSummary
 				.title(`${cntNonDefault} non-default option${cntNonDefault === 1 ? "" : "s"} selected`)
-				.text(cntNonDefault)
+				.text(cntNonDefault);
 		};
 		this._addHook("meta", "isHidden", hkIsHidden);
 		hkIsHidden();
@@ -3234,7 +3317,7 @@ class OptionsFilter extends FilterBase {
 	}
 
 	getDefaultMeta () {
-		return {...OptionsFilter._DEFAULT_META, ...super.getDefaultMeta()}
+		return {...OptionsFilter._DEFAULT_META, ...super.getDefaultMeta()};
 	}
 
 	handleSearch (searchTerm) {
@@ -3463,7 +3546,7 @@ class MultiFilter extends FilterBase {
 		for (let i = this._filters.length - 1; i >= 0; --i) {
 			const f = this._filters[i];
 			if (f instanceof RangeFilter) {
-				results.push(f.toDisplay(boxState, entryValArr[i]))
+				results.push(f.toDisplay(boxState, entryValArr[i]));
 			} else {
 				const totals = boxState[f.header]._totals;
 

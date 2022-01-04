@@ -67,7 +67,7 @@ class FeatsPage extends ListPage {
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	getSublistItem (feat, pinId) {
+	pGetSublistItem (feat, ix) {
 		const hash = UrlUtil.autoEncodeHash(feat);
 
 		const $ele = $(`<div class="lst__row lst__row--sublist flex-col">
@@ -81,7 +81,7 @@ class FeatsPage extends ListPage {
 			.click(evt => ListUtil.sublist.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
-			pinId,
+			ix,
 			$ele,
 			feat.name,
 			{
@@ -99,11 +99,6 @@ class FeatsPage extends ListPage {
 		this._$pgContent.empty().append(RenderFeats.$getRenderedFeat(feat));
 
 		ListUtil.updateSelected();
-	}
-
-	async pDoLoadSubHash (sub) {
-		sub = this._filterBox.setFromSubHashes(sub);
-		await ListUtil.pSetFromSubHashes(sub);
 	}
 }
 

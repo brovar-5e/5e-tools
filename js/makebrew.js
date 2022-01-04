@@ -129,13 +129,13 @@ class PageUi {
 	__setStageSource () {
 		this._$wrpLoad.hide();
 		this._$wrpSource.show();
-		this._$wrpMain.hide()
+		this._$wrpMain.hide();
 	}
 
 	__setStageMain () {
 		this._$wrpLoad.hide();
 		this._$wrpSource.hide();
-		this._$wrpMain.show()
+		this._$wrpMain.show();
 	}
 
 	_doRebuildStageSource (options) {
@@ -211,14 +211,27 @@ class PageUi {
 				<option value="creatureBuilder">Creature</option>
 				<option value="legendaryGroupBuilder">Legendary Group</option>
 				<option value="spellBuilder">Spell</option>
+				<option value="none" class="italic">Everything Else?</option>
 			</select>
-		`).appendTo($wrpMode).change(() => {
-			this._setActiveBuilder(this._$selBuilderMode.val());
-		});
+		`)
+			.appendTo($wrpMode)
+			.change(() => {
+				const val = this._$selBuilderMode.val();
+				if (val === "none") {
+					InputUiUtil.pGetUserBoolean({
+						title: "Homebrew Builder Support",
+						htmlDescription: `<p>The Homebrew Builder only supports a limited set of entity types. For everything else, you will need to <a href="https://github.com/TheGiddyLimit/homebrew/blob/master/README.md" rel="noopener noreferrer">manually</a> create or convert content.</p>`,
+						isAlert: true,
+					});
+					this._$selBuilderMode.val(this._settings.activeBuilder);
+					return;
+				}
+				this._setActiveBuilder(val);
+			});
 
 		const $btnManageHomebrew = $(`<button class="btn btn-xs btn-info">Manage Homebrew</button>`)
 			.click(() => BrewUtil.manageBrew());
-		$$`<div class="sidemenu__row">${$btnManageHomebrew}</div>`.appendTo($mnu)
+		$$`<div class="sidemenu__row">${$btnManageHomebrew}</div>`.appendTo($mnu);
 
 		$mnu.append(PageUi.__$getSideMenuDivider(true));
 
@@ -315,7 +328,7 @@ PageUi._DEFAULT_ACTIVE_BUILDER = "creatureBuilder";
 
 class Builder extends ProxyBase {
 	static async pInitAll () {
-		return Promise.all(Builder._BUILDERS.map(b => b.pInit()))
+		return Promise.all(Builder._BUILDERS.map(b => b.pInit()));
 	}
 
 	/**
@@ -382,7 +395,7 @@ class Builder extends ProxyBase {
 			_m: {
 				isEntrySaved: this.isEntrySaved,
 			},
-		}
+		};
 	}
 
 	setStateFromLoaded () { throw new TypeError(`Unimplemented method!`); }
@@ -463,7 +476,7 @@ class Builder extends ProxyBase {
 				const $btnSettings = $(`<button class="btn btn-default btn-xs mb-2"><span class="glyphicon glyphicon-cog"/></button>`)
 					.click(() => RendererMarkdown.pShowSettingsModal());
 
-				return $$`<div class="flex-v-center btn-group">${$btnDownload}${$btnSettings}</div>`
+				return $$`<div class="flex-v-center btn-group">${$btnDownload}${$btnSettings}</div>`;
 			})();
 
 			this._$sideMenuWrpList = this._$sideMenuWrpList || $(`<div class="sidemenu__row flex-col">`);
@@ -477,7 +490,7 @@ class Builder extends ProxyBase {
 		// endregion
 
 		// Make our sidemenu internal wrapper visible
-		this._$wrpBtnLoadExisting.appendTo(this._ui.$wrpSideMenu)
+		this._$wrpBtnLoadExisting.appendTo(this._ui.$wrpSideMenu);
 		this._$sideMenuStageSaved.appendTo(this._ui.$wrpSideMenu);
 
 		this._ui.sidemenuRenderCache = new SidemenuRenderCache({
@@ -943,7 +956,7 @@ class BuilderUi {
 		return $$`<div class="mb-2 mkbru__row stripe-even"><${eleType} class="mkbru__wrp-row flex-v-center">
 		<span class="mr-2 mkbru__row-name ${options.title ? "help" : ""}" ${options.title ? `title="${options.title}"` : ""}>${name}</span>
 		${$ipt}
-		<${eleType}/></div>`
+		<${eleType}/></div>`;
 	}
 
 	static $getStateIptString (name, fnRender, state, options, ...path) {
@@ -982,7 +995,7 @@ class BuilderUi {
 		const $ipt = $(`<textarea class="form-control form-control--minimal resize-vertical" ${options.placeholder ? `placeholder="${options.placeholder}"` : ""}/>`)
 			.val(UiUtil.getEntriesAsText(initialState))
 			.change(() => {
-				const raw = $ipt.val().trim();
+				const raw = $ipt.val();
 				let out = raw || !options.nullable ? UiUtil.getTextAsEntries(raw) : null;
 
 				if (out && options.fnPostProcess) {
@@ -1190,7 +1203,7 @@ class BuilderUi {
 				rows[ix - 1] = myRow;
 				rows[ix] = cache;
 				cbUpdate();
-			})
+			});
 	}
 
 	static $getDownButton (cbUpdate, rows, myRow) {
@@ -1201,7 +1214,7 @@ class BuilderUi {
 				rows[ix + 1] = myRow;
 				rows[ix] = cache;
 				cbUpdate();
-			})
+			});
 	}
 
 	// FIXME refactor this to use one of the variant in utils-ui

@@ -62,7 +62,7 @@ class ProxyBase {
 				if (!(prop in object)) return true;
 				const prevValue = object[prop];
 				delete object[prop];
-				if (this.__hooksAll[hookProp]) this.__hooksAll[hookProp].forEach(hook => hook(prop, undefined, prevValue));
+				this._doFireHooksAll(hookProp, prop, undefined, prevValue);
 				if (this.__hooks[hookProp] && this.__hooks[hookProp][prop]) this.__hooks[hookProp][prop].forEach(hook => hook(prop, undefined, prevValue));
 				return true;
 			},
@@ -73,8 +73,8 @@ class ProxyBase {
 		if (object[prop] === value) return true;
 		const prevValue = object[prop];
 		object[prop] = value;
-		if (this.__hooksAll[hookProp]) this.__hooksAll[hookProp].forEach(hook => hook(prop, value, prevValue));
-		if (this.__hooks[hookProp] && this.__hooks[hookProp][prop]) this.__hooks[hookProp][prop].forEach(hook => hook(prop, value, prevValue));
+		this._doFireHooksAll(hookProp, prop, value, prevValue);
+		this._doFireHooks(hookProp, prop, value, prevValue);
 		return true;
 	}
 
@@ -86,6 +86,20 @@ class ProxyBase {
 		if (this.__hooksAll[hookProp]) for (const hook of this.__hooksAll[hookProp]) await hook(prop, value, prevValue);
 		if (this.__hooks[hookProp] && this.__hooks[hookProp][prop]) for (const hook of this.__hooks[hookProp][prop]) await hook(prop, value, prevValue);
 		return true;
+	}
+
+	_doFireHooks (hookProp, prop, value, prevValue) {
+		if (this.__hooks[hookProp] && this.__hooks[hookProp][prop]) this.__hooks[hookProp][prop].forEach(hook => hook(prop, value, prevValue));
+	}
+
+	_doFireHooksAll (hookProp, prop, value, prevValue) {
+		if (this.__hooksAll[hookProp]) this.__hooksAll[hookProp].forEach(hook => hook(prop, undefined, prevValue));
+	}
+
+	// ...Not to be confused with...
+
+	_doFireAllHooks (hookProp) {
+		if (this.__hooks[hookProp]) Object.entries(this.__hooks[hookProp]).forEach(([prop, hk]) => hk(prop));
 	}
 
 	/**
@@ -107,7 +121,7 @@ class ProxyBase {
 
 	_addHookAll (hookProp, hook) {
 		ProxyBase._addHookAll_to(this.__hooksAll, hookProp, hook);
-		if (this.__hooksAllTmp) ProxyBase._addHookAll_to(this.__hooksAllTmp, hookProp, hook)
+		if (this.__hooksAllTmp) ProxyBase._addHookAll_to(this.__hooksAllTmp, hookProp, hook);
 	}
 
 	static _addHookAll_to (obj, hookProp, hook) {
@@ -168,28 +182,31 @@ class ProxyBase {
 	_proxyAssign (hookProp, proxyProp, underProp, toObj, isOverwrite) {
 		const oldKeys = Object.keys(this[proxyProp]);
 		const nuKeys = new Set(Object.keys(toObj));
-		const dirtyKeys = new Set();
+		const dirtyKeyValues = {};
 
 		if (isOverwrite) {
 			oldKeys.forEach(k => {
 				if (!nuKeys.has(k) && this[underProp] !== undefined) {
+					const prevValue = this[proxyProp][k];
 					delete this[underProp][k];
-					dirtyKeys.add(k);
+					dirtyKeyValues[k] = prevValue;
 				}
 			});
 		}
 
 		nuKeys.forEach(k => {
 			if (!CollectionUtil.deepEquals(this[underProp][k], toObj[k])) {
+				const prevValue = this[proxyProp][k];
 				this[underProp][k] = toObj[k];
-				dirtyKeys.add(k);
+				dirtyKeyValues[k] = prevValue;
 			}
 		});
 
-		dirtyKeys.forEach(k => {
-			if (this.__hooksAll[hookProp]) this.__hooksAll[hookProp].forEach(hk => hk(k, this[underProp][k]));
-			if (this.__hooks[hookProp] && this.__hooks[hookProp][k]) this.__hooks[hookProp][k].forEach(hk => hk(k, this[underProp][k]));
-		});
+		Object.entries(dirtyKeyValues)
+			.forEach(([k, prevValue]) => {
+				this._doFireHooksAll(hookProp, k, this[underProp][k], prevValue);
+				if (this.__hooks[hookProp] && this.__hooks[hookProp][k]) this.__hooks[hookProp][k].forEach(hk => hk(k, this[underProp][k], prevValue));
+			});
 	}
 
 	_proxyAssignSimple (hookProp, toObj, isOverwrite) {
@@ -206,7 +223,7 @@ class UiUtil {
 	 * @param [opts.min] Min allowed return value.
 	 * @param [opts.fallbackOnNaN] Return value if not a number.
 	 */
-	static strToInt (string, fallbackEmpty = 0, opts) { return UiUtil._strToNumber(string, fallbackEmpty, opts, true) }
+	static strToInt (string, fallbackEmpty = 0, opts) { return UiUtil._strToNumber(string, fallbackEmpty, opts, true); }
 
 	/**
 	 * @param string String to parse.
@@ -216,7 +233,7 @@ class UiUtil {
 	 * @param [opts.min] Min allowed return value.
 	 * @param [opts.fallbackOnNaN] Return value if not a number.
 	 */
-	static strToNumber (string, fallbackEmpty = 0, opts) { return UiUtil._strToNumber(string, fallbackEmpty, opts, false) }
+	static strToNumber (string, fallbackEmpty = 0, opts) { return UiUtil._strToNumber(string, fallbackEmpty, opts, false); }
 
 	static _strToNumber (string, fallbackEmpty = 0, opts, isInt) {
 		opts = opts || {};
@@ -252,39 +269,38 @@ class UiUtil {
 
 	static getEntriesAsText (entryArray) {
 		if (!entryArray || !entryArray.length) return "";
-		const lines = JSON.stringify(entryArray, null, 2)
-			.replace(/^\s*\[/, "").replace(/]\s*$/, "")
-			.split("\n")
-			.filter(it => it.trim())
+		if (!(entryArray instanceof Array)) return UiUtil.getEntriesAsText([entryArray]);
+
+		return entryArray
 			.map(it => {
-				const trim = it.replace(/^\s\s/, "");
-				const mQuotes = /^"(.*?)",?$/.exec(trim);
-				if (mQuotes) return mQuotes[1]; // if string, strip quotes
-				else return `  ${trim}`; // if object, indent
-			});
+				if (typeof it === "string" || typeof it === "number") return it;
 
-		let out = "";
-		const len = lines.length;
-		for (let i = 0; i < len; ++i) {
-			out += lines[i];
-
-			if (i < len - 1) {
-				out += "\n";
-				if (!lines[i].startsWith("  ")) out += "\n";
-			}
-		}
-		return out;
+				return JSON.stringify(it, null, 2)
+					.split("\n")
+					.map(it => `  ${it}`) // Indent non-string content
+				;
+			})
+			.flat()
+			.join("\n");
 	}
 
 	static getTextAsEntries (text) {
 		try {
-			const lines = [];
-			text.split("\n").filter(it => it.trim()).forEach(it => {
-				if (/^\s/.exec(it)) lines.push(it); // keep indented lines as-is
-				else lines.push(`"${it.replace(/"/g, `\\"`)}",`); // wrap strings
-			});
-			if (lines.length) lines[lines.length - 1] = lines.last().replace(/^(.*?),?$/, "$1"); // remove trailing comma
-			return JSON.parse(`[${lines.join("")}]`);
+			const lines = text
+				.split("\n")
+				.filter(it => it.trim())
+				.map(it => {
+					if (/^\s/.exec(it)) return it; // keep indented lines as-is
+					return `"${it.replace(/"/g, `\\"`)}",`; // wrap strings
+				})
+				.map(it => {
+					if (/[}\]]$/.test(it.trim())) return `${it},`; // Add trailing commas to closing `}`/`]`
+					return it;
+				});
+			const json = `[\n${lines.join("")}\n]`
+				// remove trailing commas
+				.replace(/(.*?)(,)(:?\s*]|\s*})/g, "$1$3");
+			return JSON.parse(json);
 		} catch (e) {
 			const lines = text.split("\n").filter(it => it.trim());
 			const slice = lines.join(" \\ ").substring(0, 30);
@@ -419,7 +435,7 @@ class UiUtil {
 
 				modalFooter,
 			].filter(Boolean),
-		}).appendTo(opts.isFullscreenModal ? overlayBlind : wrpOverlay)
+		}).appendTo(opts.isFullscreenModal ? overlayBlind : wrpOverlay);
 
 		wrpOverlay
 			.addEventListener("mouseup", evt => {
@@ -712,7 +728,7 @@ class ListUiUtil {
 				it.data.cbSel.checked = false;
 				it.ele.classList.remove("list-multi-selected");
 			}
-		})
+		});
 	}
 
 	static _getCb (item, opts) { return opts.fnGetCb ? opts.fnGetCb(item) : item.data.cbSel; }
@@ -782,7 +798,7 @@ class ListUiUtil {
 		elePreviewWrp.dataset.dataType = isFluff ? "fluff" : "stats";
 
 		if (!evt.shiftKey) {
-			Renderer.hover.$getHoverContent_stats(page, entity).appendTo(elePreviewWrpInner);
+			Renderer.hover.$getHoverContent_stats(page, entity, {isStatic: true}).appendTo(elePreviewWrpInner);
 			return;
 		}
 
@@ -824,7 +840,7 @@ class ListUiUtil {
 					const isSure = await InputUiUtil.pGetUserBoolean({
 						title: "Are You Sure?",
 						htmlDescription: `You are about to expand ${list.visibleItems.length} rows. This may seriously degrade performance.<br>Are you sure you want to continue?`,
-					})
+					});
 					if (!isSure) return;
 				}
 
@@ -881,7 +897,7 @@ class ProfUiUtil {
 			$ele: $btnCycle,
 			setState,
 			getState: () => state,
-		}
+		};
 	}
 }
 ProfUiUtil.PROF_TO_FULL = {
@@ -953,15 +969,7 @@ class TabUiUtilBase {
 				return renderTabMetas_standard(it, i);
 			}).filter(Boolean);
 
-			if ($parent) {
-				$$`<div class="flex-col w-100 h-100">
-					${$dispTabTitle}
-					<div class="flex w-100 h-100 min-h-0">
-						<div class="flex-col h-100 pt-2">${tabMetasOut.map(it => it.$btnTab)}</div>
-						<div class="flex-col w-100 h-100 min-w-0">${tabMetasOut.map(it => it.$wrpTab).filter(Boolean)}</div>
-					</div>
-				</div>`.appendTo($parent);
-			}
+			if ($parent) obj.__renderTabs_addToParent({$dispTabTitle, $parent, tabMetasOut});
 
 			const hkActiveTab = () => {
 				tabMetasOut.forEach(it => {
@@ -986,6 +994,17 @@ class TabUiUtilBase {
 			};
 
 			return tabMetasOut;
+		};
+
+		obj.__renderTabs_addToParent = function ({$dispTabTitle, $parent, tabMetasOut}) {
+			const hasBorder = tabMetasOut.some(it => it.hasBorder);
+			$$`<div class="flex-col w-100 h-100">
+				${$dispTabTitle}
+				<div class="flex-col w-100 h-100 min-h-0">
+					<div class="flex ${hasBorder ? `ui-tab__wrp-tab-heads--border` : ""}">${tabMetasOut.map(it => it.$btnTab)}</div>
+					<div class="flex w-100 h-100 min-h-0">${tabMetasOut.map(it => it.$wrpTab).filter(Boolean)}</div>
+				</div>
+			</div>`.appendTo($parent);
 		};
 
 		obj._resetTabs = function ({tabGroup = TabUiUtilBase._DEFAULT_TAB_GROUP} = {}) {
@@ -1063,25 +1082,42 @@ TabUiUtilBase.TabMeta = class {
 		this.type = type;
 		this.buttons = buttons;
 	}
-}
+};
 
 class TabUiUtil extends TabUiUtilBase {
 	static decorate (obj) {
 		super.decorate(obj);
 
 		obj.__$getBtnTab = function ({tabMeta, _propProxy, propActive, ixTab}) {
-			return $(`<button class="btn btn-default ui-tab__btn-tab-head">${tabMeta.name.qq()}</button>`)
+			return $(`<button class="btn btn-default ui-tab__btn-tab-head ${tabMeta.isHeadHidden ? "ve-hidden" : ""}">${tabMeta.name.qq()}</button>`)
 				.click(() => obj[_propProxy][propActive] = ixTab);
 		};
 
 		obj.__$getWrpTab = function ({tabMeta}) {
-			return $(`<div class="ui-tab__wrp-tab-body flex-col ve-hidden ${tabMeta.hasBorder ? "ui-tab__wrp-tab-body--border" : ""} ${tabMeta.hasBackground ? "ui-tab__wrp-tab-body--background" : ""}"></div>`)
+			return $(`<div class="ui-tab__wrp-tab-body flex-col ve-hidden ${tabMeta.hasBorder ? "ui-tab__wrp-tab-body--border" : ""} ${tabMeta.hasBackground ? "ui-tab__wrp-tab-body--background" : ""}"></div>`);
 		};
 
 		obj.__renderTypedTabMeta = function ({tabMeta, ixTab}) {
 			switch (tabMeta.type) {
+				case "buttons": return obj.__renderTypedTabMeta_buttons({tabMeta, ixTab});
 				default: throw new Error(`Unhandled tab type "${tabMeta.type}"`);
 			}
+		};
+
+		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab}) {
+			const $btns = tabMeta.buttons.map((meta, j) => {
+				const $btn = $(`<button class="btn ui-tab__btn-tab-head ${meta.type ? `btn-${meta.type}` : "btn-primary"}" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`)
+					.click(evt => meta.pFnClick(evt, $btn));
+				return $btn;
+			});
+
+			const $btnTab = $$`<div class="btn-group flex-v-right flex-h-right ml-2 w-100">${$btns}</div>`;
+
+			return {
+				...tabMeta,
+				ix: ixTab,
+				$btnTab,
+			};
 		};
 
 		obj.__$getDispTabTitle = function () { return null; };
@@ -1092,8 +1128,9 @@ TabUiUtil.TabMeta = class extends TabUiUtilBase.TabMeta {
 		super(opts);
 		this.hasBorder = opts.hasBorder;
 		this.hasBackground = opts.hasBackground;
+		this.isHeadHidden = opts.isHeadHidden;
 	}
-}
+};
 
 class TabUiUtilSide extends TabUiUtilBase {
 	static decorate (obj) {
@@ -1108,6 +1145,16 @@ class TabUiUtilSide extends TabUiUtilBase {
 			return $(`<div class="flex-col w-100 h-100 ui-tab-side__wrp-tab px-3 py-2 overflow-y-auto"></div>`);
 		};
 
+		obj.__renderTabs_addToParent = function ({$dispTabTitle, $parent, tabMetasOut}) {
+			$$`<div class="flex-col w-100 h-100">
+				${$dispTabTitle}
+				<div class="flex w-100 h-100 min-h-0">
+					<div class="flex-col h-100 pt-2">${tabMetasOut.map(it => it.$btnTab)}</div>
+					<div class="flex-col w-100 h-100 min-w-0">${tabMetasOut.map(it => it.$wrpTab).filter(Boolean)}</div>
+				</div>
+			</div>`.appendTo($parent);
+		};
+
 		obj.__renderTypedTabMeta = function ({tabMeta, ixTab}) {
 			switch (tabMeta.type) {
 				case "buttons": return obj.__renderTypedTabMeta_buttons({tabMeta, ixTab});
@@ -1117,7 +1164,7 @@ class TabUiUtilSide extends TabUiUtilBase {
 
 		obj.__renderTypedTabMeta_buttons = function ({tabMeta, ixTab}) {
 			const $btns = tabMeta.buttons.map((meta, j) => {
-				const $btn = $(`<button class="btn btn-primary btn-sm" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`)
+				const $btn = $(`<button class="btn ${meta.type ? `btn-${meta.type}` : "btn-primary"} btn-sm" ${meta.title ? `title="${meta.title.qq()}"` : ""}>${meta.html}</button>`)
 					.click(evt => meta.pFnClick(evt, $btn));
 
 				if (j === tabMeta.buttons.length - 1) $btn.addClass(`br-0 btr-0 bbr-0`);
@@ -1419,7 +1466,7 @@ class SearchWidget {
 
 	get $wrpSearch () {
 		if (!this._$rendered) this._render();
-		return this._$rendered
+		return this._$rendered;
 	}
 
 	__showMsgInputRequired () {
@@ -1428,7 +1475,7 @@ class SearchWidget {
 	}
 
 	__showMsgWait () {
-		this._$wrpResults.empty().append(SearchWidget.getSearchLoading())
+		this._$wrpResults.empty().append(SearchWidget.getSearchLoading());
 	}
 
 	__showMsgNoResults () {
@@ -1449,12 +1496,12 @@ class SearchWidget {
 					return {
 						toProcess: filtered.slice(0, UiUtil.SEARCH_RESULTS_CAP),
 						resultCount: filtered.length,
-					}
+					};
 				} else {
 					return {
 						toProcess: results.slice(0, UiUtil.SEARCH_RESULTS_CAP),
 						resultCount: results.length,
-					}
+					};
 				}
 			} else {
 				// If the user has entered a search and we found nothing, return no results
@@ -1471,12 +1518,12 @@ class SearchWidget {
 					return {
 						toProcess: filtered.slice(0, UiUtil.SEARCH_RESULTS_CAP),
 						resultCount: filtered.length,
-					}
+					};
 				} else {
 					return {
 						toProcess: Object.values(index.documentStore.docs).slice(0, UiUtil.SEARCH_RESULTS_CAP).map(it => ({doc: it})),
 						resultCount: Object.values(index.documentStore.docs).length,
-					}
+					};
 				}
 			}
 		})();
@@ -1720,7 +1767,7 @@ class SearchWidget {
 
 	static async __pLoadItemIndex (isBasicIndex) {
 		const dataSource = async () => {
-			const allItems = await Renderer.item.pBuildList({isBlacklistVariants: true});
+			const allItems = await Renderer.item.pBuildList();
 			return {
 				item: allItems.filter(it => {
 					if (it.type === "GV") return false;
@@ -1944,6 +1991,7 @@ class InputUiUtil {
 	 * @param [opts.isGlobal] If the stored setting is global when "remember" options are passed.
 	 * @param [opts.fnRemember] Custom function to run when saving the "yes and remember" option.
 	 * @param [opts.isSkippable] If the prompt is skippable.
+	 * @param [opts.isAlert] If this prompt is just a notification/alert.
 	 * @return {Promise} A promise which resolves to true/false if the user chose, or null otherwise.
 	 */
 	static async pGetUserBoolean (opts) {
@@ -1970,7 +2018,7 @@ class InputUiUtil {
 			const $btnTrue = $(`<button class="btn btn-primary flex-v-center mr-3"><span class="glyphicon glyphicon-ok mr-2"></span><span>${opts.textYes || "OK"}</span></button>`)
 				.click(() => doClose(true, true));
 
-			const $btnFalse = $(`<button class="btn btn-default btn-sm flex-v-center"><span class="glyphicon glyphicon-remove mr-2"></span><span>${opts.textNo || "Cancel"}</span></button>`)
+			const $btnFalse = opts.isAlert ? null : $(`<button class="btn btn-default btn-sm flex-v-center"><span class="glyphicon glyphicon-remove mr-2"></span><span>${opts.textNo || "Cancel"}</span></button>`)
 				.click(() => doClose(true, false));
 
 			const $btnSkip = !opts.isSkippable ? null : $(`<button class="btn btn-default btn-sm ml-3"><span class="glyphicon glyphicon-forward"></span><span>${opts.textSkip || "Skip"}</span></button>`)
@@ -2040,7 +2088,7 @@ class InputUiUtil {
 						const out = {extraState: opts.fnGetExtraState()};
 						if (opts.isResolveItem) out.item = opts.values[ix];
 						else out.ix = ix;
-						resolve(out)
+						resolve(out);
 					} else resolve(opts.isResolveItem ? opts.values[ix] : ix);
 				},
 			});
@@ -2102,7 +2150,7 @@ class InputUiUtil {
 			$wrpList.addClass(`mb-1`);
 
 			const hkIsAcceptable = () => $btnOk.attr("disabled", !comp._state[propIsAcceptable]);
-			comp._addHookBase(propIsAcceptable, hkIsAcceptable)
+			comp._addHookBase(propIsAcceptable, hkIsAcceptable);
 			hkIsAcceptable();
 
 			const {$modalInner, doClose} = UiUtil.getShowModal({
@@ -2121,7 +2169,7 @@ class InputUiUtil {
 					else if (opts.values) resolve(ixs.map(ix => opts.values[ix]));
 					else if (opts.valueGroups) {
 						const allValues = opts.valueGroups.map(it => it.values).flat();
-						resolve(ixs.map(ix => allValues[ix]))
+						resolve(ixs.map(ix => allValues[ix]));
 					}
 				},
 			});
@@ -2198,15 +2246,32 @@ class InputUiUtil {
 	 * @param [opts.autocomplete] Array of autocomplete strings. REQUIRES INCLUSION OF THE TYPEAHEAD LIBRARY.
 	 * @param [opts.isCode] If the text is code.
 	 * @param [opts.isSkippable] If the prompt is skippable.
+	 * @param [opts.fnIsValid] A function which checks if the current input is valid, and prevents the user from
+	 *        submitting the value if it is.
+	 * @param [opts.$elePost] Element to add below the input.
+	 * @param [opts.cbPostRender] Callback to call after rendering the modal
 	 * @return {Promise<String>} A promise which resolves to the string if the user entered one, or null otherwise.
 	 */
 	static pGetUserString (opts) {
 		opts = opts || {};
+
+		const propValue = "text";
+		const comp = BaseComponent.fromObject({
+			[propValue]: opts.default || "",
+			isValid: true,
+		});
+
 		return new Promise(resolve => {
-			const $iptStr = $(`<input class="form-control mb-2" type="text">`)
-				.val(opts.default)
+			const $iptStr = ComponentUiUtil.$getIptStr(
+				comp,
+				propValue,
+				{
+					html: `<input class="form-control mb-2" type="text">`,
+					autocomplete: opts.autocomplete,
+				},
+			)
 				.keydown(async evt => {
-					if (evt.key === "Escape") { $iptStr.blur(); return; }
+					if (evt.key === "Escape") return; // Already handled
 
 					if (opts.autocomplete) {
 						// prevent double-binding the return key if we have autocomplete enabled
@@ -2214,13 +2279,26 @@ class InputUiUtil {
 						if ($modalInner.find(`.typeahead.dropdown-menu`).is(":visible")) return;
 					}
 					// return key
-					if (evt.which === 13) doClose(true);
+					if (evt.key === "Enter") doClose(true);
 					evt.stopPropagation();
 				});
 			if (opts.isCode) $iptStr.addClass("code");
-			if (opts.autocomplete && opts.autocomplete.length) $iptStr.typeahead({source: opts.autocomplete});
+
+			if (opts.fnIsValid) {
+				const hkText = () => comp._state.isValid = !comp._state.text.trim() || !!opts.fnIsValid(comp._state.text);
+				comp._addHookBase(propValue, hkText);
+				hkText();
+
+				const hkIsValid = () => $iptStr.toggleClass("form-control--error", !comp._state.isValid);
+				comp._addHookBase("isValid", hkIsValid);
+				hkIsValid();
+			}
+
 			const $btnOk = $(`<button class="btn btn-primary mr-2">OK</button>`)
-				.click(() => doClose(true));
+				.click(() => {
+					if (!comp._state.isValid) return JqueryUtil.doToast({content: `Please enter valid input!`, type: "warning"});
+					return doClose(true);
+				});
 			const $btnCancel = $(`<button class="btn btn-default">Cancel</button>`)
 				.click(() => doClose(false));
 			const $btnSkip = !opts.isSkippable ? null : $(`<button class="btn btn-default ml-3">Skip</button>`)
@@ -2236,9 +2314,18 @@ class InputUiUtil {
 				},
 			});
 			$iptStr.appendTo($modalInner);
+			if (opts.$elePost) opts.$elePost.appendTo($modalInner);
 			$$`<div class="flex-v-center flex-h-right pb-1 px-1">${$btnOk}${$btnCancel}${$btnSkip}</div>`.appendTo($modalInner);
 			$iptStr.focus();
 			$iptStr.select();
+
+			if (opts.cbPostRender) {
+				opts.cbPostRender({
+					comp,
+					$iptStr,
+					propValue,
+				});
+			}
 		});
 	}
 
@@ -2414,7 +2501,7 @@ class InputUiUtil {
 					.css({
 						width: (CONTROLS_RADIUS * 2) + BTN_STEP_SIZE + BORDER_PAD,
 						height: (CONTROLS_RADIUS * 2) + BTN_STEP_SIZE + BORDER_PAD,
-					})
+					});
 			})() : null;
 
 			const $btnOk = $(`<button class="btn btn-primary mr-2">OK</button>`)
@@ -2648,7 +2735,7 @@ class DragReorderUiUtil {
 	static $getDragPad2 ($fnGetRow, $parent, parent) {
 		const {swapRowPositions, $children, $getChildren} = parent;
 		const nxtOpts = {$parent, swapRowPositions, $children, $getChildren};
-		return this.$getDragPadOpts($fnGetRow, nxtOpts)
+		return this.$getDragPadOpts($fnGetRow, nxtOpts);
 	}
 }
 
@@ -2844,7 +2931,17 @@ class BaseComponent extends ProxyBase {
 		this._proxyAssign("state", "_state", "__state", toState, true);
 	}
 
-	_getState () { return MiscUtil.copy(this.__state) }
+	_setStateValue (prop, value, {isForceTriggerHooks = true} = {}) {
+		if (this._state[prop] === value && !isForceTriggerHooks) return value;
+		// If the value is new, hooks will be run automatically
+		if (this._state[prop] !== value) return this._state[prop] = value;
+
+		this._doFireHooksAll("state", prop, value, value);
+		this._doFireHooks("state", prop, value, value);
+		return value;
+	}
+
+	_getState () { return MiscUtil.copy(this.__state); }
 
 	getPod () {
 		this.__pod = this.__pod || {
@@ -3063,7 +3160,7 @@ class BaseComponent extends ProxyBase {
 		this.__locks[lockName] = {
 			lock,
 			unlock,
-		}
+		};
 	}
 
 	async _pGate (lockName) {
@@ -3332,7 +3429,7 @@ class CompLayer extends ProxyBase {
 		return {
 			name: this._name,
 			data: MiscUtil.copy(this.__data),
-		}
+		};
 	}
 
 	static fromSavedState (component, savedState) { return new CompLayer(component, savedState.name, savedState.data); }
@@ -3388,7 +3485,7 @@ const MixinComponentHistory = compClass => class extends compClass {
 	_histAddExcludedProperties (stateCopy) {
 		Object.entries(this._state).forEach(([k, v]) => {
 			if (this._histPropBlacklist.has(k)) return stateCopy[k] = v;
-			if (this._histPropWhitelist && !this._histPropWhitelist.has(k)) stateCopy[k] = v
+			if (this._histPropWhitelist && !this._histPropWhitelist.has(k)) stateCopy[k] = v;
 		});
 	}
 
@@ -3431,6 +3528,56 @@ const MixinComponentHistory = compClass => class extends compClass {
 		this._isHistDisabled = lastHistDisabled;
 	}
 };
+
+// region Globally-linked state components
+const MixinComponentGlobalState = compClass => class extends compClass {
+	constructor () {
+		super(...arguments);
+
+		// Point our proxy at the singleton `__stateGlobal` object
+		this._stateGlobal = this._getProxy("stateGlobal", MixinComponentGlobalState._Singleton.__stateGlobal);
+
+		// Load the singleton's state, then fire all our hooks once it's ready
+		MixinComponentGlobalState._Singleton._pLoadState()
+			.then(() => {
+				this._doFireHooksAll("stateGlobal");
+				this._doFireAllHooks("stateGlobal");
+				this._addHookAll("stateGlobal", MixinComponentGlobalState._Singleton._pSaveStateDebounced);
+			});
+	}
+
+	get __stateGlobal () { return MixinComponentGlobalState._Singleton.__stateGlobal; }
+
+	_addHookGlobal (prop, hook) {
+		return this._addHook("stateGlobal", prop, hook);
+	}
+};
+
+MixinComponentGlobalState._Singleton = class {
+	static async _pSaveState () {
+		return StorageUtil.pSet(VeCt.STORAGE_GLOBAL_COMPONENT_STATE, MiscUtil.copy(MixinComponentGlobalState._Singleton.__stateGlobal));
+	}
+
+	static async _pLoadState () {
+		if (MixinComponentGlobalState._Singleton._pLoadingState) return MixinComponentGlobalState._Singleton._pLoadingState;
+		return MixinComponentGlobalState._Singleton._pLoadingState = MixinComponentGlobalState._Singleton._pLoadState_();
+	}
+
+	static async _pLoadState_ () {
+		Object.assign(MixinComponentGlobalState._Singleton.__stateGlobal, (await StorageUtil.pGet(VeCt.STORAGE_GLOBAL_COMPONENT_STATE)) || {});
+	}
+
+	static _getDefaultStateGlobal () {
+		return {
+			isUseSpellPoints: false,
+		};
+	}
+};
+MixinComponentGlobalState._Singleton.__stateGlobal = {...MixinComponentGlobalState._Singleton._getDefaultStateGlobal()};
+MixinComponentGlobalState._Singleton._pSaveStateDebounced = MiscUtil.debounce(MixinComponentGlobalState._Singleton._pSaveState.bind(MixinComponentGlobalState._Singleton), 100);
+MixinComponentGlobalState._Singleton._pLoadingState = null;
+
+// endregion
 
 class ComponentUiUtil {
 	static trackHook (hooks, prop, hook) {
@@ -3606,7 +3753,7 @@ class ComponentUiUtil {
 				$decorRight = ComponentUiUtil._$getDecor(component, prop, $ipt, opts.decorationRight, "right", opts);
 			}
 
-			out.$wrp = $$`<div class="relative w-100">${$ipt}${$decorLeft}${$decorRight}</div>`
+			out.$wrp = $$`<div class="relative w-100">${$ipt}${$decorLeft}${$decorRight}</div>`;
 		}
 
 		return out;
@@ -3741,7 +3888,7 @@ class ComponentUiUtil {
 		component._addHook(stateName, prop, hk);
 		hk();
 
-		return btn
+		return btn;
 	}
 
 	/**
@@ -3776,19 +3923,31 @@ class ComponentUiUtil {
 	 * @param [opts] Options Object.
 	 * @param [opts.$ele] Element to use.
 	 * @param [opts.asMeta] If a meta-object should be returned containing the hook and the input.
+	 * @param [opts.displayNullAsIndeterminate]
 	 * @return {JQuery}
 	 */
 	static $getCbBool (component, prop, opts) {
 		opts = opts || {};
 
-		const $cb = (opts.$ele || $(`<input type="checkbox">`))
-			.keydown(evt => {
-				if (evt.key === "Escape") $cb.blur();
-			})
-			.change(() => component._state[prop] = $cb.prop("checked"));
-		const hook = () => $cb.prop("checked", !!component._state[prop]);
+		const cb = e_({
+			tag: "input",
+			type: "checkbox",
+			keydown: evt => {
+				if (evt.key === "Escape") cb.blur();
+			},
+			change: () => {
+				component._state[prop] = cb.checked;
+			},
+		});
+
+		const hook = () => {
+			cb.checked = !!component._state[prop];
+			if (opts.displayNullAsIndeterminate) cb.indeterminate = component._state[prop] == null;
+		};
 		component._addHookBase(prop, hook);
 		hook();
+
+		const $cb = $(cb);
 
 		return opts.asMeta ? ({$cb, unhook: () => component._removeHookBase(prop, hook)}) : $cb;
 	}
@@ -3954,7 +4113,7 @@ class ComponentUiUtil {
 			if (comp._state[prop] == null) $iptDisplay.addClass("italic").addClass("ve-muted").val(opts.displayNullAs || "\u2014");
 			else $iptDisplay.removeClass("italic").removeClass("ve-muted").val(opts.fnDisplay ? opts.fnDisplay(comp._state[prop]) : comp._state[prop]);
 
-			metaOptions.forEach(it => it.$ele.removeClass("active"))
+			metaOptions.forEach(it => it.$ele.removeClass("active"));
 			const metaActive = metaOptions.find(it => it.value == null ? comp._state[prop] == null : it.value === comp._state[prop]);
 			if (metaActive) metaActive.$ele.addClass("active");
 		};
@@ -3989,9 +4148,10 @@ class ComponentUiUtil {
 	 * @param [opts.displayNullAs] If null values are allowed, display them as this string.
 	 * @param [opts.asMeta] If a meta-object should be returned containing the hook and the select.
 	 * @param [opts.propProxy] Proxy prop.
+	 * @param [opts.isSetIndexes] If the index of the selected item should be set as state, rather than the item itself.
 	 */
-	static $getSelEnum (component, prop, {values, $ele, html, isAllowNull, fnDisplay, displayNullAs, asMeta, propProxy = "state"} = {}) {
-		const _propProxy = `_${propProxy}`
+	static $getSelEnum (component, prop, {values, $ele, html, isAllowNull, fnDisplay, displayNullAs, asMeta, propProxy = "state", isSetIndexes = false} = {}) {
+		const _propProxy = `_${propProxy}`;
 
 		let values_;
 
@@ -4001,12 +4161,32 @@ class ComponentUiUtil {
 
 		$sel.change(() => {
 			const ix = Number($sel.val());
-			if (~ix) component[_propProxy][prop] = values_[ix];
-			else {
-				if (isAllowNull) component[_propProxy][prop] = null;
-				else component[_propProxy][prop] = values_[0];
-			}
+			if (~ix) return void (component[_propProxy][prop] = isSetIndexes ? ix : values_[ix]);
+
+			if (isAllowNull) return void (component[_propProxy][prop] = null);
+			component[_propProxy][prop] = isSetIndexes ? 0 : values_[0];
 		});
+
+		// If the new value list doesn't contain our current value, reset our current value
+		const setValues_handleResetOnMissing = ({isResetOnMissing, nxtValues}) => {
+			if (!isResetOnMissing) return;
+
+			if (component[_propProxy][prop] == null) return;
+
+			if (isSetIndexes) {
+				if (component[_propProxy][prop] >= 0 && component[_propProxy][prop] < nxtValues.length) {
+					if (isAllowNull) return component[_propProxy][prop] = null;
+					return component[_propProxy][prop] = 0;
+				}
+
+				return;
+			}
+
+			if (!nxtValues.includes(component[_propProxy][prop])) {
+				if (isAllowNull) return component[_propProxy][prop] = null;
+				return component[_propProxy][prop] = nxtValues[0];
+			}
+		};
 
 		const setValues = (nxtValues, {isResetOnMissing = false} = {}) => {
 			if (CollectionUtil.deepEquals(values_, nxtValues)) return;
@@ -4016,18 +4196,18 @@ class ComponentUiUtil {
 			if (isAllowNull) { const opt = document.createElement("option"); opt.value = "-1"; opt.text = displayNullAs || "\u2014"; $sel.append(opt); }
 			values_.forEach((it, i) => { const opt = document.createElement("option"); opt.value = `${i}`; opt.text = fnDisplay ? fnDisplay(it) : it; $sel.append(opt); });
 
-			if (isResetOnMissing) {
-				// If the new value list doesn't contain our current value, reset our current value
-				if (component[_propProxy][prop] != null && !nxtValues.includes(component[_propProxy][prop])) {
-					if (isAllowNull) return component[_propProxy][prop] = null;
-					else return component[_propProxy][prop] = nxtValues[0];
-				}
-			}
+			setValues_handleResetOnMissing({isResetOnMissing, nxtValues});
 
 			hook();
 		};
 
 		const hook = () => {
+			if (isSetIndexes) {
+				const ix = component[_propProxy][prop] == null ? -1 : component[_propProxy][prop];
+				$sel.val(`${ix}`);
+				return;
+			}
+
 			const searchFor = component[_propProxy][prop] === undefined ? null : component[_propProxy][prop];
 			// Null handling is done in change handler
 			const ix = values_.indexOf(searchFor);
@@ -4199,6 +4379,8 @@ class ComponentUiUtil {
 	 * @param [opts.fnDisplay] Function which takes a value and returns display text.
 	 * @param [opts.required] Values which are required.
 	 * @param [opts.ixsRequired] Indexes of values which are required.
+	 * @param [opts.isSearchable] If a search input should be created.
+	 * @param [opts.fnGetSearchText] Function which takes a value and returns search text.
 	 */
 	static getMetaWrpMultipleChoice (comp, prop, opts) {
 		opts = opts || {};
@@ -4207,6 +4389,7 @@ class ComponentUiUtil {
 		const rowMetas = [];
 		const $eles = [];
 		const ixsSelectionOrder = [];
+		const $elesSearchable = {};
 
 		const propIsAcceptable = this.getMetaWrpMultipleChoice_getPropIsAcceptable(prop);
 		const propPulse = this.getMetaWrpMultipleChoice_getPropPulse(prop);
@@ -4227,7 +4410,7 @@ class ComponentUiUtil {
 				const $wrpName = $$`<div class="split-v-center py-1">
 					<div class="flex-v-center"><span class="mr-2">‒</span><span>${group.name}</span></div>
 					${opts.valueGroupSplitControlsLookup?.[group.name]}
-				</div>`
+				</div>`;
 				$eles.push($wrpName);
 			}
 
@@ -4305,10 +4488,16 @@ class ComponentUiUtil {
 					},
 				});
 
-				$eles.push($$`<label class="flex-v-center py-1 stripe-even">
+				const $ele = $$`<label class="flex-v-center py-1 stripe-even">
 					<div class="col-1 flex-vh-center">${$cb}</div>
 					<div class="col-11 flex-v-center">${displayValue}</div>
-				</label>`);
+				</label>`;
+				$eles.push($ele);
+
+				if (opts.isSearchable) {
+					const searchText = `${opts.fnGetSearchText ? opts.fnGetSearchText(v, ixValueFrozen) : v}`.toLowerCase().trim();
+					($elesSearchable[searchText] = $elesSearchable[searchText] || []).push($ele);
+				}
 
 				ixValue++;
 			});
@@ -4320,10 +4509,29 @@ class ComponentUiUtil {
 
 		comp.__state[propIxMax] = ixValue;
 
+		let $iptSearch;
+		if (opts.isSearchable) {
+			const compSub = BaseComponent.fromObject({search: ""});
+			$iptSearch = ComponentUiUtil.$getIptStr(compSub, "search");
+			const hkSearch = () => {
+				const cleanSearch = compSub._state.search.trim().toLowerCase();
+				if (!cleanSearch) {
+					Object.values($elesSearchable).forEach($eles => $eles.forEach($ele => $ele.removeClass("ve-hidden")));
+					return;
+				}
+
+				Object.entries($elesSearchable)
+					.forEach(([searchText, $eles]) => $eles.forEach($ele => $ele.toggleVe(searchText.includes(cleanSearch))));
+			};
+			compSub._addHookBase("search", hkSearch);
+			hkSearch();
+		}
+
 		// Always return this as a "meta" object
 		const unhook = () => rowMetas.forEach(it => it.unhook());
 		return {
 			$ele: $$`<div class="flex-col w-100 overflow-y-auto">${$eles}</div>`,
+			$iptSearch,
 			rowMetas, // Return this to allow for creating custom UI
 			propIsAcceptable,
 			propPulse,
@@ -4386,11 +4594,38 @@ class ComponentUiUtil {
 	 * @param opts.propCurMin
 	 * @param [opts.propCurMax]
 	 * @param [opts.fnDisplay] Value display function.
+	 * @param [opts.fnDisplayTooltip]
+	 * @param [opts.sparseValues]
 	 */
 	static $getSliderRange (comp, opts) {
 		opts = opts || {};
 		const slider = new ComponentUiUtil.RangeSlider({comp, ...opts});
 		return slider.$get();
+	}
+
+	static $getSliderNumber (
+		comp,
+		prop,
+		{
+			min,
+			max,
+			step,
+			$ele,
+			asMeta,
+		} = {},
+	) {
+		const $slider = ($ele || $(`<input type="range">`))
+			.change(() => comp._state[prop] = Number($slider.val()));
+
+		if (min != null) $slider.attr("min", min);
+		if (max != null) $slider.attr("max", max);
+		if (step != null) $slider.attr("step", step);
+
+		const hk = () => $slider.val(comp._state[prop]);
+		comp._addHookBase(prop, hk);
+		hk();
+
+		return asMeta ? ({$slider, unhook: () => comp._removeHookBase(prop, hk)}) : $slider;
 	}
 }
 ComponentUiUtil.RangeSlider = class {
@@ -4402,6 +4637,8 @@ ComponentUiUtil.RangeSlider = class {
 			propCurMin,
 			propCurMax,
 			fnDisplay,
+			fnDisplayTooltip,
+			sparseValues,
 		},
 	) {
 		this._comp = comp;
@@ -4410,6 +4647,8 @@ ComponentUiUtil.RangeSlider = class {
 		this._propCurMin = propCurMin;
 		this._propCurMax = propCurMax;
 		this._fnDisplay = fnDisplay;
+		this._fnDisplayTooltip = fnDisplayTooltip;
+		this._sparseValues = sparseValues;
 
 		this._isSingle = !this._propCurMax;
 
@@ -4518,49 +4757,66 @@ ComponentUiUtil.RangeSlider = class {
 
 		// region Hooks
 		const hkChangeValue = () => {
-			const min = this._compCpy._state[this._propMin]; const max = this._compCpy._state[this._propMax];
-
 			const curMin = this._compCpy._state[this._propCurMin];
-			const pctMin = ((curMin - min) / (max - min)) * 100;
+			const pctMin = this._getLeftPositionPercentage({value: curMin});
 			this._thumbLow.style.left = `calc(${pctMin}% - ${this.constructor._W_THUMB_PX / 2}px)`;
 			const toDisplayLeft = this._fnDisplay ? `${this._fnDisplay(curMin)}`.qq() : curMin;
-			if (!this._isSingle) dispValueLeft.html(toDisplayLeft);
+			const toDisplayLeftTooltip = this._fnDisplayTooltip ? `${this._fnDisplayTooltip(curMin)}`.qq() : null;
+			if (!this._isSingle) {
+				dispValueLeft
+					.html(toDisplayLeft)
+					.tooltip(toDisplayLeftTooltip);
+			}
 
 			if (!this._isSingle) {
 				this._dispTrackInner.style.left = `${pctMin}%`;
 
 				const curMax = this._compCpy._state[this._propCurMax];
-				const pctMax = ((curMax - min) / (max - min)) * 100;
+				const pctMax = this._getLeftPositionPercentage({value: curMax});
 				this._dispTrackInner.style.right = `${100 - pctMax}%`;
 				this._thumbHigh.style.left = `calc(${pctMax}% - ${this.constructor._W_THUMB_PX / 2}px)`;
-				dispValueRight.html(this._fnDisplay ? `${this._fnDisplay(curMax)}`.qq() : curMax);
+				dispValueRight
+					.html(this._fnDisplay ? `${this._fnDisplay(curMax)}`.qq() : curMax)
+					.tooltip(this._fnDisplayTooltip ? `${this._fnDisplayTooltip(curMax)}`.qq() : null);
 			} else {
-				dispValueRight.html(toDisplayLeft);
+				dispValueRight
+					.html(toDisplayLeft)
+					.tooltip(toDisplayLeftTooltip);
 			}
 		};
 
 		const hkChangeLimit = () => {
 			const pips = [];
 
-			const numPips = this._compCpy._state[this._propMax] - this._compCpy._state[this._propMin];
-			let pipIncrement = 1;
-			// Cap the number of pips
-			if (numPips > ComponentUiUtil.RangeSlider._MAX_PIPS) pipIncrement = Math.ceil(numPips / ComponentUiUtil.RangeSlider._MAX_PIPS);
+			if (!this._sparseValues) {
+				const numPips = this._compCpy._state[this._propMax] - this._compCpy._state[this._propMin];
+				let pipIncrement = 1;
+				// Cap the number of pips
+				if (numPips > ComponentUiUtil.RangeSlider._MAX_PIPS) pipIncrement = Math.ceil(numPips / ComponentUiUtil.RangeSlider._MAX_PIPS);
 
-			let i, len;
-			for (
-				i = this._compCpy._state[this._propMin], len = this._compCpy._state[this._propMax] + 1;
-				i < len;
-				i += pipIncrement
-			) {
-				pips.push(this._getWrpPip({
-					isMajor: i === this._compCpy._state[this._propMin] || i === (len - 1),
-					value: i,
-				}));
+				let i, len;
+				for (
+					i = this._compCpy._state[this._propMin], len = this._compCpy._state[this._propMax] + 1;
+					i < len;
+					i += pipIncrement
+				) {
+					pips.push(this._getWrpPip({
+						isMajor: i === this._compCpy._state[this._propMin] || i === (len - 1),
+						value: i,
+					}));
+				}
+
+				// Ensure the last pip is always rendered, even if we're reducing pips
+				if (i !== this._compCpy._state[this._propMax]) pips.push(this._getWrpPip({isMajor: true, value: this._compCpy._state[this._propMax]}));
+			} else {
+				const len = this._sparseValues.length;
+				this._sparseValues.forEach((val, i) => {
+					pips.push(this._getWrpPip({
+						isMajor: i === 0 || i === (len - 1),
+						value: val,
+					}));
+				});
 			}
-
-			// Ensure the last pip is always rendered, even if we're reducing pips
-			if (i !== this._compCpy._state[this._propMax]) pips.push(this._getWrpPip({isMajor: true, value: this._compCpy._state[this._propMax]}));
 
 			wrpPips.empty();
 			e_({
@@ -4621,10 +4877,7 @@ ComponentUiUtil.RangeSlider = class {
 	}
 
 	_getWrpPip ({isMajor, value} = {}) {
-		const min = this._compCpy._state[this._propMin]; const max = this._compCpy._state[this._propMax];
-		const pctValue = ((value - min) / (max - min)) * 100;
-		const posLeft = `${pctValue}%`;
-		const styleLeft = `left: ${posLeft};`;
+		const style = this._getWrpPip_getStyle({value});
 
 		const pip = e_({
 			tag: "div",
@@ -4635,6 +4888,7 @@ ComponentUiUtil.RangeSlider = class {
 			tag: "div",
 			clazz: "absolute ui-slidr__pip-label flex-vh-center ve-small no-wrap",
 			html: isMajor ? this._fnDisplay ? `${this._fnDisplay(value)}`.qq() : value : "",
+			title: isMajor && this._fnDisplayTooltip ? `${this._fnDisplayTooltip(value)}`.qq() : null,
 		});
 
 		return e_({
@@ -4644,8 +4898,23 @@ ComponentUiUtil.RangeSlider = class {
 				pip,
 				dispLabel,
 			],
-			style: styleLeft,
+			style,
 		});
+	}
+
+	_getWrpPip_getStyle ({value}) {
+		return `left: ${this._getLeftPositionPercentage({value})}%`;
+	}
+
+	_getLeftPositionPercentage ({value}) {
+		if (this._sparseValues) {
+			const ix = this._sparseValues.sort(SortUtil.ascSort).indexOf(value);
+			if (!~ix) throw new Error(`Value "${value}" was not in the list of sparse values!`);
+			return (ix / (this._sparseValues.length - 1)) * 100;
+		}
+
+		const min = this._compCpy._state[this._propMin]; const max = this._compCpy._state[this._propMax];
+		return ((value - min) / (max - min)) * 100;
 	}
 
 	/**
@@ -4660,9 +4929,16 @@ ComponentUiUtil.RangeSlider = class {
 	 * ```
 	 */
 	_getRelativeValue (evt, {trackOriginX, trackWidth}) {
+		const xEvt = EventUtil.getClientX(evt) - trackOriginX;
+
+		if (this._sparseValues) {
+			const ixMax = this._sparseValues.length - 1;
+			const rawVal = Math.round((xEvt / trackWidth) * ixMax);
+			return this._sparseValues[Math.min(ixMax, Math.max(0, rawVal))];
+		}
+
 		const min = this._compCpy._state[this._propMin]; const max = this._compCpy._state[this._propMax];
 
-		const xEvt = EventUtil.getClientX(evt) - trackOriginX;
 		const rawVal = min
 			+ Math.round(
 				(xEvt / trackWidth) * (max - min),
@@ -4691,7 +4967,7 @@ ComponentUiUtil.RangeSlider = class {
 		// Move the closest slider to this pip's location
 		const distToMin = Math.abs(this._compCpy._state[this._propCurMin] - value);
 		const distToMax = Math.abs(this._compCpy._state[this._propCurMax] - value);
-		return {distToMin, distToMax}
+		return {distToMin, distToMax};
 	}
 
 	_handleClick (evt, value) {
@@ -4727,7 +5003,7 @@ ComponentUiUtil.RangeSlider = class {
 		};
 		// endregion
 
-		this._handleMouseMove(evt)
+		this._handleMouseMove(evt);
 	}
 
 	_handleMouseUp () {
@@ -4784,7 +5060,7 @@ ComponentUiUtil.RangeSlider = class {
 			}
 		});
 	}
-}
+};
 ComponentUiUtil.RangeSlider._isInit = false;
 ComponentUiUtil.RangeSlider._ALL_SLIDERS = new Set();
 ComponentUiUtil.RangeSlider._W_THUMB_PX = 16;

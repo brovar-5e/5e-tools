@@ -267,6 +267,9 @@
 			"conditionInflict": [
 				"charmed"
 			],
+			"affectsCreatureType": [
+				"beast"
+			],
 			"miscTags": [
 				"SGT"
 			],
@@ -565,6 +568,20 @@
 			"savingThrow": [
 				"wisdom"
 			],
+			"affectsCreatureType": [
+				"aberration",
+				"beast",
+				"celestial",
+				"dragon",
+				"elemental",
+				"fey",
+				"fiend",
+				"giant",
+				"humanoid",
+				"monstrosity",
+				"ooze",
+				"plant"
+			],
 			"miscTags": [
 				"SGT"
 			],
@@ -676,6 +693,9 @@
 					]
 				}
 			],
+			"affectsCreatureType": [
+				"humanoid"
+			],
 			"miscTags": [
 				"MAC"
 			],
@@ -745,8 +765,8 @@
 						"Damage Type"
 					],
 					"colStyles": [
-						"col-1 text-center",
-						"col-11"
+						"col-2 text-center",
+						"col-10"
 					],
 					"rows": [
 						[
@@ -847,6 +867,9 @@
 			],
 			"spellAttack": [
 				"R"
+			],
+			"miscTags": [
+				"RO"
 			],
 			"areaTags": [
 				"ST"
@@ -1316,6 +1339,9 @@
 			"spellAttack": [
 				"R"
 			],
+			"miscTags": [
+				"LGT"
+			],
 			"areaTags": [
 				"ST"
 			],
@@ -1448,6 +1474,9 @@
 			],
 			"savingThrow": [
 				"constitution"
+			],
+			"miscTags": [
+				"LGTS"
 			],
 			"areaTags": [
 				"Y"
@@ -2244,6 +2273,12 @@
 			"name": "Find Greater Steed",
 			"source": "XGE",
 			"page": 156,
+			"additionalSources": [
+				{
+					"source": "FTD",
+					"page": 190
+				}
+			],
 			"level": 4,
 			"school": "C",
 			"time": [
@@ -2273,7 +2308,16 @@
 				"You control the mount in combat. While the mount is within 1 mile of you, you can communicate with it telepathically. While mounted on it, you can make any spell you cast that targets only you also target the mount.",
 				"The mount disappears temporarily when it drops to 0 hit points or when you dismiss it as an action. Casting this spell again re-summons the bonded mount, with all its hit points restored and any conditions removed.",
 				"You can't have more than one mount bonded by this spell or {@spell find steed} at the same time. As an action, you can release a mount from its bond, causing it to disappear permanently.",
-				"Whenever the mount disappears, it leaves behind any objects it was wearing or carrying."
+				"Whenever the mount disappears, it leaves behind any objects it was wearing or carrying.",
+				{
+					"type": "inset",
+					"source": "FTD",
+					"page": 190,
+					"name": "Dragonnel Steeds",
+					"entries": [
+						"With the DM's permission, a paladin can summon a spirit in the form of a {@creature dragonnel|ftd} using the find greater steed spell, which appears in {@i Xanathar's Guide to Everything}."
+					]
+				}
 			],
 			"miscTags": [
 				"PRM",
@@ -2687,6 +2731,20 @@
 					]
 				}
 			],
+			"affectsCreatureType": [
+				"aberration",
+				"beast",
+				"celestial",
+				"dragon",
+				"elemental",
+				"fey",
+				"fiend",
+				"giant",
+				"humanoid",
+				"monstrosity",
+				"ooze",
+				"plant"
+			],
 			"miscTags": [
 				"HL",
 				"SGT"
@@ -2753,6 +2811,7 @@
 				"constitution"
 			],
 			"miscTags": [
+				"LGT",
 				"SGT"
 			],
 			"areaTags": [
@@ -2967,6 +3026,7 @@
 				"dexterity"
 			],
 			"miscTags": [
+				"LGT",
 				"SGT"
 			],
 			"areaTags": [
@@ -3199,6 +3259,9 @@
 			],
 			"savingThrow": [
 				"dexterity"
+			],
+			"miscTags": [
+				"LGT"
 			],
 			"areaTags": [
 				"L"
@@ -5432,6 +5495,9 @@
 				},
 				"A creature that can see the sensor (such as one using {@spell see invisibility} or {@sense truesight}) sees a translucent image of the tormented humanoid whose soul you caged."
 			],
+			"affectsCreatureType": [
+				"humanoid"
+			],
 			"miscTags": [
 				"HL"
 			],
@@ -5469,7 +5535,10 @@
 			},
 			"components": {
 				"s": true,
-				"m": "a melee weapon worth at least 1 sp"
+				"m": {
+					"text": "a melee weapon worth at least 1 sp",
+					"cost": 10
+				}
 			},
 			"duration": [
 				{
@@ -5755,6 +5824,7 @@
 				}
 			],
 			"miscTags": [
+				"RO",
 				"SGT",
 				"SMN"
 			],
@@ -5882,6 +5952,13 @@
 			],
 			"savingThrow": [
 				"charisma"
+			],
+			"affectsCreatureType": [
+				"celestial",
+				"elemental",
+				"fey",
+				"fiend",
+				"undead"
 			],
 			"miscTags": [
 				"HL",

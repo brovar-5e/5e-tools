@@ -39,10 +39,10 @@
 				}
 			},
 			"cr": "3",
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Animated Table",
@@ -121,7 +121,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Antimagic Susceptibility",
 				"Charge",
@@ -139,6 +138,7 @@
 			"conditionInflict": [
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -159,7 +159,6 @@
 				"C",
 				"E"
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -174,7 +173,8 @@
 			],
 			"spellcastingTags": [
 				"I"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Bandagh",
@@ -275,7 +275,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"DU",
 				"X"
@@ -288,7 +287,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Bugbear Gardener",
@@ -310,7 +310,6 @@
 					}
 				}
 			},
-			"hasToken": true,
 			"damageTags": [
 				"P",
 				"S"
@@ -320,7 +319,8 @@
 				"RCH",
 				"RW",
 				"THW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Bugbear Lieutenant",
@@ -342,7 +342,6 @@
 					}
 				}
 			},
-			"hasToken": true,
 			"damageTags": [
 				"P",
 				"S"
@@ -352,7 +351,8 @@
 				"RCH",
 				"RW",
 				"THW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Calcryx",
@@ -425,10 +425,12 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"B",
 				"D"
+			],
+			"actionTags": [
+				"Breath Weapon"
 			],
 			"languageTags": [
 				"DR"
@@ -441,6 +443,7 @@
 				"AOE",
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -545,7 +548,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Charge"
 			],
@@ -571,6 +573,7 @@
 				"frightened",
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -600,8 +603,8 @@
 				}
 			],
 			"immune": null,
-			"hasToken": true,
-			"conditionInflict": []
+			"conditionInflict": [],
+			"hasToken": true
 		},
 		{
 			"name": "Cloud Giant Noble",
@@ -634,12 +637,12 @@
 					"source": "PHB"
 				}
 			},
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"H",
 				"X"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Dragonpriest",
@@ -676,8 +679,8 @@
 				"average": 30,
 				"formula": "8d10 + 40"
 			},
-			"hasToken": true,
-			"actionTags": []
+			"actionTags": [],
+			"hasToken": true
 		},
 		{
 			"name": "Dread Warrior",
@@ -761,7 +764,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Undead Fortitude"
 			],
@@ -783,6 +785,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -806,11 +809,11 @@
 					}
 				}
 			},
-			"hasToken": true,
 			"languageTags": [
 				"H",
 				"X"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Drow Commander",
@@ -983,7 +986,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Sneak Attack",
 				"Sunlight Sensitivity"
@@ -1006,6 +1008,10 @@
 				"RNG",
 				"RW"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1077,7 +1083,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -1094,6 +1099,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1117,10 +1123,10 @@
 					}
 				}
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Fey Ancestry"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Elder Black Pudding",
@@ -1160,10 +1166,10 @@
 			"senses": [
 				"darkvision 60 ft."
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Erky Timbers",
@@ -1252,7 +1258,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -1271,6 +1276,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1307,9 +1313,9 @@
 			],
 			"spellcasting": null,
 			"trait": null,
-			"hasToken": true,
 			"traitTags": [],
-			"spellcastingTags": []
+			"spellcastingTags": [],
+			"hasToken": true
 		},
 		{
 			"name": "Fire Giant Royal Headsman",
@@ -1380,11 +1386,11 @@
 			"immune": [
 				"fire"
 			],
-			"hasToken": true,
 			"damageTags": [
 				"B",
 				"S"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Flying Shield",
@@ -1403,8 +1409,8 @@
 				}
 			},
 			"action": null,
-			"hasToken": true,
-			"miscTags": []
+			"miscTags": [],
+			"hasToken": true
 		},
 		{
 			"name": "Four-Armed Gargoyle",
@@ -1493,7 +1499,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"False Appearance"
 			],
@@ -1512,7 +1517,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Frost Giant Servant",
@@ -1603,7 +1609,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amphibious"
 			],
@@ -1621,7 +1626,8 @@
 			],
 			"conditionInflict": [
 				"grappled"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Giant Ice Toad",
@@ -1699,7 +1705,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amphibious"
 			],
@@ -1725,6 +1730,7 @@
 				"grappled",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1789,7 +1795,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Water Breathing"
 			],
@@ -1808,7 +1813,8 @@
 			],
 			"conditionInflict": [
 				"stunned"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Giant Skeleton",
@@ -1904,7 +1910,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Magic Resistance",
 				"Turn Immunity"
@@ -1926,6 +1931,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -1991,7 +1997,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack",
 				"Swallow"
@@ -2009,7 +2014,8 @@
 				"grappled",
 				"prone",
 				"restrained"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Goblin Commoner",
@@ -2036,7 +2042,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -2044,7 +2049,8 @@
 				"C",
 				"GO",
 				"X"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Gorvan Ironheart",
@@ -2096,11 +2102,11 @@
 					}
 				}
 			},
-			"hasToken": true,
 			"damageTags": [
 				"P",
 				"S"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Greater Zombie",
@@ -2197,7 +2203,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Turn Resistance",
 				"Undead Fortitude"
@@ -2219,6 +2224,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2317,7 +2323,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -2336,6 +2341,7 @@
 				"RNG",
 				"RW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2396,7 +2402,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"senseTags": [
 				"D"
 			],
@@ -2406,6 +2411,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2548,7 +2554,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amphibious"
 			],
@@ -2564,7 +2569,8 @@
 			],
 			"conditionInflict": [
 				"grappled"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Huge Ochre Jelly",
@@ -2609,7 +2615,6 @@
 					"source": "PHB"
 				}
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -2620,7 +2625,8 @@
 				"C",
 				"E",
 				"X"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Jarl Grugnur",
@@ -2680,13 +2686,13 @@
 			],
 			"spellcasting": null,
 			"trait": null,
-			"hasToken": true,
 			"traitTags": [],
 			"damageTags": [
 				"B",
 				"S"
 			],
-			"spellcastingTags": []
+			"spellcastingTags": [],
+			"hasToken": true
 		},
 		{
 			"name": "Jot",
@@ -2831,7 +2837,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Sunlight Sensitivity"
 			],
@@ -2855,10 +2860,14 @@
 			"miscTags": [
 				"MW"
 			],
+			"conditionInflict": [
+				"poisoned"
+			],
 			"conditionInflictSpell": [
 				"invisible",
 				"unconscious"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -2940,7 +2949,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amphibious",
 				"False Appearance"
@@ -2963,7 +2971,8 @@
 			"conditionInflict": [
 				"grappled",
 				"restrained"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Kelpie",
@@ -3062,7 +3071,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amphibious",
 				"False Appearance"
@@ -3088,7 +3096,8 @@
 				"charmed",
 				"grappled",
 				"incapacitated"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Kelson Darktreader",
@@ -3103,7 +3112,6 @@
 					"source": "PHB"
 				}
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Fey Ancestry"
 			],
@@ -3114,7 +3122,8 @@
 				"C",
 				"E",
 				"X"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Kieren",
@@ -3172,7 +3181,6 @@
 				"Giant"
 			],
 			"cr": "11",
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"GI"
@@ -3181,7 +3189,8 @@
 				"B",
 				"F",
 				"S"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Kobold Commoner",
@@ -3207,7 +3216,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Pack Tactics",
 				"Sunlight Sensitivity"
@@ -3219,7 +3227,8 @@
 				"C",
 				"DR",
 				"X"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Kobold Elite",
@@ -3310,8 +3319,8 @@
 			},
 			"spellcasting": null,
 			"legendary": null,
-			"hasToken": true,
-			"spellcastingTags": []
+			"spellcastingTags": [],
+			"hasToken": true
 		},
 		{
 			"name": "Lumalia",
@@ -3444,7 +3453,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amphibious",
 				"Siege Monster"
@@ -3475,6 +3483,7 @@
 				"prone",
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -3589,7 +3598,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Ambusher",
 				"Shapechanger"
@@ -3608,7 +3616,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Nedylene",
@@ -3746,7 +3755,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amphibious"
 			],
@@ -3770,6 +3778,7 @@
 				"blinded",
 				"prone"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -3819,7 +3828,6 @@
 				"formula": "8d8 + 16"
 			},
 			"cr": "3",
-			"hasToken": true,
 			"actionTags": [
 				"Multiattack"
 			],
@@ -3827,6 +3835,7 @@
 				"P",
 				"S"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -3876,13 +3885,13 @@
 					"source": "DMG"
 				}
 			},
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"CS",
 				"GI",
 				"LF"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Ooze Master",
@@ -4056,7 +4065,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Spider Climb"
 			],
@@ -4084,7 +4092,8 @@
 				"frightened",
 				"poisoned",
 				"restrained"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Orc Commoner",
@@ -4098,7 +4107,6 @@
 					"source": "DMG"
 				}
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Aggressive"
 			],
@@ -4109,7 +4117,8 @@
 				"C",
 				"O",
 				"X"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Oussa",
@@ -4204,14 +4213,15 @@
 					}
 				}
 			},
-			"hasToken": true,
 			"actionTags": [
+				"Breath Weapon",
 				"Multiattack"
 			],
 			"damageTags": [
 				"L",
 				"P"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Reduced-Threat Beholder",
@@ -4329,12 +4339,12 @@
 					]
 				}
 			},
-			"hasToken": true,
 			"damageTags": [
 				"F",
 				"P",
 				"S"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Reduced-Threat Ettercap",
@@ -4348,12 +4358,12 @@
 					"source": "TftYP"
 				}
 			},
-			"hasToken": true,
 			"damageTags": [
 				"I",
 				"P",
 				"S"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Reduced-Threat Flesh Golem",
@@ -4395,11 +4405,11 @@
 					"source": "TftYP"
 				}
 			},
-			"hasToken": true,
 			"damageTags": [
 				"A",
 				"B"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Reduced-Threat Helmed Horror",
@@ -4489,10 +4499,10 @@
 					]
 				}
 			},
-			"hasToken": true,
 			"conditionInflict": [
 				"poisoned"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Reduced-Threat Owlbear",
@@ -4698,7 +4708,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"altArt": [
 				{
 					"name": "Sea Lion",
@@ -4719,6 +4728,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -4740,14 +4750,14 @@
 			"languages": [
 				"Common"
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C"
 			],
 			"damageTags": [
 				"A",
 				"B"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Sentient Ochre Jelly",
@@ -4767,10 +4777,10 @@
 			"languages": [
 				"Common"
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Shalendra Floshin",
@@ -4785,10 +4795,10 @@
 					"source": "PHB"
 				}
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Fey Ancestry"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Sharwyn Hucrele",
@@ -4894,7 +4904,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"DR",
@@ -4908,7 +4917,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Sir Braford",
@@ -4993,7 +5003,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C"
 			],
@@ -5002,7 +5011,8 @@
 			],
 			"miscTags": [
 				"MW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Siren",
@@ -5098,7 +5108,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amphibious",
 				"Magic Resistance"
@@ -5127,11 +5136,14 @@
 			"conditionInflictSpell": [
 				"charmed",
 				"invisible"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Snarla",
-			"group": "Lycanthropes",
+			"group": [
+				"Lycanthropes"
+			],
 			"isNpc": true,
 			"source": "TftYP",
 			"page": 102,
@@ -5278,7 +5290,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Keen Senses",
 				"Shapechanger"
@@ -5302,6 +5313,7 @@
 				"RW",
 				"THW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -5446,7 +5458,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Sunlight Sensitivity"
 			],
@@ -5468,10 +5479,14 @@
 				"RW",
 				"THW"
 			],
+			"conditionInflict": [
+				"invisible"
+			],
 			"conditionInflictSpell": [
 				"blinded",
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -5498,12 +5513,14 @@
 					]
 				}
 			],
-			"hasToken": true,
-			"actionTags": [],
+			"actionTags": [
+				"Breath Weapon"
+			],
 			"damageTags": [
 				"F"
 			],
-			"miscTags": []
+			"miscTags": [],
+			"hasToken": true
 		},
 		{
 			"name": "Tarul Var",
@@ -5712,7 +5729,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Legendary Resistances",
 				"Rejuvenation",
@@ -5741,6 +5757,7 @@
 			"conditionInflictSpell": [
 				"restrained"
 			],
+			"hasToken": true,
 			"hasFluff": true,
 			"hasFluffImages": true
 		},
@@ -5848,7 +5865,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amphibious",
 				"Spider Climb"
@@ -5871,6 +5887,7 @@
 				"MW",
 				"RCH"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -5972,7 +5989,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"languageTags": [
 				"C",
 				"OTH"
@@ -5987,7 +6003,8 @@
 				"MW",
 				"RW",
 				"THW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Thayan Warrior",
@@ -6072,7 +6089,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Pack Tactics"
 			],
@@ -6091,7 +6107,8 @@
 				"MW",
 				"RW",
 				"THW"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "The Keeper",
@@ -6141,11 +6158,11 @@
 				}
 			],
 			"trait": null,
-			"hasToken": true,
 			"damageTags": [
 				"B",
 				"S"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Therzt",
@@ -6160,7 +6177,6 @@
 					"source": "PHB"
 				}
 			},
-			"hasToken": true,
 			"traitTags": [
 				"Fey Ancestry",
 				"Sunlight Sensitivity"
@@ -6175,7 +6191,8 @@
 			],
 			"spellcastingTags": [
 				"I"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Thorn Slinger",
@@ -6235,7 +6252,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"False Appearance"
 			],
@@ -6252,7 +6268,8 @@
 			],
 			"conditionInflict": [
 				"grappled"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Tloques-Popolocas",
@@ -6390,7 +6407,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Regeneration",
 				"Shapechanger",
@@ -6418,6 +6434,7 @@
 			"conditionInflictSpell": [
 				"paralyzed"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		},
 		{
@@ -6563,7 +6580,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Amorphous",
 				"False Appearance"
@@ -6581,7 +6597,8 @@
 			"miscTags": [
 				"MW",
 				"RCH"
-			]
+			],
+			"hasToken": true
 		},
 		{
 			"name": "Xilonen",
@@ -6695,6 +6712,7 @@
 					}
 				}
 			},
+			"type": "giant",
 			"hasToken": true
 		},
 		{
@@ -6713,6 +6731,7 @@
 					}
 				}
 			},
+			"type": "giant",
 			"hasToken": true
 		},
 		{
@@ -6849,7 +6868,6 @@
 					]
 				}
 			],
-			"hasToken": true,
 			"traitTags": [
 				"Pack Tactics",
 				"Sunlight Sensitivity"
@@ -6870,6 +6888,7 @@
 			"miscTags": [
 				"MW"
 			],
+			"hasToken": true,
 			"hasFluff": true
 		}
 	]

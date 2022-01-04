@@ -116,19 +116,25 @@ class BookUtil {
 			BookUtil.$dispBook.append(Renderer.utils.getBorderTr());
 			this._showBookContent_renderNavButtons({isTop: true, ixChapter, bookId, data});
 			const textStack = [];
-			BookUtil._renderer.setFirstSection(true);
-			BookUtil._renderer.setLazyImages(true);
-			BookUtil._renderer.resetHeaderIndex();
+			BookUtil._renderer
+				.setFirstSection(true)
+				.setLazyImages(true)
+				.resetHeaderIndex()
+				.setHeaderIndexTableCaptions(true)
+				.setHeaderIndexImageTitles(true);
 			if (ixChapter === -1) {
 				BookUtil.curRender.allViewFirstTitleIndexes = [];
 				data.forEach(d => {
-					BookUtil.curRender.allViewFirstTitleIndexes.push(BookUtil._renderer.getHeaderIndex())
+					BookUtil.curRender.allViewFirstTitleIndexes.push(BookUtil._renderer.getHeaderIndex());
 					BookUtil._renderer.recursiveRender(d, textStack);
 				});
 			} else BookUtil._renderer.recursiveRender(data[ixChapter], textStack);
-			BookUtil.$dispBook.append(`<tr class="text"><td colspan="6" class="py-2 px-y">${Renderer.utils.getExcludedHtml(fromIndex, BookUtil.contentType, UrlUtil.getCurrentPage())}${textStack.join("")}</td></tr>`);
+			BookUtil.$dispBook.append(`<tr class="text"><td colspan="6" class="py-2 px-y">${Renderer.utils.getExcludedHtml({entity: fromIndex, dataProp: BookUtil.contentType, page: UrlUtil.getCurrentPage()})}${textStack.join("")}</td></tr>`);
 			Renderer.initLazyImageLoaders();
-			BookUtil._renderer.setLazyImages(false);
+			BookUtil._renderer
+				.setLazyImages(false)
+				.setHeaderIndexTableCaptions(false)
+				.setHeaderIndexImageTitles(false);
 			this._showBookContent_renderNavButtons({ixChapter, bookId, data});
 
 			BookUtil.$dispBook.append(Renderer.utils.getBorderTr());
@@ -158,7 +164,7 @@ class BookUtil {
 							const linkChapterIx = Number(mLink[1]);
 							const ele = $(`#pagecontent tr.text td`).children(`.${Renderer.HEAD_NEG_1}`)[linkChapterIx];
 							if (ele) ele.scrollIntoView();
-							else setTimeout(() => { throw new Error(`Failed to find header scroll target with index "${linkChapterIx}"`) });
+							else setTimeout(() => { throw new Error(`Failed to find header scroll target with index "${linkChapterIx}"`); });
 							return;
 						}
 					}
@@ -307,7 +313,7 @@ class BookUtil {
 		let $btnNext;
 		if (BookUtil.referenceId) {
 			$btnNext = $(`<button class="btn btn-xs btn-default bk__nav-head-foot-item">Next<span class="glyphicon glyphicon-chevron-right"/></button>`)
-				.click(() => this._showBookContent_goToPage({mod: 1, bookId, ixChapter}))
+				.click(() => this._showBookContent_goToPage({mod: 1, bookId, ixChapter}));
 		} else {
 			$btnNext = $(`<a href="#${this._showBookContent_goToPage({mod: 1, isGetHref: true, bookId, ixChapter})}" class="btn btn-xs btn-default bk__nav-head-foot-item">Next<span class="glyphicon glyphicon-chevron-right"/></a>`)
 				.click(() => MiscUtil.scrollPageTop());
@@ -342,7 +348,7 @@ class BookUtil {
 			let $btnNext;
 			if (BookUtil.referenceId) {
 				$btnNext = $(`<button class="btn btn-xxs btn-default"><span class="glyphicon glyphicon-chevron-right"/></button>`)
-					.click(() => this._showBookContent_goToPage({mod: 1, bookId, ixChapter}))
+					.click(() => this._showBookContent_goToPage({mod: 1, bookId, ixChapter}));
 			} else {
 				$btnNext = $(`<a href="#${this._showBookContent_goToPage({mod: 1, isGetHref: true, bookId, ixChapter})}" class="btn btn-xxs btn-default"><span class="glyphicon glyphicon-chevron-right"/></a>`)
 					.click(() => MiscUtil.scrollPageTop());
@@ -366,7 +372,7 @@ class BookUtil {
 			// In full-book mode, remove all highlights
 			BookUtil.curRender.$lnksChapter.forEach($lnk => $lnk.removeClass("bk__head-chapter--active"));
 			Object.values(BookUtil.curRender.$lnksHeader).forEach($lnks => {
-				$lnks.forEach($lnk => $lnk.removeClass("bk__head-section--active"))
+				$lnks.forEach($lnk => $lnk.removeClass("bk__head-section--active"));
 			});
 		} else {
 			// In regular chapter mode, add highlights to the appropriate section
@@ -503,7 +509,7 @@ class BookUtil {
 
 		// if it's homebrew
 		if (fromIndex && fromIndex.uniqueId) {
-			const brew = await BrewUtil.pAddBrewData()
+			const brew = await BrewUtil.pAddBrewData();
 			if (!brew[BookUtil.homebrewData]) return this._booksHashChange_handleNotFound({$contents, bookId});
 
 			const bookData = (brew[BookUtil.homebrewData] || []).find(bk => UrlUtil.encodeForHash(bk.id) === UrlUtil.encodeForHash(bookId));
@@ -515,14 +521,17 @@ class BookUtil {
 		return this._booksHashChange_handleNotFound({$contents, bookId});
 	}
 
-	static _booksHashChange_getCleanName (name) {
-		// prevent TftYP names from causing the header to wrap
-		return name.includes(Parser.SOURCE_JSON_TO_FULL[SRC_TYP]) ? name.replace(Parser.SOURCE_JSON_TO_FULL[SRC_TYP], Parser.sourceJsonToAbv(SRC_TYP)) : name;
+	static _booksHashChange_getCleanName (fromIndex) {
+		if (fromIndex.parentSource) {
+			const fullParentSource = Parser.sourceJsonToFull(fromIndex.parentSource);
+			return fromIndex.name.replace(new RegExp(`^${fullParentSource.escapeRegexp()}: `, "i"), `<span title="${Parser.sourceJsonToFull(fromIndex.parentSource).qq()}">${Parser.sourceJsonToAbv(fromIndex.parentSource).qq()}</span>: `);
+		}
+		return fromIndex.name;
 	}
 
 	static async _booksHashChange_pHandleFound ({fromIndex, homebrewData, bookId, hashParts, $contents}) {
 		document.title = `${fromIndex.name} - 5etools`;
-		$(`.book-head-header`).html(this._booksHashChange_getCleanName(fromIndex.name));
+		$(`.book-head-header`).html(this._booksHashChange_getCleanName(fromIndex));
 		$(`.book-head-message`).html("Browse content. Press F to find, and G to go to page.");
 		await this._pLoadChapter(fromIndex, bookId, hashParts, homebrewData, $contents);
 		NavBar.highlightCurrentPage();
@@ -594,11 +603,12 @@ class BookUtil {
 		});
 
 		$(document.body)
-			.on("keypress", (e) => {
-				if ((e.key !== "f" && e.key !== "g") || !EventUtil.noModifierKeys(e)) return;
-				if (EventUtil.isInInput(e)) return;
-				e.preventDefault();
-				BookUtil._showSearchBox(indexData, bookId, e.key === "g");
+			.on("keypress", (evt) => {
+				const key = EventUtil.getKeyIgnoreCapsLock(evt);
+				if ((key !== "f" && key !== "g") || !EventUtil.noModifierKeys(evt)) return;
+				if (EventUtil.isInInput(evt)) return;
+				evt.preventDefault();
+				BookUtil._showSearchBox(indexData, bookId, key === "g");
 			});
 
 		// region Mobile only "open find bar" buttons
@@ -675,10 +685,10 @@ class BookUtil {
 											$(`#pagecontent`)
 												.find(`p:containsInsensitive("${f.term}"), li:containsInsensitive("${f.term}"), td:containsInsensitive("${f.term}"), a:containsInsensitive("${f.term}")`)
 												.each((i, ele) => {
-													$(ele).html($(ele).html().replace(re, "<span class='temp highlight'>$&</span>"))
+													$(ele).html($(ele).html().replace(re, "<span class='temp highlight'>$&</span>"));
 												});
 										}
-									}, 15)
+									}, 15);
 								});
 
 								$ptPreviews.append(`<span>${f.previews[0]}</span>`);
@@ -769,7 +779,7 @@ class BookUtil {
 			<div class="bk-contents pl-4 ml-2">
 				${$eles}
 			</div>
-		</div>`
+		</div>`;
 	}
 
 	static getContentsSectionHeader (header) {
@@ -871,7 +881,7 @@ BookUtil._lastHighlight = null;
 
 BookUtil.Search = class {
 	static getResultHash (bookId, found) {
-		return `${UrlUtil.encodeForHash(bookId)}${HASH_PART_SEP}${~BookUtil.curRender.chapter ? found.ch : -1}${found.header ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(found.header)}${HASH_PART_SEP}${found.headerIndex}` : ""}`
+		return `${UrlUtil.encodeForHash(bookId)}${HASH_PART_SEP}${~BookUtil.curRender.chapter ? found.ch : -1}${found.header ? `${HASH_PART_SEP}${UrlUtil.encodeForHash(found.header)}${HASH_PART_SEP}${found.headerIndex}` : ""}`;
 	}
 
 	static doSearch (term, isPageMode) {
@@ -939,18 +949,18 @@ BookUtil.Search = class {
 		}
 
 		if (obj.entries) {
-			obj.entries.forEach(e => BookUtil.Search._searchEntriesForRecursive(chapterIndex, lastName, appendTo, term, cleanTerm, e, isPageMode))
+			obj.entries.forEach(e => BookUtil.Search._searchEntriesForRecursive(chapterIndex, lastName, appendTo, term, cleanTerm, e, isPageMode));
 		} else if (obj.items) {
-			obj.items.forEach(e => BookUtil.Search._searchEntriesForRecursive(chapterIndex, lastName, appendTo, term, cleanTerm, e, isPageMode))
+			obj.items.forEach(e => BookUtil.Search._searchEntriesForRecursive(chapterIndex, lastName, appendTo, term, cleanTerm, e, isPageMode));
 		} else if (obj.rows) {
 			obj.rows.forEach(r => {
 				const toSearch = r.row ? r.row : r;
 				toSearch.forEach(c => BookUtil.Search._searchEntriesForRecursive(chapterIndex, lastName, appendTo, term, cleanTerm, c, isPageMode));
-			})
+			});
 		} else if (obj.tables) {
-			obj.tables.forEach(t => BookUtil.Search._searchEntriesForRecursive(chapterIndex, lastName, appendTo, term, cleanTerm, t, isPageMode))
+			obj.tables.forEach(t => BookUtil.Search._searchEntriesForRecursive(chapterIndex, lastName, appendTo, term, cleanTerm, t, isPageMode));
 		} else if (obj.entry) {
-			BookUtil.Search._searchEntriesForRecursive(chapterIndex, lastName, appendTo, term, cleanTerm, obj.entry, isPageMode)
+			BookUtil.Search._searchEntriesForRecursive(chapterIndex, lastName, appendTo, term, cleanTerm, obj.entry, isPageMode);
 		} else if (typeof obj === "string" || typeof obj === "number") {
 			if (isPageMode) return;
 
@@ -1052,11 +1062,11 @@ BookUtil.Search = class {
 					return obj;
 				},
 			},
-		)
+		);
 
 		return [closestBelow, closestAbove];
 	}
-}
+};
 BookUtil.Search._EXTRA_WORDS = 2;
 
 if (typeof window !== "undefined") {

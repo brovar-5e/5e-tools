@@ -46,7 +46,10 @@
 	<!-- macOS Safari Pinned Tab and Touch Bar -->
 	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#006bc4">
 
-	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");</script>
+	<!-- OpenSearch -->
+	<link rel="search" href="open-search.xml" title="Search 5etools" type="application/opensearchdescription+xml">
+
+	<script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");</script>
 
 	<script type="text/javascript" src="js/styleswitch.js"></script>
 	<script type="text/javascript" src="js/navigation.js"></script>
@@ -90,13 +93,13 @@
 
 		<hr class="initp__initial">
 
-		<div class="initp__initial row w-100">
-			<div class="col-5 bold">Player Name</div>
+		<div class="initp__initial row w-100 flex">
+			<div class="col-5 bold mr-4">Player Name</div>
 			<div class="col-5 bold">Server Token</div>
 			<div class="col-2 text-center"></div>
 		</div>
 		<div class="initp__initial row w-100 flex mb-4">
-			<div class="col-5 bold"><input class="form-control code" id="initp__ipt_player_name"></div>
+			<div class="col-5 bold mr-4"><input class="form-control code" id="initp__ipt_player_name"></div>
 			<div class="col-5 bold"><input class="form-control code" id="initp__ipt_server_token"></div>
 			<div class="col-2 flex-vh-center"><button class="btn btn-xs btn-primary" id="initp__btn_connect">Connect</button></div>
 		</div>

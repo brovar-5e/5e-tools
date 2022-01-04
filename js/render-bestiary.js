@@ -3,7 +3,7 @@ class RenderBestiary {
 		const renderer = Renderer.get();
 		const renderStack = [];
 		if (sectionTrClass === "lairaction" || sectionTrClass === "regionaleffect") {
-			renderer.recursiveRender({entries: sectionEntries}, renderStack, {depth: sectionLevel + 2});
+			renderer.setFirstSection(true).recursiveRender({entries: sectionEntries}, renderStack, {depth: sectionLevel + 1});
 		} else if (sectionTrClass === "legendary" || sectionTrClass === "mythic") {
 			const cpy = MiscUtil.copy(sectionEntries).map(it => {
 				if (it.name && it.entries) {
@@ -13,11 +13,11 @@ class RenderBestiary {
 				return it;
 			});
 			const toRender = {type: "list", style: "list-hang-notitle", items: cpy};
-			renderer.recursiveRender(toRender, renderStack, {depth: sectionLevel});
+			renderer.setFirstSection(true).recursiveRender(toRender, renderStack, {depth: sectionLevel});
 		} else {
 			sectionEntries.forEach(e => {
 				if (e.rendered) renderStack.push(e.rendered);
-				else renderer.recursiveRender(e, renderStack, {depth: sectionLevel + 1});
+				else renderer.setFirstSection(true).recursiveRender(e, renderStack, {depth: sectionLevel + 1});
 			});
 		}
 		return `<tr class="${sectionTrClass}"><td colspan="6" class="mon__sect-row-inner">${renderStack.join("")}</td></tr>`;
@@ -58,26 +58,16 @@ class RenderBestiary {
 		const allActions = Renderer.monster.getOrderedActions(mon, {fnGetSpellTraits});
 		const legGroup = DataUtil.monster.getMetaGroup(mon);
 
-		const renderedVariants = (() => {
-			const dragonVariant = Renderer.monster.dragonCasterVariant.getHtml(renderer, mon);
-			const variants = mon.variant;
-			if (!variants && !dragonVariant) return null;
-			else {
-				const rStack = [];
-				(variants || []).forEach(v => renderer.recursiveRender(v, rStack));
-				if (dragonVariant) rStack.push(dragonVariant);
-				return `<td colspan=6>${rStack.join("")}</td>`;
-			}
-		})();
+		const renderedVariants = Renderer.monster.getRenderedVariants(mon, {renderer});
 
-		const htmlSourceAndEnvironment = this._$getRenderedCreature_getHtmlSourceAndEnvironment(mon);
+		const htmlSourceAndEnvironment = this._$getRenderedCreature_getHtmlSourceAndEnvironment(mon, legGroup);
 
 		const hasToken = (mon.tokenUrl && mon.uniqueId) || mon.hasToken;
 		const extraThClasses = hasToken ? ["mon__name--token"] : null;
 
 		return $$`
 		${Renderer.utils.getBorderTr()}
-		${Renderer.utils.getExcludedTr(mon, "monster", UrlUtil.PG_BESTIARY)}
+		${Renderer.utils.getExcludedTr({entity: mon, dataProp: "monster", page: UrlUtil.PG_BESTIARY})}
 		${Renderer.utils.getNameTr(mon, {controlRhs: mon.soundClip ? RenderBestiary._getPronunciationButton(mon) : "", extraThClasses, page: UrlUtil.PG_BESTIARY, extensionData: {_scaledCr: mon._scaledCr, _scaledSpellSummonLevel: mon._scaledSpellSummonLevel, _scaledClassSummonLevel: mon._scaledClassSummonLevel}})}
 		<tr><td colspan="6">
 			<div ${hasToken ? `class="mon__wrp-size-type-align--token"` : ""}><i>${Renderer.monster.getTypeAlignmentPart(mon)}</i></div>
@@ -136,7 +126,7 @@ class RenderBestiary {
 		${legGroup && legGroup.regionalEffects ? `<tr><td colspan="6" class="mon__stat-header-underline"><span class="mon__sect-header-inner">Regional Effects</span></td></tr>
 		${RenderBestiary._getRenderedSection("regionaleffect", legGroup.regionalEffects, -1)}` : ""}
 
-		${renderedVariants ? `<tr>${renderedVariants}</tr>` : ""}
+		${renderedVariants ? `<tr><td colspan=6>${renderedVariants}</td></tr>` : ""}
 		${mon.footer ? `<tr><td colspan=6 class="mon__sect-row-inner">${renderer.render({entries: mon.footer})}</td></tr>` : ""}
 		${mon.summonedBySpell ? `<tr><td colspan="6"><b>Summoned By:</b> ${renderer.render(`{@spell ${mon.summonedBySpell}}`)}</td></tr>` : ""}
 		${htmlSourceAndEnvironment.length === 2 ? `<tr><td colspan="6">${htmlSourceAndEnvironment[1]}</td></tr>` : ""}
@@ -144,7 +134,7 @@ class RenderBestiary {
 		${Renderer.utils.getBorderTr()}`;
 	}
 
-	static _$getRenderedCreature_getHtmlSourceAndEnvironment (mon) {
+	static _$getRenderedCreature_getHtmlSourceAndEnvironment (mon, legGroup) {
 		const srcCpy = {
 			source: mon.source,
 			page: mon.page,
@@ -155,24 +145,24 @@ class RenderBestiary {
 			externalSources: mon.externalSources,
 		};
 		const additional = mon.additionalSources ? MiscUtil.copy(mon.additionalSources) : [];
-		if (mon.variant && mon.variant.length > 1) {
+		if (mon.variant?.length) {
 			mon.variant.forEach(v => {
-				if (v.variantSource) {
-					additional.push({
-						source: v.variantSource.source,
-						page: v.variantSource.page,
-					})
-				}
-			})
+				if (!v.source) return "";
+				additional.push({
+					source: v.source,
+					page: v.page,
+				});
+			});
+		}
+		if (legGroup) {
+			if (legGroup.source !== mon.source) additional.push({source: legGroup.source, page: legGroup.page});
+			if (legGroup.additionalSources) additional.push(...MiscUtil.copy(legGroup.additionalSources));
 		}
 		srcCpy.additionalSources = additional;
 
 		const pageTrInner = Renderer.utils.getSourceAndPageTrHtml(srcCpy);
-		if (mon.environment && mon.environment.length) {
-			return [pageTrInner, `<div class="mb-1 mt-2"><b>Environment:</b> ${mon.environment.sort(SortUtil.ascSortLower).map(it => it.toTitleCase()).join(", ")}</div>`];
-		} else {
-			return [pageTrInner];
-		}
+		if (!mon.environment?.length) return [pageTrInner];
+		return [pageTrInner, `<div class="mb-1 mt-2"><b>Environment:</b> ${mon.environment.sort(SortUtil.ascSortLower).map(it => it.toTitleCase()).join(", ")}</div>`];
 	}
 
 	static $getRenderedLegendaryGroup (legGroup) {

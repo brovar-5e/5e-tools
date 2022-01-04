@@ -60,7 +60,7 @@ class BackgroundPage extends ListPage {
 		FilterBox.selectFirstVisible(this._dataList);
 	}
 
-	getSublistItem (bg, pinId) {
+	pGetSublistItem (bg, ix) {
 		const name = bg.name.replace("Variant ", "");
 		const hash = UrlUtil.autoEncodeHash(bg);
 		const skills = Renderer.background.getSkillSummary(bg.skillProficiencies || [], true);
@@ -75,7 +75,7 @@ class BackgroundPage extends ListPage {
 			.click(evt => ListUtil.sublist.doSelect(listItem, evt));
 
 		const listItem = new ListItem(
-			pinId,
+			ix,
 			$ele,
 			name,
 			{
@@ -130,11 +130,6 @@ class BackgroundPage extends ListPage {
 		});
 
 		ListUtil.updateSelected();
-	}
-
-	async pDoLoadSubHash (sub) {
-		sub = this._filterBox.setFromSubHashes(sub);
-		await ListUtil.pSetFromSubHashes(sub);
 	}
 }
 

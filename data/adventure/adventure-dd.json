@@ -73,7 +73,8 @@
 									},
 									"title": "Map 5.4: Lower Hupperdook",
 									"width": 2550,
-									"height": 1650
+									"height": 1650,
+									"imageType": "map"
 								},
 								{
 									"type": "image",
@@ -83,7 +84,8 @@
 									},
 									"title": "Map 5.4: Lower Hupperdook (Player Version)",
 									"width": 2550,
-									"height": 1650
+									"height": 1650,
+									"imageType": "mapPlayer"
 								}
 							]
 						},
@@ -120,7 +122,8 @@
 											},
 											"title": "Map 5.5: Ironlot Streets",
 											"width": 2550,
-											"height": 1650
+											"height": 1650,
+											"imageType": "map"
 										},
 										{
 											"type": "image",
@@ -130,7 +133,8 @@
 											},
 											"title": "Map 5.5: Ironlot Streets (Player Version)",
 											"width": 2550,
-											"height": 1650
+											"height": 1650,
+											"imageType": "mapPlayer"
 										}
 									]
 								},
@@ -274,7 +278,7 @@
 									"id": "7d4",
 									"entries": [
 										"Cleff is an amiable middle-aged gnome, albeit a bit absent-minded and easily distracted. Rissa is sharp and keeps her father on track as best she can. If they are asked about explosives or shown the bronze shrapnel, they direct the characters toward the Firemark Facility ({@adventure area H5|DD|0|H5. Firemark Facility}), the only sanctioned manufacturing den of {@item blasting powder|EGW} and black powder in Hupperdook.",
-										"If the characters show Cleff the damaged automaton, he recognizes the design as his own. Thinking at first that the device might be one of his older models, he inspects it further and scoffs at the realization that it is a poor copy. The crafting reminds him of the work of an old colleague of his\u2014Huron Stahlmast. Talented but impatient, Stahlmast was {@condition prone} to copying the work of others and executing it poorly. He hasn't been seen in Hupperdook for years."
+										"If the characters show Cleff the damaged automaton, he recognizes the design as his own. Thinking at first that the device might be one of his older models, he inspects it further and scoffs at the realization that it is a poor copy. The crafting reminds him of the work of an old colleague of his\u2014Huron Stahlmast. Talented but impatient, Stahlmast was prone to copying the work of others and executing it poorly. He hasn't been seen in Hupperdook for years."
 									]
 								},
 								{
@@ -368,7 +372,8 @@
 											},
 											"title": "Map 5.6: Nima Cinnarid's House",
 											"width": 1200,
-											"height": 1500
+											"height": 1500,
+											"imageType": "map"
 										},
 										{
 											"type": "image",
@@ -378,7 +383,8 @@
 											},
 											"title": "Map 5.6: Nima Cinnarid's House (Player Version)",
 											"width": 2400,
-											"height": 3000
+											"height": 3000,
+											"imageType": "mapPlayer"
 										}
 									]
 								},
@@ -630,7 +636,8 @@
 											},
 											"title": "Map 5.7: Silver Falls Cavern",
 											"width": 2550,
-											"height": 1650
+											"height": 1650,
+											"imageType": "map"
 										},
 										{
 											"type": "image",
@@ -640,7 +647,8 @@
 											},
 											"title": "Map 5.7: Silver Falls Cavern (Player Version)",
 											"width": 2550,
-											"height": 1650
+											"height": 1650,
+											"imageType": "mapPlayer"
 										}
 									]
 								},
@@ -762,7 +770,8 @@
 									},
 									"title": "Map 5.8: Stahlmast's Lair",
 									"width": 2550,
-									"height": 1638
+									"height": 1638,
+									"imageType": "map"
 								},
 								{
 									"type": "image",
@@ -772,7 +781,8 @@
 									},
 									"title": "Map 5.8: Stahlmast's Lair (Player Version)",
 									"width": 2550,
-									"height": 1650
+									"height": 1650,
+									"imageType": "mapPlayer"
 								}
 							]
 						},
